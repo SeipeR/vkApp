@@ -58,16 +58,32 @@
 		5703785A261AF54A00038EF8 /* vkApp */ = {
 			isa = PBXGroup;
 			children = (
+				57037876261B03D300038EF8 /* Controller */,
+				57037875261B03C000038EF8 /* View */,
 				5703785B261AF54A00038EF8 /* AppDelegate.swift */,
 				5703785D261AF54A00038EF8 /* SceneDelegate.swift */,
-				5703785F261AF54A00038EF8 /* ViewController.swift */,
-				57037861261AF54A00038EF8 /* Main.storyboard */,
 				57037867261AF54B00038EF8 /* Assets.xcassets */,
 				57037869261AF54B00038EF8 /* LaunchScreen.storyboard */,
 				5703786C261AF54B00038EF8 /* Info.plist */,
 				57037864261AF54A00038EF8 /* vkApp.xcdatamodeld */,
 			);
 			path = vkApp;
+			sourceTree = "<group>";
+		};
+		57037875261B03C000038EF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57037861261AF54A00038EF8 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57037876261B03D300038EF8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5703785F261AF54A00038EF8 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
