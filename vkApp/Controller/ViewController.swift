@@ -9,4 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var logintTextfield: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+    }
 }
