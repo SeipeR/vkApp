@@ -60,6 +60,7 @@ class ViewController: UIViewController {
             username == "admin",
             password == "admin"
         else {
+            presentError()
             return false
         }
         
@@ -69,6 +70,21 @@ class ViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         checkUserInfo()
     }
+    
+    private func presentError(with message: String = "Неправильный логин или пароль!") {
+        let alertController = UIAlertController(title: "Ошибка!",
+                                                message: message,
+                                                preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok",
+                                     style: .default) { _ in
+            self.logintTextfield.text = ""
+            self.passwordTextField.text = ""
+        }
+        alertController.addAction(okButton)
+        present(alertController,
+                animated: true)
+    }
+        
     
     @objc func hideKeyboard() {
         scrollView?.endEditing(true)
