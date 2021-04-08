@@ -104,6 +104,14 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmc-dh-mJV">
+                                <rect key="frame" x="164" y="492" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="fg0-lj-xvO" kind="unwind" unwindAction="unwindSegueFor:" id="7Ny-M7-aoE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="250-CV-Ory"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,6 +123,7 @@
                     <navigationItem key="navigationItem" id="yO2-5J-gL9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHV-er-gwv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="fg0-lj-xvO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="800.79999999999995" y="93.842364532019715"/>
         </scene>

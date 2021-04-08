@@ -18,6 +18,8 @@ class ViewController: UIViewController {
             print("В доступе отказано!")
         }
     }
+    @IBAction func unwindSegue(for unwindSegue: UIStoryboardSegue) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
