@@ -8,7 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var scrollView: UIScrollView?
+    
     @IBOutlet weak var logintTextfield: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
