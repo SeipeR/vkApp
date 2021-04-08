@@ -19,13 +19,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMt-f5-uUT">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VK_logo" translatesAutoresizingMaskIntoConstraints="NO" id="dDD-YC-Zzi" userLabel="logo">
-                                        <rect key="frame" x="123.66666666666669" y="60" width="128" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="128" id="PnR-gc-Zyf"/>
-                                            <constraint firstAttribute="height" constant="128" id="lii-g1-Gpd"/>
-                                        </constraints>
-                                    </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2xB-Nb-Zof">
                                         <rect key="frame" x="50" y="248" width="275" height="83"/>
                                         <subviews>
@@ -42,7 +35,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ab-uG-OdN" userLabel="login">
-                                        <rect key="frame" x="50" y="391" width="275" height="36"/>
+                                        <rect key="frame" x="50" y="371" width="275" height="36"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Войти">
@@ -53,6 +46,13 @@
                                             <segue destination="MLa-3n-58u" kind="show" id="DOH-qa-RIt"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VK_logo" translatesAutoresizingMaskIntoConstraints="NO" id="dDD-YC-Zzi" userLabel="logo">
+                                        <rect key="frame" x="123.66666666666669" y="60" width="128" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="128" id="PnR-gc-Zyf"/>
+                                            <constraint firstAttribute="height" constant="128" id="lii-g1-Gpd"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2xB-Nb-Zof" firstAttribute="leading" secondItem="H2n-51-RbU" secondAttribute="leading" constant="50" id="3eE-o4-8w9"/>
@@ -61,9 +61,9 @@
                                     <constraint firstItem="7Ab-uG-OdN" firstAttribute="leading" secondItem="H2n-51-RbU" secondAttribute="leading" constant="50" id="GHU-R7-mDb"/>
                                     <constraint firstItem="2xB-Nb-Zof" firstAttribute="top" secondItem="dDD-YC-Zzi" secondAttribute="bottom" constant="60" id="Ig2-xx-yFh"/>
                                     <constraint firstItem="dDD-YC-Zzi" firstAttribute="top" secondItem="cMt-f5-uUT" secondAttribute="top" constant="60" id="c7J-sP-C1e"/>
-                                    <constraint firstItem="7Ab-uG-OdN" firstAttribute="top" secondItem="2xB-Nb-Zof" secondAttribute="bottom" constant="60" id="e4B-SQ-KkS"/>
+                                    <constraint firstItem="7Ab-uG-OdN" firstAttribute="top" secondItem="2xB-Nb-Zof" secondAttribute="bottom" constant="40" id="e4B-SQ-KkS"/>
                                     <constraint firstItem="dDD-YC-Zzi" firstAttribute="centerX" secondItem="2xB-Nb-Zof" secondAttribute="centerX" id="hSz-vq-dnL"/>
-                                    <constraint firstAttribute="bottom" secondItem="7Ab-uG-OdN" secondAttribute="bottom" constant="307" id="oNR-Pe-kui"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Ab-uG-OdN" secondAttribute="bottom" constant="10" id="oNR-Pe-kui"/>
                                     <constraint firstAttribute="trailing" secondItem="2xB-Nb-Zof" secondAttribute="trailing" constant="50" id="oNl-Pf-eRz"/>
                                     <constraint firstItem="dDD-YC-Zzi" firstAttribute="centerX" secondItem="cMt-f5-uUT" secondAttribute="centerX" id="wBh-c4-32i"/>
                                 </constraints>
