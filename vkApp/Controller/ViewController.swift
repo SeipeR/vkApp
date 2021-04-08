@@ -9,9 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView?
-    
     @IBOutlet weak var logintTextfield: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBAction func buttonTapped(_ sender: Any) {
+        if (logintTextfield.text == "admin") && (passwordTextField.text == "admin") {
+            print("Осуществлён вход с учётной записи администратора!")
+        } else {
+            print("В доступе отказано!")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +51,23 @@ class ViewController: UIViewController {
                                                   object: nil)
     }
     
+    private func checkUserInfo() -> Bool {
+        guard
+            let username = logintTextfield.text,
+            let password = passwordTextField.text,
+            username == "admin",
+            password == "admin"
+        else {
+            return false
+        }
+        
+        return true
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        checkUserInfo()
+    }
+    
     @objc func hideKeyboard() {
         scrollView?.endEditing(true)
     }
@@ -63,13 +86,5 @@ class ViewController: UIViewController {
     @objc func keyboardWillBeHidden(notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         scrollView?.contentInset = contentInsets
-    }
-    
-    @IBAction func buttonTapped(_ sender: Any) {
-        if (logintTextfield.text == "admin") && (passwordTextField.text == "admin") {
-            print("Осуществлён вход с учётной записи администратора!")
-        } else {
-            print("В доступе отказано!")
-        }
     }
 }
