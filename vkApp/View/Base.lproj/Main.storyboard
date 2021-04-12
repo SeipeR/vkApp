@@ -182,9 +182,16 @@
                             <outlet property="delegate" destination="Fe5-yk-xWO" id="aur-hi-yVI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Друзья" id="RSS-qJ-LSp"/>
+                    <navigationItem key="navigationItem" title="Друзья" id="RSS-qJ-LSp">
+                        <barButtonItem key="leftBarButtonItem" image="lock.fill" catalog="system" id="Ln9-hg-6zW">
+                            <connections>
+                                <segue destination="wT4-WW-zAQ" kind="unwind" unwindAction="unwindSegueFor:" id="GuH-ff-xTN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gtu-zN-4va" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="wT4-WW-zAQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3458" y="706"/>
         </scene>
@@ -212,6 +219,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Группы" id="vv3-8A-4vf">
+                        <barButtonItem key="leftBarButtonItem" image="lock.fill" catalog="system" id="kXr-f3-b7p">
+                            <connections>
+                                <segue destination="hsi-jl-Rtx" kind="unwind" unwindAction="unwindSegueFor:" id="6yh-iX-tSe"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="33d-vx-0Jy">
                             <connections>
                                 <segue destination="02U-EQ-xyw" kind="show" id="bXE-Z0-Z6n"/>
@@ -220,6 +232,7 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Acp-gl-WL5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hsi-jl-Rtx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3458" y="1404"/>
         </scene>
@@ -284,6 +297,7 @@
     </scenes>
     <resources>
         <image name="VK_logo" width="1024" height="1024"/>
+        <image name="lock.fill" catalog="system" width="128" height="128"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">
