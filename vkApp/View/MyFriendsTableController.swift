@@ -22,7 +22,6 @@ class MyFriendsTableController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(FriendCell.self, forCellReuseIdentifier: "FriendCell")
     }
 
     // MARK: - Table view data source

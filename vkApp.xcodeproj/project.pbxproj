@@ -19,6 +19,7 @@
 		575439C126243F21004A5FAF /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575439C026243F21004A5FAF /* FriendCell.swift */; };
 		57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CE82624520E001FBE6C /* MyGroupsTableController.swift */; };
 		57815CED26245297001FBE6C /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CEC26245297001FBE6C /* GroupCell.swift */; };
+		57815CF02624548D001FBE6C /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CEF2624548D001FBE6C /* AllGroupsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		575439C026243F21004A5FAF /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		57815CE82624520E001FBE6C /* MyGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableController.swift; sourceTree = "<group>"; };
 		57815CEC26245297001FBE6C /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		57815CEF2624548D001FBE6C /* AllGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +94,11 @@
 		57037876261B03D300038EF8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				57190902261F42A3001035BC /* MyFriendsTableController.swift */,
-				57190905261F42BD001035BC /* CollectionViewController.swift */,
 				5703785F261AF54A00038EF8 /* LoginViewController.swift */,
+				57190902261F42A3001035BC /* MyFriendsTableController.swift */,
 				57815CE82624520E001FBE6C /* MyGroupsTableController.swift */,
+				57815CEF2624548D001FBE6C /* AllGroupsController.swift */,
+				57190905261F42BD001035BC /* CollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				57037866261AF54A00038EF8 /* vkApp.xcdatamodeld in Sources */,
 				57037860261AF54A00038EF8 /* LoginViewController.swift in Sources */,
 				5703785C261AF54A00038EF8 /* AppDelegate.swift in Sources */,
+				57815CF02624548D001FBE6C /* AllGroupsController.swift in Sources */,
 				57190903261F42A3001035BC /* MyFriendsTableController.swift in Sources */,
 				5703785E261AF54A00038EF8 /* SceneDelegate.swift in Sources */,
 			);
