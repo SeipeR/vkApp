@@ -63,7 +63,11 @@ class ViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        checkUserInfo()
+        guard identifier == "goInside" else {
+            return false
+        }
+        
+        return checkUserInfo()
     }
     
     private func presentError(with message: String = "Неправильный логин или пароль!") {
