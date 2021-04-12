@@ -11,11 +11,26 @@ class MyGroupsTableController: UITableViewController {
     var groups = [
         "Persona 5",
         "Persona 5 Royal",
-    ]
+    ] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-//    @IBAction func addGroup(segue: UIStoryboardSegue) {
-//        
-//    }
+    @IBAction func addGroup(segue: UIStoryboardSegue) {
+        guard
+            segue.identifier == "addGroup",
+            let allGroupsController = segue.source as? AllGroupsController,
+            let indexPath = allGroupsController.tableView.indexPathForSelectedRow
+        else {
+            return
+        }
+        let group = allGroupsController.allGroups[indexPath.row]
+        
+        if !groups.contains(group) {
+            groups.append(group)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

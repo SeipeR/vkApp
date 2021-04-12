@@ -8,7 +8,7 @@
 import UIKit
 
 class AllGroupsController: UITableViewController {
-    let allGroups = [
+    var allGroups = [
         "Revelations: Persona",
         "Persona 2: Innocent Sin",
         "Persona 2: Eternal Punishment",
@@ -17,6 +17,8 @@ class AllGroupsController: UITableViewController {
         "Persona 3 Portable",
         "Persona 4",
         "Persona 4 Golden",
+        "Persona 5",
+        "Persona 5 Royal",
     ]
     
     override func viewDidLoad() {
