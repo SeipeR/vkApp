@@ -9,17 +9,16 @@ import UIKit
 
 class MyFriendsTableController: UITableViewController {
     var friends = [
-        "Ann Takamaki",
-        "Morgana",
-        "Ryuji Sakamoto",
-        "Yusuke Kitagawa",
-        "Makoto Niijima",
-        "Futaba Sakura",
-        "Haru Okumura",
-        "Sumire Yoshizawa",
-        "Goro Akechi",
+        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Morgana", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "VK_logo")!),
     ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,7 +28,7 @@ class MyFriendsTableController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         friends.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard
@@ -38,7 +37,7 @@ class MyFriendsTableController: UITableViewController {
             return UITableViewCell()
         }
 
-        let currentFriend = friends[indexPath.row]
+        let currentFriend = friends[indexPath.row].userName
         cell.textLabel?.text = currentFriend
         cell.accessoryType = .disclosureIndicator
 

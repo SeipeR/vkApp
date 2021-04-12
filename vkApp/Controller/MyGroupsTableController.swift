@@ -9,11 +9,12 @@ import UIKit
 
 class MyGroupsTableController: UITableViewController {
     var groups = [
-        "Persona 5",
-        "Persona 5 Royal",
+        GroupModel(groupName: "Persona 5", groupAvatar: UIImage(named: "VK_logo")!),
+        GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "VK_logo")!),
     ]
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
+        var a = groups
         guard
             segue.identifier == "addGroup",
             let allGroupsController = segue.source as? AllGroupsController,
@@ -23,9 +24,11 @@ class MyGroupsTableController: UITableViewController {
         }
         let group = allGroupsController.allGroups[indexPath.row]
         
-        if !groups.contains(group) {
-            groups.append(group)
-            tableView.reloadData()
+        for i in (0 ..< a.count) {
+            if !a[i].groupName.contains(group.groupName) {
+                a.append(group)
+                break
+            }
         }
     }
 
@@ -49,7 +52,7 @@ class MyGroupsTableController: UITableViewController {
         }
 
         let currentGroup = groups[indexPath.row]
-        cell.textLabel?.text = currentGroup
+        cell.textLabel?.text = currentGroup.groupName
         cell.accessoryType = .disclosureIndicator
 
         return cell

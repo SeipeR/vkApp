@@ -8,7 +8,6 @@
 import UIKit
 
 class PhotoCell: UICollectionViewCell {
-    func configurate() {
-        //Configurate cell
-    }
+    
+    @IBOutlet weak var photo: UIImageView!
 }
