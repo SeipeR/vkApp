@@ -117,6 +117,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="tPA-9M-trQ" kind="unwind" identifier="addGroup" unwindAction="addGroupWithSegue:" id="pin-Gf-Bas"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -127,6 +130,7 @@
                     <navigationItem key="navigationItem" id="3WT-x0-RnN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qai-ow-G3q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="tPA-9M-trQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4343" y="1404"/>
         </scene>
@@ -165,10 +169,10 @@
             </objects>
             <point key="canvasLocation" x="4343" y="705"/>
         </scene>
-        <!--Друзья-->
+        <!--MyFriendsTableController-->
         <scene sceneID="XNG-tX-HNM">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="Fe5-yk-xWO" customClass="MyFriendsTableController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="Fe5-yk-xWO" userLabel="MyFriendsTableController" customClass="MyFriendsTableController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wJ7-NW-v0n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="3458" y="706"/>
         </scene>
-        <!--Группы-->
+        <!--MyGroupsTableController-->
         <scene sceneID="M7M-ed-4iy">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="Clr-Cg-Csm" customClass="MyGroupsTableController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="Clr-Cg-Csm" userLabel="MyGroupsTableController" customClass="MyGroupsTableController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dHf-en-gw1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
