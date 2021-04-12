@@ -96,7 +96,7 @@
         <scene sceneID="mPY-yO-FeO">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="02U-EQ-xyw" customClass="AllGroupsController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nbg-fv-b0m">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nbg-fv-b0m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -173,7 +173,7 @@
         <scene sceneID="XNG-tX-HNM">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="Fe5-yk-xWO" userLabel="MyFriendsTableController" customClass="MyFriendsTableController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wJ7-NW-v0n">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wJ7-NW-v0n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -222,7 +222,7 @@
         <scene sceneID="M7M-ed-4iy">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="Clr-Cg-Csm" userLabel="MyGroupsTableController" customClass="MyGroupsTableController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dHf-en-gw1">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dHf-en-gw1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -256,7 +256,7 @@
                                 <segue destination="hsi-jl-Rtx" kind="unwind" unwindAction="unwindSegueFor:" id="6yh-iX-tSe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="33d-vx-0Jy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="33d-vx-0Jy">
                             <connections>
                                 <segue destination="02U-EQ-xyw" kind="show" id="bXE-Z0-Z6n"/>
                             </connections>

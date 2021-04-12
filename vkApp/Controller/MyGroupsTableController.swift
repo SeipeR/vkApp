@@ -11,11 +11,7 @@ class MyGroupsTableController: UITableViewController {
     var groups = [
         "Persona 5",
         "Persona 5 Royal",
-    ] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    ]
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
@@ -29,6 +25,7 @@ class MyGroupsTableController: UITableViewController {
         
         if !groups.contains(group) {
             groups.append(group)
+            tableView.reloadData()
         }
     }
 
@@ -63,6 +60,13 @@ class MyGroupsTableController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            groups.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
 }
