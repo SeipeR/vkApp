@@ -8,16 +8,16 @@
 import UIKit
 
 class AllGroupsController: UITableViewController {
-    var allGroups = [
-        GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 2: Eternal Punishment", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 3", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 3 FES", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 3 Portable", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 4", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 5", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "VK_logo")!),
+    let allGroups = [
+        GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 2: Eternal Punishment", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 3", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 3 FES", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 3 Portable", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 4", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 5", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "VK_logo")),
     ]
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class AllGroupsController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allGroups.count
+        return allGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,8 +38,10 @@ class AllGroupsController: UITableViewController {
             return UITableViewCell()
         }
         
-        cell.textLabel?.text = allGroups[indexPath.row].groupName
-        cell.accessoryType = .disclosureIndicator
+        let currentGroup = allGroups[indexPath.row]
+        
+        cell.configure(image: currentGroup.groupAvatar, name: currentGroup.groupName)
+
 
         return cell
     }

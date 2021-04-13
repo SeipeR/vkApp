@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct GroupModel {
+struct GroupModel: Equatable {
     var groupName: String
-    var groupAvatar: UIImage
+    var groupAvatar: UIImage?
 }

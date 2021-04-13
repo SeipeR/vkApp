@@ -9,8 +9,8 @@ import UIKit
 
 class MyGroupsTableController: UITableViewController {
     var groups = [
-        GroupModel(groupName: "Persona 5", groupAvatar: UIImage(named: "VK_logo")!),
-        GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "VK_logo")!),
+        GroupModel(groupName: "Persona 5", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "VK_logo")),
     ]
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
@@ -22,19 +22,11 @@ class MyGroupsTableController: UITableViewController {
             return
         }
         let group = allGroupsController.allGroups[indexPath.row]
-        var tmp = groups
-        for i in (0 ..< groups.count) {
-            if !tmp[i].groupName.contains(group.groupName) {
-                tmp.append(group)
-            }
+
+        if !groups.contains(group) {
+            groups.append(group)
+            tableView.reloadData()
         }
-        groups = tmp
-        tableView.reloadData()
-        
-//        if !groups[indexPath.row].groupName.contains(group.groupName) {
-//            groups.append(group)
-//            tableView.reloadData()
-//        }
     }
 
     override func viewDidLoad() {
@@ -57,8 +49,8 @@ class MyGroupsTableController: UITableViewController {
         }
 
         let currentGroup = groups[indexPath.row]
-        cell.textLabel?.text = currentGroup.groupName
-        cell.accessoryType = .disclosureIndicator
+        
+        cell.configure(image: currentGroup.groupAvatar, name: currentGroup.groupName)
 
         return cell
     }

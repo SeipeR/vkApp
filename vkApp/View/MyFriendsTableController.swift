@@ -9,15 +9,15 @@ import UIKit
 
 class MyFriendsTableController: UITableViewController {
     var friends = [
-        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Morgana", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "VK_logo")!),
-        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "VK_logo")!),
+        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Morgana", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "VK_logo")),
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,8 @@ class MyFriendsTableController: UITableViewController {
             return UITableViewCell()
         }
 
-        let currentFriend = friends[indexPath.row].userName
-        cell.textLabel?.text = currentFriend
-        cell.accessoryType = .disclosureIndicator
+        let currentFriend = friends[indexPath.row]
+        cell.configure(image: currentFriend.userAvatar, name: currentFriend.userName)
 
         return cell
     }
