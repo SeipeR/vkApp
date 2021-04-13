@@ -9,15 +9,15 @@ import UIKit
 
 class AllGroupsController: UITableViewController {
     let allGroups = [
-        GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 2: Eternal Punishment", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 3", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 3 FES", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 3 Portable", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 4", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 5", groupAvatar: UIImage(named: "VK_logo")),
-        GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "VK_logo")),
+        GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "RP")),
+        GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "P2IS")),
+        GroupModel(groupName: "Persona 2: Eternal Punishment", groupAvatar: UIImage(named: "P2EP")),
+        GroupModel(groupName: "Persona 3", groupAvatar: UIImage(named: "P3")),
+        GroupModel(groupName: "Persona 3 FES", groupAvatar: UIImage(named: "P3F")),
+        GroupModel(groupName: "Persona 3 Portable", groupAvatar: UIImage(named: "P3P")),
+        GroupModel(groupName: "Persona 4", groupAvatar: UIImage(named: "P4")),
+        GroupModel(groupName: "Persona 5", groupAvatar: UIImage(named: "P5")),
+        GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "P5R")),
     ]
     
     override func viewDidLoad() {

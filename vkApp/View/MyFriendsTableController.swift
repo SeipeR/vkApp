@@ -9,15 +9,15 @@ import UIKit
 
 class MyFriendsTableController: UITableViewController {
     var friends = [
-        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Morgana", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "VK_logo")),
-        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "VK_logo")),
+        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "Ann")),
+        UserModel(userName: "Morgana", userAvatar: UIImage(named: "Morgana")),
+        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "Ryuji")),
+        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "Yusuke")),
+        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "Makoto")),
+        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "Futaba")),
+        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "Haru")),
+        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire")),
+        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro")),
     ]
     override func viewDidLoad() {
         super.viewDidLoad()

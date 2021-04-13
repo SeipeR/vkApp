@@ -175,7 +175,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VK_logo" translatesAutoresizingMaskIntoConstraints="NO" id="teG-6F-NB4">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="teG-6F-NB4">
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="105" id="2cW-P0-YMy"/>
