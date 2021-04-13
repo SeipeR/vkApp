@@ -14,7 +14,6 @@ class MyGroupsTableController: UITableViewController {
     ]
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
-        var a = groups
         guard
             segue.identifier == "addGroup",
             let allGroupsController = segue.source as? AllGroupsController,
@@ -23,13 +22,19 @@ class MyGroupsTableController: UITableViewController {
             return
         }
         let group = allGroupsController.allGroups[indexPath.row]
-        
-        for i in (0 ..< a.count) {
-            if !a[i].groupName.contains(group.groupName) {
-                a.append(group)
-                break
+        var tmp = groups
+        for i in (0 ..< groups.count) {
+            if !tmp[i].groupName.contains(group.groupName) {
+                tmp.append(group)
             }
         }
+        groups = tmp
+        tableView.reloadData()
+        
+//        if !groups[indexPath.row].groupName.contains(group.groupName) {
+//            groups.append(group)
+//            tableView.reloadData()
+//        }
     }
 
     override func viewDidLoad() {

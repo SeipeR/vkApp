@@ -76,7 +76,7 @@
 		5703785A261AF54A00038EF8 /* vkApp */ = {
 			isa = PBXGroup;
 			children = (
-				57815CF726247278001FBE6C /* Model */,
+				57815CF726247278001FBE6C /* Models */,
 				57037876261B03D300038EF8 /* Controller */,
 				57037875261B03C000038EF8 /* View */,
 				5703785B261AF54A00038EF8 /* AppDelegate.swift */,
@@ -120,13 +120,13 @@
 			path = Reusable;
 			sourceTree = "<group>";
 		};
-		57815CF726247278001FBE6C /* Model */ = {
+		57815CF726247278001FBE6C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				57815CF8262472A7001FBE6C /* UserModel.swift */,
 				57815CFC262472B9001FBE6C /* GroupModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
