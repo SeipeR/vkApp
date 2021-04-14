@@ -40,11 +40,11 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Войти">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
                                             <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ciy-rg-wk7"/>
-                                            <segue destination="4ss-yG-twt" kind="presentation" modalPresentationStyle="fullScreen" id="fZt-ru-Lbi"/>
+                                            <segue destination="GRb-nv-Leu" kind="presentation" identifier="goInside" modalPresentationStyle="fullScreen" id="U6M-Yv-Soc"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VK_logo" translatesAutoresizingMaskIntoConstraints="NO" id="dDD-YC-Zzi" userLabel="logo">
@@ -91,14 +91,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="518" y="1055"/>
-        </scene>
-        <!--Graphic-->
-        <scene sceneID="iii-rU-Svc">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Graphic" id="4ss-yG-twt" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xw6-aS-W0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="557" y="1496"/>
         </scene>
         <!--All Groups Controller-->
         <scene sceneID="mPY-yO-FeO">
@@ -415,6 +407,9 @@
         <image name="lock.fill" catalog="system" width="128" height="128"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
