@@ -37,7 +37,7 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ab-uG-OdN" userLabel="login">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ab-uG-OdN" userLabel="login" customClass="LoginButton" customModule="vkApp" customModuleProvider="target">
                                         <rect key="frame" x="50" y="371" width="275" height="36"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>

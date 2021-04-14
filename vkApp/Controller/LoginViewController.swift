@@ -105,3 +105,11 @@ class LoginViewController: UIViewController {
         scrollView?.contentInset = contentInsets
     }
 }
+
+class LoginButton: UIButton {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        layer.cornerRadius = 5.0
+    }
+}
