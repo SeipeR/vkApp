@@ -63,9 +63,9 @@ class LoginViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard identifier == "goInside" else {
-            return false
-        }
+//        guard identifier == "goInside" else {
+//            return false
+//        }
         
         return checkUserInfo()
     }
