@@ -225,13 +225,25 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-hM-5lk">
                                             <rect key="frame" x="10" y="5.0000000000000036" width="360" height="60.333333333333343"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Nd-vf-qdy">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2L-iW-T57" customClass="AvatarBackShadow" customModule="vkApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60.333333333333336"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Nd-vf-qdy" customClass="AvatarImage" customModule="vkApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="8Nd-vf-qdy" secondAttribute="height" id="Oxf-K4-0Ar"/>
+                                                                <constraint firstAttribute="width" constant="60" id="yXH-Zy-jkY"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="8Nd-vf-qdy" secondAttribute="height" id="Oxf-K4-0Ar"/>
-                                                        <constraint firstAttribute="width" constant="60" id="yXH-Zy-jkY"/>
+                                                        <constraint firstAttribute="bottom" secondItem="8Nd-vf-qdy" secondAttribute="bottom" id="5IL-05-WI6"/>
+                                                        <constraint firstItem="8Nd-vf-qdy" firstAttribute="leading" secondItem="g2L-iW-T57" secondAttribute="leading" id="6Kd-5M-Wld"/>
+                                                        <constraint firstItem="8Nd-vf-qdy" firstAttribute="top" secondItem="g2L-iW-T57" secondAttribute="top" id="EDY-IV-NJN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="8Nd-vf-qdy" secondAttribute="trailing" id="avs-hh-6ZB"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTV-W1-wXG">
                                                     <rect key="frame" x="80" y="0.0" width="280" height="60.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>

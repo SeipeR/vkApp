@@ -111,5 +111,6 @@ class LoginButton: UIButton {
         super.awakeFromNib()
         
         layer.cornerRadius = 5.0
+        clipsToBounds = true
     }
 }
