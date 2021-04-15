@@ -9,7 +9,7 @@ import UIKit
 
 class FriendPhotosController: UICollectionViewController {
     
-    var photos = [UIImage?]()
+    var photos = [(image: UIImage?, isLiked: Bool, likeCount: UInt32)]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,10 @@ class FriendPhotosController: UICollectionViewController {
             return UICollectionViewCell()
         }
         
-        let currentGroup = photos[indexPath.row]
-        
-        cell.configure(image: currentGroup)
+        let currentGroupImage = photos[indexPath.row].image
+        let currentGroupIsLiked = photos[indexPath.row].isLiked
+        let currentGroupLikeCount = photos[indexPath.row].likeCount
+        cell.configure(image: currentGroupImage, isLiked: currentGroupIsLiked, likeCount: currentGroupLikeCount)
 
 
         return cell

@@ -9,15 +9,15 @@ import UIKit
 
 class MyFriendsTableController: UITableViewController {
     var friends = [
-        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "Ann"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Morgana", userAvatar: UIImage(named: "Morgana"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "Ryuji"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "Yusuke"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "Makoto"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "Futaba"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "Haru"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
-        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
+        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "Ann"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32), (image: UIImage(named: "Ann"), isLiked: false, likeCount: 0),]),
+        UserModel(userName: "Morgana", userAvatar: UIImage(named: "Morgana"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 23), (image: UIImage(named: "Ann"), isLiked: false, likeCount: 134), (image: UIImage(named: "Ann"), isLiked: true, likeCount: 123),]),
+//        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "Ryuji"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
+//        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "Yusuke"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
+//        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "Makoto"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
+//        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "Futaba"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
+//        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "Haru"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
+//        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
+//        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro"), userPhotos: [UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"), UIImage(named: "Ann"),]),
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
