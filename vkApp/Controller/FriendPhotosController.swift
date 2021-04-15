@@ -9,15 +9,7 @@ import UIKit
 
 class FriendPhotosController: UICollectionViewController {
     
-    let photos = [
-        UIImage(named: "Ann"),
-        UIImage(named: "Ryuji"),
-        UIImage(named: "Morgana"),
-        UIImage(named: "Goro"),
-        UIImage(named: "Sumire"),
-        UIImage(named: "Makoto"),
-        UIImage(named: "Futaba"),
-    ]
+    var photos = [UIImage?]()
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -263,7 +263,7 @@
                                 <connections>
                                     <outlet property="friendAvatarImage" destination="8Nd-vf-qdy" id="zm0-km-uK7"/>
                                     <outlet property="friendNameLabel" destination="XTV-W1-wXG" id="O83-dk-qzX"/>
-                                    <segue destination="6iO-Ju-deF" kind="show" id="gKV-wq-cvW"/>
+                                    <segue destination="6iO-Ju-deF" kind="show" identifier="showUserPhotos" id="gKV-wq-cvW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
