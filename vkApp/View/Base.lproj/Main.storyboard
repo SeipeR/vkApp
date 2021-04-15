@@ -113,13 +113,25 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0tj-Us-9q1">
                                             <rect key="frame" x="10" y="5.0000000000000036" width="360" height="60.333333333333343"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="62M-ki-fWQ">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHI-4P-7e3" customClass="AvatarBackShadow" customModule="vkApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60.333333333333336"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="62M-ki-fWQ" customClass="AvatarImage" customModule="vkApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="62M-ki-fWQ" secondAttribute="height" id="6ID-qa-tYh"/>
+                                                                <constraint firstAttribute="width" constant="60" id="cFc-LW-bjQ"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="62M-ki-fWQ" secondAttribute="height" id="6ID-qa-tYh"/>
-                                                        <constraint firstAttribute="width" constant="60" id="cFc-LW-bjQ"/>
+                                                        <constraint firstItem="62M-ki-fWQ" firstAttribute="top" secondItem="WHI-4P-7e3" secondAttribute="top" id="1eD-sy-Ayf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="62M-ki-fWQ" secondAttribute="trailing" id="bQb-QM-nLD"/>
+                                                        <constraint firstItem="62M-ki-fWQ" firstAttribute="leading" secondItem="WHI-4P-7e3" secondAttribute="leading" id="nXv-KX-8fM"/>
+                                                        <constraint firstAttribute="bottom" secondItem="62M-ki-fWQ" secondAttribute="bottom" id="rFL-rE-oiN"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDU-fO-F3Y">
                                                     <rect key="frame" x="80" y="0.0" width="280" height="60.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -305,13 +317,25 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nkN-XM-2cf">
                                             <rect key="frame" x="10" y="5.0000000000000036" width="360" height="60.333333333333343"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kON-6r-N7h">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45i-Dz-GT2" customClass="AvatarBackShadow" customModule="vkApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60.333333333333336"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kON-6r-N7h" customClass="AvatarImage" customModule="vkApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="kON-6r-N7h" secondAttribute="height" id="cKf-8N-QwE"/>
+                                                                <constraint firstAttribute="width" constant="60" id="k9E-MA-1Kg"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="kON-6r-N7h" secondAttribute="height" id="cKf-8N-QwE"/>
-                                                        <constraint firstAttribute="width" constant="60" id="k9E-MA-1Kg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="kON-6r-N7h" secondAttribute="trailing" id="ItA-AD-1Ip"/>
+                                                        <constraint firstItem="kON-6r-N7h" firstAttribute="leading" secondItem="45i-Dz-GT2" secondAttribute="leading" id="UuC-Wq-DxC"/>
+                                                        <constraint firstItem="kON-6r-N7h" firstAttribute="top" secondItem="45i-Dz-GT2" secondAttribute="top" id="l3N-dw-bg1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="kON-6r-N7h" secondAttribute="bottom" id="wa9-Hq-sV2"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hil-Xg-85g">
                                                     <rect key="frame" x="80" y="0.0" width="280" height="60.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
