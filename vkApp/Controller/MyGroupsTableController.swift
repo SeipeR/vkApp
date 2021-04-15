@@ -8,7 +8,8 @@
 import UIKit
 
 class MyGroupsTableController: UITableViewController {
-    var groups = [GroupModel]()
+    var groups = [GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "RP")),
+                  GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "P2IS")),]
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
