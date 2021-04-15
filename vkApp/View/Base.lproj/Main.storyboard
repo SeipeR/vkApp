@@ -212,6 +212,9 @@
                                                                     </constraints>
                                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                                     <state key="normal" title="Button" image="heart" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="action:" destination="Wve-vc-wFd" eventType="touchUpInside" id="lzI-aM-zU0"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6l-zq-GWY">
                                                                     <rect key="frame" x="25" y="0.0" width="65" height="15"/>
@@ -237,7 +240,7 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="likeButtonOutlet" destination="7EO-ZS-8Lf" id="z1v-Jf-EXg"/>
+                                    <outlet property="likeButtonOutlet" destination="7EO-ZS-8Lf" id="D9R-IX-2qI"/>
                                     <outlet property="likeCountLabel" destination="P6l-zq-GWY" id="Jh7-o3-hc3"/>
                                     <outlet property="photo" destination="teG-6F-NB4" id="lru-UT-HsG"/>
                                 </connections>
