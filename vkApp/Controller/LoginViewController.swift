@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var logintTextfield: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -52,8 +52,8 @@ class ViewController: UIViewController {
         guard
             let username = logintTextfield.text,
             let password = passwordTextField.text,
-            username == "admin",
-            password == "admin"
+            username == "",
+            password == ""
         else {
             presentError()
             return false
@@ -63,7 +63,11 @@ class ViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        checkUserInfo()
+        guard identifier == "goInside" else {
+            return false
+        }
+        
+        return checkUserInfo()
     }
     
     private func presentError(with message: String = "Неправильный логин или пароль!") {
