@@ -19,8 +19,11 @@ class MyFriendsTableController: UITableViewController {
         UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
         UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
     ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let nib = UINib(nibName: "FriendCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "FriendCell")
     }
 
     // MARK: - Table view data source
@@ -60,6 +63,7 @@ class MyFriendsTableController: UITableViewController {
     // MARK: - Table view delegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showUserPhotos", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
