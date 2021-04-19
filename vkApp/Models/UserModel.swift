@@ -10,4 +10,5 @@ import UIKit
 struct UserModel {
     var userName: String
     var userAvatar: UIImage?
+    var userPhotos: [(image: UIImage?, isLiked: Bool, likeCount: UInt32)]
 }

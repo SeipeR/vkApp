@@ -9,15 +9,15 @@ import UIKit
 
 class MyFriendsTableController: UITableViewController {
     var friends = [
-        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "Ann")),
-        UserModel(userName: "Morgana", userAvatar: UIImage(named: "Morgana")),
-        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "Ryuji")),
-        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "Yusuke")),
-        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "Makoto")),
-        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "Futaba")),
-        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "Haru")),
-        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire")),
-        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro")),
+        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "Ann"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32), (image: UIImage(named: "Ann"), isLiked: false, likeCount: 0),]),
+        UserModel(userName: "Morgana", userAvatar: UIImage(named: "Morgana"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 23), (image: UIImage(named: "Ann"), isLiked: false, likeCount: 134), (image: UIImage(named: "Ann"), isLiked: true, likeCount: 123),]),
+        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "Ryuji"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32), (image: UIImage(named: "Ann"), isLiked: true, likeCount: 32), (image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
+        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "Yusuke"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
+        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "Makoto"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
+        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "Futaba"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
+        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "Haru"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
+        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
+        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro"), userPhotos: [(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),(image: UIImage(named: "Ann"), isLiked: true, likeCount: 32),]),
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,19 @@ class MyFriendsTableController: UITableViewController {
         cell.configure(image: currentFriend.userAvatar, name: currentFriend.userName)
 
         return cell
+    }
+    
+//    Отображение фотографий выбранного друга
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            segue.identifier == "showUserPhotos",
+            let destination = segue.destination as? FriendPhotosController,
+            let index = tableView.indexPathForSelectedRow?.row
+        else {
+            return
+        }
+        
+        destination.photos = friends[index].userPhotos
     }
     
     

@@ -9,15 +9,7 @@ import UIKit
 
 class FriendPhotosController: UICollectionViewController {
     
-    let photos = [
-        UIImage(named: "Ann"),
-        UIImage(named: "Ryuji"),
-        UIImage(named: "Morgana"),
-        UIImage(named: "Goro"),
-        UIImage(named: "Sumire"),
-        UIImage(named: "Makoto"),
-        UIImage(named: "Futaba"),
-    ]
+    var photos = [(image: UIImage?, isLiked: Bool, likeCount: UInt32)]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +28,10 @@ class FriendPhotosController: UICollectionViewController {
             return UICollectionViewCell()
         }
         
-        let currentGroup = photos[indexPath.row]
-        
-        cell.configure(image: currentGroup)
+        let currentGroupImage = photos[indexPath.row].image
+        let currentGroupIsLiked = photos[indexPath.row].isLiked
+        let currentGroupLikeCount = photos[indexPath.row].likeCount
+        cell.configure(image: currentGroupImage, isLiked: currentGroupIsLiked, likeCount: currentGroupLikeCount)
 
 
         return cell
