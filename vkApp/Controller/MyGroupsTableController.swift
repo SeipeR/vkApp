@@ -29,7 +29,8 @@ class MyGroupsTableController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.tableView.register(GroupCell.self, forCellReuseIdentifier: "GroupCell")
+        let nib = UINib(nibName: "GroupCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "GroupCell")
     }
 
     // MARK: - Table view data source

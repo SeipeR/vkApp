@@ -22,6 +22,8 @@ class AllGroupsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let nib = UINib(nibName: "GroupCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "GroupCell")
     }
 
     // MARK: - Table view data source
@@ -33,7 +35,7 @@ class AllGroupsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroupsCell", for: indexPath) as? GroupCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell
         else {
             return UITableViewCell()
         }
@@ -49,6 +51,7 @@ class AllGroupsController: UITableViewController {
     // MARK: - Table view delegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "addGroup", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

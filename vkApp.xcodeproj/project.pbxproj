@@ -25,6 +25,7 @@
 		57815CFD262472B9001FBE6C /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CFC262472B9001FBE6C /* GroupModel.swift */; };
 		57E8DCA8262D7E86007FAE0E /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E8DCA7262D7E85007FAE0E /* FriendCell.xib */; };
 		57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */; };
+		57E8DCB6262D975F007FAE0E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E8DCB5262D975F007FAE0E /* GroupCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		57815CFC262472B9001FBE6C /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		57E8DCA7262D7E85007FAE0E /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
+		57E8DCB5262D975F007FAE0E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				57815CEC26245297001FBE6C /* GroupCell.swift */,
 				57815CF426246E19001FBE6C /* PhotoCell.swift */,
 				57E8DCA7262D7E85007FAE0E /* FriendCell.xib */,
+				57E8DCB5262D975F007FAE0E /* GroupCell.xib */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				5703786B261AF54B00038EF8 /* LaunchScreen.storyboard in Resources */,
 				57037868261AF54B00038EF8 /* Assets.xcassets in Resources */,
 				57037863261AF54A00038EF8 /* Main.storyboard in Resources */,
+				57E8DCB6262D975F007FAE0E /* GroupCell.xib in Resources */,
 				57E8DCA8262D7E86007FAE0E /* FriendCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
