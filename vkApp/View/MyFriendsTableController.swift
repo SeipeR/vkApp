@@ -67,4 +67,24 @@ class MyFriendsTableController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+//     Добавление хэдера и футера
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = TableSectionHeaderView(reuseIdentifier: "")
+//        headerView.configure(with: "Header")
+//        return headerView
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        70
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let headerView = TableSectionHeaderView(reuseIdentifier: "")
+//        headerView.configure(with: "Footer")
+//        return headerView
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        70
+//    }
 }
