@@ -11,8 +11,8 @@ final class TableSectionHeaderView: UITableViewHeaderFooterView {
     private let myLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        label.textColor = UIColor.systemIndigo
-        label.textAlignment = .center
+        label.textColor = UIColor.label
+//        label.textAlignment = .center
         
         return label
     }()
@@ -36,7 +36,12 @@ final class TableSectionHeaderView: UITableViewHeaderFooterView {
     }
     
     private func configurateViews() {
-        addSubview(myLabel)
+        contentView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.5)
+
+        contentView.addSubview(myLabel)
+        myLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: myLabel, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 30).isActive = true
+        NSLayoutConstraint(item: myLabel, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
     }
     
     override func layoutSubviews() {
@@ -44,7 +49,7 @@ final class TableSectionHeaderView: UITableViewHeaderFooterView {
         myLabel.frame = self.bounds
     }
     
-    func configure(with name: String) {
-        myLabel.text = name
+    func configure(with name: Character) {
+        myLabel.text = String(name)
     }
 }
