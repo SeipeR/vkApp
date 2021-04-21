@@ -19,7 +19,14 @@ class MyGroupsTableController: UITableViewController {
         else {
             return
         }
-        let group = allGroupsController.allGroups[indexPath.row]
+        
+        let group: GroupModel
+        if allGroupsController.isFiltering {
+            
+            group = allGroupsController.filteredGroups[indexPath.row]
+        } else {
+            group = allGroupsController.allGroups[indexPath.row]
+        }
 
         if !groups.contains(group) {
             groups.append(group)
