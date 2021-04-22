@@ -33,6 +33,7 @@ class NewsCell: UITableViewCell {
         newsLabel.text = news
         self.newsImage.image = newsImage
         likeCountLabel.text = "\(likeCount)"
+        likeButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
         if isLiked {
             likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
