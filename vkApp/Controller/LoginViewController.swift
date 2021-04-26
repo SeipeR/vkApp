@@ -8,6 +8,11 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    @IBOutlet weak var loadingView1: UIView!
+    @IBOutlet weak var loadingView2: UIView!
+    @IBOutlet weak var loadingView3: UIView!
+    
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var logintTextfield: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,6 +23,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createLoadingIndicator()
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                           action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(tapGestureRecognizer)
@@ -46,6 +54,22 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
+    }
+    
+    func createLoadingIndicator() {
+        loadingView1.layer.cornerRadius = loadingView1.frame.width / 2
+        loadingView2.layer.cornerRadius = loadingView2.frame.width / 2
+        loadingView3.layer.cornerRadius = loadingView3.frame.width / 2
+        
+        UIView.animate(withDuration: 1, delay: 0, options: .repeat) {
+            self.loadingView1.alpha = 0
+        }
+        UIView.animate(withDuration: 1, delay: 0.25, options: .repeat) {
+            self.loadingView2.alpha = 0
+        }
+        UIView.animate(withDuration: 1, delay: 0.5, options: .repeat) {
+            self.loadingView3.alpha = 0
+        }
     }
     
     private func checkUserInfo() -> Bool {
