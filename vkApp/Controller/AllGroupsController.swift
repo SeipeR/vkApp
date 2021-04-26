@@ -91,6 +91,22 @@ class AllGroupsController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.2) {
+            if let cell = tableView.cellForRow(at: indexPath) as? GroupCell {
+                cell.groupAvatarImage.transform = .init(scaleX: 0.95, y: 0.95)
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 1.5, delay: 0.2, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.0) {
+            if let cell = tableView.cellForRow(at: indexPath) as? GroupCell {
+                cell.groupAvatarImage.transform = .identity
+            }
+        }
+    }
+    
     func filterContentForSearchText(_ searchText: String) {
         filteredGroups = allGroups.filter { (group: GroupModel) -> Bool in
             return group.groupName.lowercased().contains(searchText.lowercased())
