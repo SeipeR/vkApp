@@ -36,6 +36,20 @@ class FriendPhotosController: UICollectionViewController {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            segue.identifier == "goPhoto",
+            let destination = segue.destination as? PhotoPreviewViewController,
+            let cell: PhotoCell = sender as? PhotoCell,
+            let image = cell.photo.image
+        else {
+            return
+        }
+        destination.currentPhoto = image
+        destination.photos = self.photos
+    }
+
 
     // MARK: UICollectionViewDelegate
 

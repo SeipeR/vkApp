@@ -244,6 +244,7 @@
                                     <outlet property="likeButtonOutlet" destination="2R6-8F-3gQ" id="9HZ-Le-Qb4"/>
                                     <outlet property="likeCountLabel" destination="P6l-zq-GWY" id="Jh7-o3-hc3"/>
                                     <outlet property="photo" destination="teG-6F-NB4" id="lru-UT-HsG"/>
+                                    <segue destination="P0P-tt-4xD" kind="show" identifier="goPhoto" animates="NO" id="bBt-fa-gXj"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -257,6 +258,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ep-am-YBN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4342" y="287"/>
+        </scene>
+        <!--Photo Preview View Controller-->
+        <scene sceneID="C6f-cy-XfK">
+            <objects>
+                <viewController id="P0P-tt-4xD" customClass="PhotoPreviewViewController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="edz-Gu-1U3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dx6-bs-Lna" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5226" y="287"/>
         </scene>
         <!--MyFriendsTableController-->
         <scene sceneID="XNG-tX-HNM">

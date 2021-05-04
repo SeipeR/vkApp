@@ -4,24 +4,27 @@
 //
 //  Created by Дамир Доронкин on 04.05.2021.
 //
-
+import Foundation
 import UIKit
 
 class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-
+    var photos = [(image: UIImage?, isLiked: Bool, likeCount: UInt32)]()
+    var photosImage = [UIImage?]()
+    var currentPhoto: UIImage?
+    var currentPhotoIndex: Int = 0
     var controllers = [UIViewController]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let photos: [UIImage] = [
-            UIImage(named: "Ann")!,
-            UIImage(named: "Ann_1")!,
-            UIImage(named: "Ann_2")!
-        ]
-        
         for photo in photos {
-            let viewController = PhotoViewController(with: photo)
+            photosImage.append(photo.image)
+        }
+        
+        currentPhotoIndex = photosImage.firstIndex(where: {$0 === currentPhoto})!
+        
+        for photo in photosImage {
+            let viewController = PhotoViewController(with: photo!)
             controllers.append(viewController)
         }
     }
@@ -29,21 +32,17 @@ class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSour
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        DispatchQueue.main.asyncAfter(wallDeadline: .now()+2) {
+        DispatchQueue.main.asyncAfter(wallDeadline: .now()) {
             self.presentPageVC()
         }
     }
     
     func presentPageVC() {
-        guard let firstViewController = controllers.first else {
-            return
-        }
-        
         let viewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         viewController.delegate = self
         viewController.dataSource = self
         
-        viewController.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+        viewController.setViewControllers([controllers[currentPhotoIndex]], direction: .forward, animated: true, completion: nil)
         
         present(viewController, animated: true)
     }
