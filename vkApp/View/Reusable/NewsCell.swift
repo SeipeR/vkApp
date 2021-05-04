@@ -17,11 +17,21 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var likeButtonOutlet: UIButton!
     @IBAction func likeButtonAction(_ sender: UIButton) {
         if sender.image(for: .normal) == UIImage(systemName: "heart.fill") {
-            sender.setImage(UIImage(systemName: "heart"), for: .normal)
-            likeCountLabel.text = "\(UInt32(likeCountLabel.text!)! - 1)"
+            UIView.transition(with: likeButtonOutlet, duration: 0.7, options: [.transitionCrossDissolve, .transitionFlipFromTop]) {
+                self.likeButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            
+            UIView.transition(with: likeCountLabel, duration: 0.7, options: [.transitionCrossDissolve, .transitionFlipFromTop]) {
+                self.likeCountLabel.text = "\(UInt32(self.likeCountLabel.text!)! - 1)"
+            }
         } else {
-            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            likeCountLabel.text = "\(UInt32(likeCountLabel.text!)! + 1)"
+            UIView.transition(with: likeButtonOutlet, duration: 0.7, options: [.transitionCrossDissolve, .curveEaseInOut,]) {
+                self.likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            }
+            
+            UIView.transition(with: likeCountLabel, duration: 0.7, options: [.transitionCrossDissolve, .curveEaseInOut,]) {
+                self.likeCountLabel.text = "\(UInt32(self.likeCountLabel.text!)! + 1)"
+            }
         }
     }
     @IBOutlet weak var likeCountLabel: UILabel!
