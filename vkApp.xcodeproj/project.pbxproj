@@ -31,6 +31,9 @@
 		57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */; };
 		57E8DCB6262D975F007FAE0E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E8DCB5262D975F007FAE0E /* GroupCell.xib */; };
 		57E8DCB9262EF7AC007FAE0E /* TableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8DCB8262EF7AC007FAE0E /* TableSectionHeaderView.swift */; };
+		57F6AFC7264152EF00029063 /* PhotoPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57F6AFC6264152EF00029063 /* PhotoPreview.storyboard */; };
+		57F6AFCA2641532700029063 /* PhotoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6AFC92641532700029063 /* PhotoPreviewViewController.swift */; };
+		57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6AFCC26415B6800029063 /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		57E8DCB5262D975F007FAE0E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		57E8DCB8262EF7AC007FAE0E /* TableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionHeaderView.swift; sourceTree = "<group>"; };
+		57F6AFC6264152EF00029063 /* PhotoPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoPreview.storyboard; sourceTree = "<group>"; };
+		57F6AFC92641532700029063 /* PhotoPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewViewController.swift; sourceTree = "<group>"; };
+		57F6AFCC26415B6800029063 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 				57E8DCAA262D80DE007FAE0E /* CustomViews */,
 				57037861261AF54A00038EF8 /* Main.storyboard */,
 				575439BF26243EE9004A5FAF /* Reusable */,
+				57F6AFC6264152EF00029063 /* PhotoPreview.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -124,6 +131,8 @@
 				57190902261F42A3001035BC /* MyFriendsTableController.swift */,
 				57815CE82624520E001FBE6C /* MyGroupsTableController.swift */,
 				57036283263179E000EB1DEC /* NewsTableController.swift */,
+				57F6AFC92641532700029063 /* PhotoPreviewViewController.swift */,
+				57F6AFCC26415B6800029063 /* PhotoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -218,6 +227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57F6AFC7264152EF00029063 /* PhotoPreview.storyboard in Resources */,
 				5703627C2631715A00EB1DEC /* NewsCell.xib in Resources */,
 				5703786B261AF54B00038EF8 /* LaunchScreen.storyboard in Resources */,
 				57037868261AF54B00038EF8 /* Assets.xcassets in Resources */,
@@ -234,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57F6AFCA2641532700029063 /* PhotoPreviewViewController.swift in Sources */,
 				57815CED26245297001FBE6C /* GroupCell.swift in Sources */,
 				575439C126243F21004A5FAF /* FriendCell.swift in Sources */,
 				57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */,
@@ -242,6 +253,7 @@
 				57036284263179E000EB1DEC /* NewsTableController.swift in Sources */,
 				57037860261AF54A00038EF8 /* LoginViewController.swift in Sources */,
 				5703627B2631715A00EB1DEC /* NewsCell.swift in Sources */,
+				57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */,
 				57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */,
 				5703785C261AF54A00038EF8 /* AppDelegate.swift in Sources */,
 				57815CF02624548D001FBE6C /* AllGroupsController.swift in Sources */,
