@@ -353,7 +353,7 @@
         <!--GroupsNavigation-->
         <scene sceneID="itB-BR-Cw5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xFj-x3-JC4" userLabel="GroupsNavigation" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xFj-x3-JC4" userLabel="GroupsNavigation" customClass="CustomNavigationController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="person.3.fill" catalog="system" selectedImage="person.3.fill" id="20j-ud-xif"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yV9-oc-jn0">
@@ -391,7 +391,7 @@
         <!--NewsNavigation-->
         <scene sceneID="Fh5-HV-qBX">
             <objects>
-                <navigationController id="ZBx-Ph-4IK" userLabel="NewsNavigation" sceneMemberID="viewController">
+                <navigationController id="ZBx-Ph-4IK" userLabel="NewsNavigation" customClass="CustomNavigationController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="newspaper.fill" catalog="system" selectedImage="newspaper.fill" id="sue-6Y-FVq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2tl-OR-AUZ">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -408,7 +408,7 @@
         <!--FriendsNavigation-->
         <scene sceneID="4Nm-LT-tY4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2qL-Yj-hTx" userLabel="FriendsNavigation" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2qL-Yj-hTx" userLabel="FriendsNavigation" customClass="CustomNavigationController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.fill" catalog="system" selectedImage="person.fill" id="Bfa-rt-CQN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1MU-sH-Kr2">

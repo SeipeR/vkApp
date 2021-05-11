@@ -23,6 +23,7 @@
 		574500D3264A6C8C000E00FB /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D2264A6C8C000E00FB /* CustomSegue.swift */; };
 		574500D6264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D5264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift */; };
 		574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */; };
+		574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500DD264A9475000E00FB /* CustomNavigationController.swift */; };
 		575439C126243F21004A5FAF /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575439C026243F21004A5FAF /* FriendCell.swift */; };
 		57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CE82624520E001FBE6C /* MyGroupsTableController.swift */; };
 		57815CED26245297001FBE6C /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CEC26245297001FBE6C /* GroupCell.swift */; };
@@ -57,6 +58,7 @@
 		574500D2264A6C8C000E00FB /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		574500D5264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerPresentAnimator.swift; sourceTree = "<group>"; };
 		574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
+		574500DD264A9475000E00FB /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		575439C026243F21004A5FAF /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		57815CE82624520E001FBE6C /* MyGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableController.swift; sourceTree = "<group>"; };
 		57815CEC26245297001FBE6C /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				574500D2264A6C8C000E00FB /* CustomSegue.swift */,
 				574500D5264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift */,
 				574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */,
+				574500DD264A9475000E00FB /* CustomNavigationController.swift */,
 			);
 			path = UIHelper;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				57037860261AF54A00038EF8 /* LoginViewController.swift in Sources */,
 				5703627B2631715A00EB1DEC /* NewsCell.swift in Sources */,
 				57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */,
+				574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */,
 				57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */,
 				5703785C261AF54A00038EF8 /* AppDelegate.swift in Sources */,
 				57815CF02624548D001FBE6C /* AllGroupsController.swift in Sources */,

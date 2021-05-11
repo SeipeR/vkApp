@@ -70,7 +70,7 @@ class MyFriendsTableController: UITableViewController {
         }
         objectArray.sort(by: { $0.sectionName < $1.sectionName})
         
-        navigationController?.delegate = self
+//        navigationController?.delegate = self
     }
 
     // MARK: - Table view data source

@@ -39,7 +39,7 @@ class MyGroupsTableController: UITableViewController {
         let nib = UINib(nibName: "GroupCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "GroupCell")
         
-        navigationController?.delegate = self
+//        navigationController?.delegate = self
     }
 
     // MARK: - Table view data source
