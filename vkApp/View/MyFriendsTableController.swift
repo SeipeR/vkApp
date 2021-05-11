@@ -137,6 +137,22 @@ class MyFriendsTableController: UITableViewController {
         50
     }
     
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.2) {
+            if let cell = tableView.cellForRow(at: indexPath) as? FriendCell {
+                cell.friendAvatarImage.transform = .init(scaleX: 0.95, y: 0.95)
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 1.5, delay: 0.2, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.0) {
+            if let cell = tableView.cellForRow(at: indexPath) as? FriendCell {
+                cell.friendAvatarImage.transform = .identity
+            }
+        }
+    }
+    
 //    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 //        let headerView = TableSectionHeaderView(reuseIdentifier: "")
 //        headerView.configure(with: "Footer")
