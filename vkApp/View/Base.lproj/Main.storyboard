@@ -47,7 +47,7 @@
                                         </state>
                                         <connections>
                                             <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ciy-rg-wk7"/>
-                                            <segue destination="GRb-nv-Leu" kind="presentation" identifier="goInside" modalPresentationStyle="fullScreen" id="U6M-Yv-Soc"/>
+                                            <segue destination="GRb-nv-Leu" kind="presentation" identifier="goInside" customClass="CustomSegue" customModule="vkApp" customModuleProvider="target" modalPresentationStyle="fullScreen" id="U6M-Yv-Soc"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VK_logo" translatesAutoresizingMaskIntoConstraints="NO" id="dDD-YC-Zzi" userLabel="logo">
@@ -262,7 +262,7 @@
         <!--Photo Preview View Controller-->
         <scene sceneID="C6f-cy-XfK">
             <objects>
-                <viewController id="P0P-tt-4xD" customClass="PhotoPreviewViewController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="P0P-tt-4xD" customClass="PhotoPreviewViewController" customModule="vkApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="edz-Gu-1U3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dx6-bs-Lna" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
