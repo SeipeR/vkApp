@@ -22,6 +22,7 @@
 		57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190905261F42BD001035BC /* FriendPhotosController.swift */; };
 		574500D3264A6C8C000E00FB /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D2264A6C8C000E00FB /* CustomSegue.swift */; };
 		574500D6264A72A8000E00FB /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D5264A72A8000E00FB /* Animator.swift */; };
+		574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */; };
 		575439C126243F21004A5FAF /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575439C026243F21004A5FAF /* FriendCell.swift */; };
 		57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CE82624520E001FBE6C /* MyGroupsTableController.swift */; };
 		57815CED26245297001FBE6C /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CEC26245297001FBE6C /* GroupCell.swift */; };
@@ -55,6 +56,7 @@
 		57190905261F42BD001035BC /* FriendPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosController.swift; sourceTree = "<group>"; };
 		574500D2264A6C8C000E00FB /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		574500D5264A72A8000E00FB /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
 		575439C026243F21004A5FAF /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		57815CE82624520E001FBE6C /* MyGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableController.swift; sourceTree = "<group>"; };
 		57815CEC26245297001FBE6C /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				574500D2264A6C8C000E00FB /* CustomSegue.swift */,
 				574500D5264A72A8000E00FB /* Animator.swift */,
+				574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */,
 			);
 			path = UIHelper;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */,
 				57037866261AF54A00038EF8 /* vkApp.xcdatamodeld in Sources */,
 				57036284263179E000EB1DEC /* NewsTableController.swift in Sources */,
+				574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */,
 				57037860261AF54A00038EF8 /* LoginViewController.swift in Sources */,
 				5703627B2631715A00EB1DEC /* NewsCell.swift in Sources */,
 				57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */,
