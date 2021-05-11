@@ -171,9 +171,9 @@ extension MyFriendsTableController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         switch operation {
         case .pop:
-            return PopAnimator()
+            return NavigationControllerPopAnimator()
         case .push:
-            return PushAnimator()
+            return NavigationControllerPushAnimator()
         case .none:
             return nil
         default:

@@ -8,8 +8,6 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    let animator = Animator()
-    
     @IBOutlet weak var loadingView1: UIView!
     @IBOutlet weak var loadingView2: UIView!
     @IBOutlet weak var loadingView3: UIView!
@@ -149,10 +147,10 @@ class LoginButton: UIButton {
 
 extension LoginViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        animator
+        LoginViewControllerPresentAnimator()
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        animator
+        LoginViewControllerDismissAnimator()
     }
 }
