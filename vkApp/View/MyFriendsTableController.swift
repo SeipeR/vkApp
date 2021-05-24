@@ -69,6 +69,8 @@ class MyFriendsTableController: UITableViewController {
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
         objectArray.sort(by: { $0.sectionName < $1.sectionName})
+        
+//        navigationController?.delegate = self
     }
 
     // MARK: - Table view data source
@@ -162,4 +164,20 @@ class MyFriendsTableController: UITableViewController {
 //    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 //        70
 //    }
+}
+
+
+extension MyFriendsTableController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .pop:
+            return NavigationControllerPopAnimator()
+        case .push:
+            return NavigationControllerPushAnimator()
+        case .none:
+            return nil
+        default:
+            return nil
+        }
+    }
 }

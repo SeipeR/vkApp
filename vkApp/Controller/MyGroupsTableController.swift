@@ -38,6 +38,8 @@ class MyGroupsTableController: UITableViewController {
         super.viewDidLoad()
         let nib = UINib(nibName: "GroupCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "GroupCell")
+        
+//        navigationController?.delegate = self
     }
 
     // MARK: - Table view data source
@@ -90,4 +92,19 @@ class MyGroupsTableController: UITableViewController {
         }
     }
     
+}
+
+extension MyGroupsTableController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .pop:
+            return NavigationControllerPopAnimator()
+        case .push:
+            return NavigationControllerPushAnimator()
+        case .none:
+            return nil
+        default:
+            return nil
+        }
+    }
 }

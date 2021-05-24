@@ -8,7 +8,6 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
     @IBOutlet weak var loadingView1: UIView!
     @IBOutlet weak var loadingView2: UIView!
     @IBOutlet weak var loadingView3: UIView!
@@ -17,6 +16,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logintTextfield: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBAction func buttonTapped(_ sender: Any) {
+        guard checkUserInfo() else {
+            return
+        }
+        
+        let myTabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyTabBarController")
+        myTabBarController.transitioningDelegate = self
+        present(myTabBarController, animated: true)
     }
     @IBAction func unwindSegue(for unwindSegue: UIStoryboardSegue) {
     }
@@ -86,13 +92,13 @@ class LoginViewController: UIViewController {
         return true
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard identifier == "goInside" else {
-            return false
-        }
-        
-        return checkUserInfo()
-    }
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//        guard identifier == "goInside" else {
+//            return false
+//        }
+//
+//        return checkUserInfo()
+//    }
     
     private func presentError(with message: String = "Неправильный логин или пароль!") {
         let alertController = UIAlertController(title: "Ошибка!",
@@ -136,5 +142,15 @@ class LoginButton: UIButton {
         
         layer.cornerRadius = 5.0
         clipsToBounds = true
+    }
+}
+
+extension LoginViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        LoginViewControllerPresentAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        LoginViewControllerDismissAnimator()
     }
 }

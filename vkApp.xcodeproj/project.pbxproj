@@ -20,6 +20,10 @@
 		5703786B261AF54B00038EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57037869261AF54B00038EF8 /* LaunchScreen.storyboard */; };
 		57190903261F42A3001035BC /* MyFriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190902261F42A3001035BC /* MyFriendsTableController.swift */; };
 		57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190905261F42BD001035BC /* FriendPhotosController.swift */; };
+		574500D3264A6C8C000E00FB /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D2264A6C8C000E00FB /* CustomSegue.swift */; };
+		574500D6264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D5264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift */; };
+		574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */; };
+		574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500DD264A9475000E00FB /* CustomNavigationController.swift */; };
 		575439C126243F21004A5FAF /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575439C026243F21004A5FAF /* FriendCell.swift */; };
 		57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CE82624520E001FBE6C /* MyGroupsTableController.swift */; };
 		57815CED26245297001FBE6C /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CEC26245297001FBE6C /* GroupCell.swift */; };
@@ -51,6 +55,10 @@
 		5703786C261AF54B00038EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57190902261F42A3001035BC /* MyFriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyFriendsTableController.swift; path = vkApp/View/MyFriendsTableController.swift; sourceTree = SOURCE_ROOT; };
 		57190905261F42BD001035BC /* FriendPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosController.swift; sourceTree = "<group>"; };
+		574500D2264A6C8C000E00FB /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
+		574500D5264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerPresentAnimator.swift; sourceTree = "<group>"; };
+		574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerAnimator.swift; sourceTree = "<group>"; };
+		574500DD264A9475000E00FB /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		575439C026243F21004A5FAF /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		57815CE82624520E001FBE6C /* MyGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableController.swift; sourceTree = "<group>"; };
 		57815CEC26245297001FBE6C /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 		5703785A261AF54A00038EF8 /* vkApp */ = {
 			isa = PBXGroup;
 			children = (
+				574500CB264A6C2B000E00FB /* UIHelper */,
 				5703785B261AF54A00038EF8 /* AppDelegate.swift */,
 				57037867261AF54B00038EF8 /* Assets.xcassets */,
 				57037876261B03D300038EF8 /* Controller */,
@@ -132,6 +141,17 @@
 				57F6AFCC26415B6800029063 /* PhotoViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		574500CB264A6C2B000E00FB /* UIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				574500D2264A6C8C000E00FB /* CustomSegue.swift */,
+				574500D5264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift */,
+				574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */,
+				574500DD264A9475000E00FB /* CustomNavigationController.swift */,
+			);
+			path = UIHelper;
 			sourceTree = "<group>";
 		};
 		575439BF26243EE9004A5FAF /* Reusable */ = {
@@ -244,12 +264,15 @@
 				57815CED26245297001FBE6C /* GroupCell.swift in Sources */,
 				575439C126243F21004A5FAF /* FriendCell.swift in Sources */,
 				57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */,
+				574500D3264A6C8C000E00FB /* CustomSegue.swift in Sources */,
 				57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */,
 				57037866261AF54A00038EF8 /* vkApp.xcdatamodeld in Sources */,
 				57036284263179E000EB1DEC /* NewsTableController.swift in Sources */,
+				574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */,
 				57037860261AF54A00038EF8 /* LoginViewController.swift in Sources */,
 				5703627B2631715A00EB1DEC /* NewsCell.swift in Sources */,
 				57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */,
+				574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */,
 				57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */,
 				5703785C261AF54A00038EF8 /* AppDelegate.swift in Sources */,
 				57815CF02624548D001FBE6C /* AllGroupsController.swift in Sources */,
@@ -259,6 +282,7 @@
 				57E8DCB9262EF7AC007FAE0E /* TableSectionHeaderView.swift in Sources */,
 				57815CF526246E19001FBE6C /* PhotoCell.swift in Sources */,
 				57815CF9262472A7001FBE6C /* UserModel.swift in Sources */,
+				574500D6264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift in Sources */,
 				5703785E261AF54A00038EF8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
