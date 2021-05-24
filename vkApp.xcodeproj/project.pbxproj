@@ -18,6 +18,7 @@
 		57037866261AF54A00038EF8 /* vkApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57037864261AF54A00038EF8 /* vkApp.xcdatamodeld */; };
 		57037868261AF54B00038EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57037867261AF54B00038EF8 /* Assets.xcassets */; };
 		5703786B261AF54B00038EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57037869261AF54B00038EF8 /* LaunchScreen.storyboard */; };
+		5718F6FE265BAD7B00F281A1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F6FD265BAD7B00F281A1 /* Session.swift */; };
 		57190903261F42A3001035BC /* MyFriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190902261F42A3001035BC /* MyFriendsTableController.swift */; };
 		57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190905261F42BD001035BC /* FriendPhotosController.swift */; };
 		574500D3264A6C8C000E00FB /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500D2264A6C8C000E00FB /* CustomSegue.swift */; };
@@ -53,6 +54,7 @@
 		57037867261AF54B00038EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5703786A261AF54B00038EF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5703786C261AF54B00038EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5718F6FD265BAD7B00F281A1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		57190902261F42A3001035BC /* MyFriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyFriendsTableController.swift; path = vkApp/View/MyFriendsTableController.swift; sourceTree = SOURCE_ROOT; };
 		57190905261F42BD001035BC /* FriendPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosController.swift; sourceTree = "<group>"; };
 		574500D2264A6C8C000E00FB /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
@@ -104,7 +106,6 @@
 		5703785A261AF54A00038EF8 /* vkApp */ = {
 			isa = PBXGroup;
 			children = (
-				574500CB264A6C2B000E00FB /* UIHelper */,
 				5703785B261AF54A00038EF8 /* AppDelegate.swift */,
 				57037867261AF54B00038EF8 /* Assets.xcassets */,
 				57037876261B03D300038EF8 /* Controller */,
@@ -112,8 +113,10 @@
 				57037869261AF54B00038EF8 /* LaunchScreen.storyboard */,
 				57815CF726247278001FBE6C /* Models */,
 				5703785D261AF54A00038EF8 /* SceneDelegate.swift */,
+				574500CB264A6C2B000E00FB /* UIHelper */,
 				57037875261B03C000038EF8 /* View */,
 				57037864261AF54A00038EF8 /* vkApp.xcdatamodeld */,
+				5718F6FD265BAD7B00F281A1 /* Session.swift */,
 			);
 			path = vkApp;
 			sourceTree = "<group>";
@@ -146,10 +149,10 @@
 		574500CB264A6C2B000E00FB /* UIHelper */ = {
 			isa = PBXGroup;
 			children = (
+				574500DD264A9475000E00FB /* CustomNavigationController.swift */,
 				574500D2264A6C8C000E00FB /* CustomSegue.swift */,
 				574500D5264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift */,
 				574500D8264A8353000E00FB /* NavigationControllerAnimator.swift */,
-				574500DD264A9475000E00FB /* CustomNavigationController.swift */,
 			);
 			path = UIHelper;
 			sourceTree = "<group>";
@@ -173,8 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				57815CFC262472B9001FBE6C /* GroupModel.swift */,
-				57815CF8262472A7001FBE6C /* UserModel.swift */,
 				570362862631859500EB1DEC /* NewsModel.swift */,
+				57815CF8262472A7001FBE6C /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				57036284263179E000EB1DEC /* NewsTableController.swift in Sources */,
 				574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */,
 				57037860261AF54A00038EF8 /* LoginViewController.swift in Sources */,
+				5718F6FE265BAD7B00F281A1 /* Session.swift in Sources */,
 				5703627B2631715A00EB1DEC /* NewsCell.swift in Sources */,
 				57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */,
 				574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */,
