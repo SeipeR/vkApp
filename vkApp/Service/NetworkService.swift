@@ -51,4 +51,16 @@ final class NetworkService {
         
         fetchData(dataType, parameters)
     }
+    
+    func fetchGroupsSearch(searchString: String) {
+        let dataType = "groups.search"
+        let parameters: Parameters = [
+            "q": searchString,
+            "type": "group",
+            "v": version,
+            "access_token": Session.instance.token
+        ]
+        
+        fetchData(dataType, parameters)
+    }
 }
