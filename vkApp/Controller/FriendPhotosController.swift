@@ -13,6 +13,8 @@ class FriendPhotosController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkService.instance.fetchFriendPhotos(userID: Session.instance.userId)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -39,6 +39,7 @@ class MyGroupsTableController: UITableViewController {
         let nib = UINib(nibName: "GroupCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "GroupCell")
         
+        NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId)
 //        navigationController?.delegate = self
     }
 

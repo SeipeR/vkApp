@@ -15,10 +15,10 @@ final class NetworkService {
         }
     }
     
-    func fetchFriends() {
+    func fetchFriends(userID id: Int) {
         let dataType = "friends.get"
         let parameters: Parameters = [
-            "user_id": Session.instance.userId,
+            "user_id": id,
             "order": "name",
             "fields": "nickname",
             "v": version,
@@ -28,11 +28,23 @@ final class NetworkService {
         fetchData(dataType, parameters)
     }
     
-    func fetchFriendPhotos(ownerID id: Int) {
+    func fetchFriendPhotos(userID id: Int) {
         let dataType = "photos.get"
         let parameters: Parameters = [
-            "owner_id": String(id),
+            "owner_id": id,
             "album_id": "profile",
+            "v": version,
+            "access_token": Session.instance.token
+        ]
+        
+        fetchData(dataType, parameters)
+    }
+    
+    func fetchFriendGroups(userID id: Int) {
+        let dataType = "groups.get"
+        let parameters: Parameters = [
+            "user_id": id,
+            "extended": "1",
             "v": version,
             "access_token": Session.instance.token
         ]

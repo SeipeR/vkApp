@@ -70,8 +70,7 @@ class MyFriendsTableController: UITableViewController {
         }
         objectArray.sort(by: { $0.sectionName < $1.sectionName})
         
-        NetworkService.instance.fetchFriends()
-        NetworkService.instance.fetchFriendPhotos(ownerID: Session.instance.userId)
+        NetworkService.instance.fetchFriends(userID: Session.instance.userId)
         
 //        navigationController?.delegate = self
     }
