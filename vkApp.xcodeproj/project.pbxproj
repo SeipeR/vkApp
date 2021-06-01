@@ -19,6 +19,7 @@
 		57037868261AF54B00038EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57037867261AF54B00038EF8 /* Assets.xcassets */; };
 		5703786B261AF54B00038EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57037869261AF54B00038EF8 /* LaunchScreen.storyboard */; };
 		571673B4266611E50027950D /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673B3266611E50027950D /* VKLoginViewController.swift */; };
+		571673B726662CE80027950D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673B626662CE80027950D /* NetworkService.swift */; };
 		5718F700265BAF1B00F281A1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F6FF265BAF1B00F281A1 /* Session.swift */; };
 		57190903261F42A3001035BC /* MyFriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190902261F42A3001035BC /* MyFriendsTableController.swift */; };
 		57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190905261F42BD001035BC /* FriendPhotosController.swift */; };
@@ -58,6 +59,7 @@
 		5703786A261AF54B00038EF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5703786C261AF54B00038EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		571673B3266611E50027950D /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		571673B626662CE80027950D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5718F6FF265BAF1B00F281A1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		57190902261F42A3001035BC /* MyFriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyFriendsTableController.swift; path = vkApp/View/MyFriendsTableController.swift; sourceTree = SOURCE_ROOT; };
 		57190905261F42BD001035BC /* FriendPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		5703785A261AF54A00038EF8 /* vkApp */ = {
 			isa = PBXGroup;
 			children = (
+				571673B526662CC80027950D /* Service */,
 				574500CB264A6C2B000E00FB /* UIHelper */,
 				5703785B261AF54A00038EF8 /* AppDelegate.swift */,
 				57037867261AF54B00038EF8 /* Assets.xcassets */,
@@ -163,6 +166,14 @@
 				571673B3266611E50027950D /* VKLoginViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		571673B526662CC80027950D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				571673B626662CE80027950D /* NetworkService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		574500CB264A6C2B000E00FB /* UIHelper */ = {
@@ -347,6 +358,7 @@
 				5718F700265BAF1B00F281A1 /* Session.swift in Sources */,
 				571673B4266611E50027950D /* VKLoginViewController.swift in Sources */,
 				5703627B2631715A00EB1DEC /* NewsCell.swift in Sources */,
+				571673B726662CE80027950D /* NetworkService.swift in Sources */,
 				57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */,
 				574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */,
 				57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */,

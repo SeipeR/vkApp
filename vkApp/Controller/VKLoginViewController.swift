@@ -24,7 +24,7 @@ class VKLoginController: UIViewController {
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.126"),
+            URLQueryItem(name: "v", value: "5.131"),
         ]
         
         let request = URLRequest(url: components.url!)
@@ -55,12 +55,13 @@ extension VKLoginController: WKNavigationDelegate {
         
         guard let token = params["access_token"],
               let userIdString = params["user_id"],
-              let _ = Int(userIdString) else {
+              let userId = Int(userIdString) else {
                 decisionHandler(.allow)
                 return
         }
         
         Session.instance.token = token
+        Session.instance.userId = userId
         performSegue(withIdentifier: "Show", sender: self)
         
         decisionHandler(.cancel)
