@@ -27,4 +27,16 @@ final class NetworkService {
         
         fetchData(dataType, parameters)
     }
+    
+    func fetchFriendPhotos(ownerID id: Int) {
+        let dataType = "photos.get"
+        let parameters: Parameters = [
+            "owner_id": String(id),
+            "album_id": "profile",
+            "v": version,
+            "access_token": Session.instance.token
+        ]
+        
+        fetchData(dataType, parameters)
+    }
 }
