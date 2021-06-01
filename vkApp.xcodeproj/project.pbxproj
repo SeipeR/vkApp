@@ -18,6 +18,7 @@
 		57037866261AF54A00038EF8 /* vkApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57037864261AF54A00038EF8 /* vkApp.xcdatamodeld */; };
 		57037868261AF54B00038EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57037867261AF54B00038EF8 /* Assets.xcassets */; };
 		5703786B261AF54B00038EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57037869261AF54B00038EF8 /* LaunchScreen.storyboard */; };
+		571673B4266611E50027950D /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673B3266611E50027950D /* VKLoginViewController.swift */; };
 		5718F700265BAF1B00F281A1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F6FF265BAF1B00F281A1 /* Session.swift */; };
 		57190903261F42A3001035BC /* MyFriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190902261F42A3001035BC /* MyFriendsTableController.swift */; };
 		57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190905261F42BD001035BC /* FriendPhotosController.swift */; };
@@ -56,6 +57,7 @@
 		57037867261AF54B00038EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5703786A261AF54B00038EF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5703786C261AF54B00038EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		571673B3266611E50027950D /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		5718F6FF265BAF1B00F281A1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		57190902261F42A3001035BC /* MyFriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyFriendsTableController.swift; path = vkApp/View/MyFriendsTableController.swift; sourceTree = SOURCE_ROOT; };
 		57190905261F42BD001035BC /* FriendPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				57036283263179E000EB1DEC /* NewsTableController.swift */,
 				57F6AFC92641532700029063 /* PhotoPreviewViewController.swift */,
 				57F6AFCC26415B6800029063 /* PhotoViewController.swift */,
+				571673B3266611E50027950D /* VKLoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */,
 				57037860261AF54A00038EF8 /* LoginViewController.swift in Sources */,
 				5718F700265BAF1B00F281A1 /* Session.swift in Sources */,
+				571673B4266611E50027950D /* VKLoginViewController.swift in Sources */,
 				5703627B2631715A00EB1DEC /* NewsCell.swift in Sources */,
 				57F6AFCD26415B6800029063 /* PhotoViewController.swift in Sources */,
 				574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */,
