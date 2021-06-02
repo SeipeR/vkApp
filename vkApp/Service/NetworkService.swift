@@ -20,7 +20,7 @@ final class NetworkService {
         let parameters: Parameters = [
             "user_id": id,
             "order": "name",
-            "fields": "nickname",
+            "fields": "nickname, photo_200",
             "v": version,
             "access_token": Session.instance.token
         ]
