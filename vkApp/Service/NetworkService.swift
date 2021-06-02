@@ -11,7 +11,10 @@ final class NetworkService {
     
     func fetchData (_ dataType: String, _ parameters: Parameters) {
         AF.request(host + dataType, method: .get, parameters: parameters).responseJSON { response in
-            print(response.value ?? "Error")
+//            print(response.value ?? "Error")
+            
+            let vkResponse = try? JSONDecoder().decode(VKResponse.self, from: response.data!)
+            print(vkResponse)
         }
     }
     
@@ -20,7 +23,7 @@ final class NetworkService {
         let parameters: Parameters = [
             "user_id": id,
             "order": "name",
-            "fields": "nickname, photo_200",
+            "fields": "photo_200",
             "v": version,
             "access_token": Session.instance.token
         ]
