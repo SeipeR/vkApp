@@ -1,3 +1,3 @@
-struct VKResponse: Codable {
-    let response: VKFriends
+struct VKResponse<T:Codable>: Codable {
+    let response: T
 }

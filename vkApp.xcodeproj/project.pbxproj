@@ -29,7 +29,6 @@
 		574500DE264A9475000E00FB /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574500DD264A9475000E00FB /* CustomNavigationController.swift */; };
 		575439C126243F21004A5FAF /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575439C026243F21004A5FAF /* FriendCell.swift */; };
 		576544992667B9500078F97A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576544982667B9500078F97A /* User.swift */; };
-		5765449B2667BD540078F97A /* VKItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765449A2667BD540078F97A /* VKItems.swift */; };
 		5765449D2667BD5C0078F97A /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765449C2667BD5C0078F97A /* VKResponse.swift */; };
 		5765449F2667BDD30078F97A /* VKFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765449E2667BDD30078F97A /* VKFriends.swift */; };
 		57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CE82624520E001FBE6C /* MyGroupsTableController.swift */; };
@@ -73,7 +72,6 @@
 		574500DD264A9475000E00FB /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		575439C026243F21004A5FAF /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		576544982667B9500078F97A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		5765449A2667BD540078F97A /* VKItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKItems.swift; sourceTree = "<group>"; };
 		5765449C2667BD5C0078F97A /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
 		5765449E2667BDD30078F97A /* VKFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFriends.swift; sourceTree = "<group>"; };
 		57815CE82624520E001FBE6C /* MyGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableController.swift; sourceTree = "<group>"; };
@@ -213,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				576544982667B9500078F97A /* User.swift */,
-				5765449A2667BD540078F97A /* VKItems.swift */,
 				5765449C2667BD5C0078F97A /* VKResponse.swift */,
 				5765449E2667BDD30078F97A /* VKFriends.swift */,
 			);
@@ -388,7 +385,6 @@
 				57815CF02624548D001FBE6C /* AllGroupsController.swift in Sources */,
 				57190903261F42A3001035BC /* MyFriendsTableController.swift in Sources */,
 				576544992667B9500078F97A /* User.swift in Sources */,
-				5765449B2667BD540078F97A /* VKItems.swift in Sources */,
 				570362872631859500EB1DEC /* NewsModel.swift in Sources */,
 				57815CFD262472B9001FBE6C /* GroupModel.swift in Sources */,
 				57E8DCB9262EF7AC007FAE0E /* TableSectionHeaderView.swift in Sources */,

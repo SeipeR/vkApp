@@ -10,12 +10,15 @@ final class NetworkService {
     let version = "5.131"
     
     func fetchData (_ dataType: String, _ parameters: Parameters) {
-        AF.request(host + dataType, method: .get, parameters: parameters).responseJSON { response in
-//            print(response.value ?? "Error")
-            
-            let vkResponse = try? JSONDecoder().decode(VKResponse.self, from: response.data!)
-            print(vkResponse)
-        }
+        AF.request(host + dataType, method: .get, parameters: parameters)
+            .responseDecodable(of: VKResponse<VKFriends>.self) { response in
+                switch response.result {
+                case .success(let vkResponse):
+                    print(vkResponse)
+                case .failure(let afError):
+                    print(afError)
+                }
+            }
     }
     
     func fetchFriends(userID id: Int) {
