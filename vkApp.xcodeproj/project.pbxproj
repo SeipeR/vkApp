@@ -20,6 +20,8 @@
 		5703786B261AF54B00038EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57037869261AF54B00038EF8 /* LaunchScreen.storyboard */; };
 		570E72662668CAD40049714A /* PhotoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E72652668CAD40049714A /* PhotoSize.swift */; };
 		570E72682668CEE80049714A /* VKPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E72672668CEE80049714A /* VKPhotos.swift */; };
+		570E726B2668D2070049714A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E726A2668D2070049714A /* Group.swift */; };
+		570E726D2668D3950049714A /* VKGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E726C2668D3950049714A /* VKGroups.swift */; };
 		571673B4266611E50027950D /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673B3266611E50027950D /* VKLoginViewController.swift */; };
 		571673B726662CE80027950D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571673B626662CE80027950D /* NetworkService.swift */; };
 		5718F700265BAF1B00F281A1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F6FF265BAF1B00F281A1 /* Session.swift */; };
@@ -66,6 +68,8 @@
 		5703786C261AF54B00038EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		570E72652668CAD40049714A /* PhotoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSize.swift; sourceTree = "<group>"; };
 		570E72672668CEE80049714A /* VKPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhotos.swift; sourceTree = "<group>"; };
+		570E726A2668D2070049714A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		570E726C2668D3950049714A /* VKGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroups.swift; sourceTree = "<group>"; };
 		571673B3266611E50027950D /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		571673B626662CE80027950D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5718F6FF265BAF1B00F281A1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -198,6 +202,15 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		570E72692668D0EE0049714A /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				570E726A2668D2070049714A /* Group.swift */,
+				570E726C2668D3950049714A /* VKGroups.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
 		571673B526662CC80027950D /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +248,7 @@
 		576544972667B9340078F97A /* VKModels */ = {
 			isa = PBXGroup;
 			children = (
+				570E72692668D0EE0049714A /* Group */,
 				570E72642668C82A0049714A /* Photo */,
 				570E72632668C81D0049714A /* User */,
 				5765449C2667BD5C0078F97A /* VKResponse.swift */,
@@ -388,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57F6AFCA2641532700029063 /* PhotoPreviewViewController.swift in Sources */,
+				570E726B2668D2070049714A /* Group.swift in Sources */,
 				57815CED26245297001FBE6C /* GroupCell.swift in Sources */,
 				575439C126243F21004A5FAF /* FriendCell.swift in Sources */,
 				57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */,
@@ -420,6 +435,7 @@
 				570E72682668CEE80049714A /* VKPhotos.swift in Sources */,
 				574500D6264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift in Sources */,
 				5703785E261AF54A00038EF8 /* SceneDelegate.swift in Sources */,
+				570E726D2668D3950049714A /* VKGroups.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@ final class NetworkService {
     
     func fetchData (_ dataType: String, _ parameters: Parameters) {
 //        AF.request(host + dataType, method: .get, parameters: parameters)
-//            .responseDecodable(of: VKResponse<VKPhotos>.self) { response in
+//            .responseDecodable(of: VKResponse<VKGroups>.self) { response in
 //                switch response.result {
 //                case .success(let vkResponse):
 //                    print(vkResponse)
