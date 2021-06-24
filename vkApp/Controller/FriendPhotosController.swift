@@ -14,7 +14,9 @@ class FriendPhotosController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.instance.fetchFriendPhotos(userID: Session.instance.userId)
+        NetworkService.instance.fetchFriendPhotos(userID: Session.instance.userId) { vkPhotos in
+            print(vkPhotos)
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
