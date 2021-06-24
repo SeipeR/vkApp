@@ -43,6 +43,7 @@
 		57815CF526246E19001FBE6C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CF426246E19001FBE6C /* PhotoCell.swift */; };
 		57815CF9262472A7001FBE6C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CF8262472A7001FBE6C /* UserModel.swift */; };
 		57815CFD262472B9001FBE6C /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CFC262472B9001FBE6C /* GroupModel.swift */; };
+		57D9F4FB2684A80A006D9919 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9F4FA2684A80A006D9919 /* RealmService.swift */; };
 		57E8DCA8262D7E86007FAE0E /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E8DCA7262D7E85007FAE0E /* FriendCell.xib */; };
 		57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */; };
 		57E8DCB6262D975F007FAE0E /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E8DCB5262D975F007FAE0E /* GroupCell.xib */; };
@@ -92,6 +93,7 @@
 		57815CF426246E19001FBE6C /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		57815CF8262472A7001FBE6C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		57815CFC262472B9001FBE6C /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
+		57D9F4FA2684A80A006D9919 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		57E8DCA7262D7E85007FAE0E /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		57E8DCB5262D975F007FAE0E /* GroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				571673B626662CE80027950D /* NetworkService.swift */,
+				57D9F4FA2684A80A006D9919 /* RealmService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */,
 				5765449F2667BDD30078F97A /* VKItems.swift in Sources */,
 				574500D3264A6C8C000E00FB /* CustomSegue.swift in Sources */,
+				57D9F4FB2684A80A006D9919 /* RealmService.swift in Sources */,
 				57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */,
 				57037866261AF54A00038EF8 /* vkApp.xcdatamodeld in Sources */,
 				57036284263179E000EB1DEC /* NewsTableController.swift in Sources */,
