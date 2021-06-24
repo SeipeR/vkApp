@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyFriendsTableController: UITableViewController {
     var friends = [
@@ -19,6 +20,13 @@ class MyFriendsTableController: UITableViewController {
         UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire"), userPhotos: [(image: UIImage(named: "Sumire"), isLiked: true, likeCount: 99), (image: UIImage(named: "Sumire_1"), isLiked: false, likeCount: 43), (image: UIImage(named: "Sumire_2"), isLiked: true, likeCount: 17),]),
         UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro"), userPhotos: [(image: UIImage(named: "Goro"), isLiked: true, likeCount: 1), (image: UIImage(named: "Goro_1"), isLiked: false, likeCount: 3), (image: UIImage(named: "Goro_2"), isLiked: true, likeCount: 14), (image: UIImage(named: "Goro_3"), isLiked: true, likeCount: 1), (image: UIImage(named: "Goro_4"), isLiked: false, likeCount: 0),]),
     ]
+    
+    var realmResultUser: Results<RealmUser>? = try? RealmService.load(typeOf: RealmUser.self)
+    var vkFriends: [VKUser] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
 //    Получение массива, содержащего первые символы имени
     func createLitersArray(array: [UserModel]) -> [Character?] {
@@ -58,6 +66,15 @@ class MyFriendsTableController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let user = RealmUser()
+        user.id = 0
+        user.firstName = "Firstname"
+        user.lastName = "Surname"
+        try? RealmService.save(items: [user])
+        let users = try? RealmService.load(typeOf: RealmUser.self)  //  получение данных из БД
+        print(users)
+        
         let nib = UINib(nibName: "FriendCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FriendCell")
 //        tableView.tableHeaderView = headerView
@@ -70,7 +87,8 @@ class MyFriendsTableController: UITableViewController {
         }
         objectArray.sort(by: { $0.sectionName < $1.sectionName})
         
-        NetworkService.instance.fetchFriends(userID: Session.instance.userId) { vkFriends in
+        NetworkService.instance.fetchFriends(userID: Session.instance.userId) { [weak self] vkFriends in
+            self?.vkFriends = vkFriends
             print(vkFriends)
         }
         
