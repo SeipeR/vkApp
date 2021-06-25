@@ -24,7 +24,7 @@ final class NetworkService {
 //            }
 //    }
     
-    func fetchFriends(userID id: Int, completion: @escaping ([VKUser]) -> Void){
+    func fetchFriends(userID id: Int, completion: @escaping ([VKUser]?) -> Void){
         let dataType = "friends.get"
         let parameters: Parameters = [
             "user_id": id,
@@ -40,7 +40,9 @@ final class NetworkService {
                 case .success(let data):
                     do {
                         let vkPhotos = try JSONDecoder().decode(VKResponse<VKItems<VKUser>>.self, from: data)
-                        completion(vkPhotos.response.items)
+                        DispatchQueue.main.async {
+                            completion(vkPhotos.response.items)
+                        }
                     } catch {
                         print(error)
                     }
@@ -50,10 +52,11 @@ final class NetworkService {
             }
     }
     
-    func fetchFriendPhotos(userID id: Int, completion: @escaping ([VKPhoto]) -> Void) {
+    func fetchFriendPhotos(userID id: Int, completion: @escaping ([VKPhoto]?) -> Void) {
         let dataType = "photos.getAll"
         let parameters: Parameters = [
             "owner_id": id,
+            "album_id": "profile",
             "extended": "1",
             "photo_sizes": "1",
             "v": version,
@@ -76,7 +79,7 @@ final class NetworkService {
             }
     }
     
-    func fetchFriendGroups(userID id: Int, completion: @escaping ([VKGroup]) -> Void) {
+    func fetchFriendGroups(userID id: Int, completion: @escaping ([VKGroup]?) -> Void) {
         let dataType = "groups.get"
         let parameters: Parameters = [
             "user_id": id,
@@ -101,7 +104,7 @@ final class NetworkService {
             }
     }
     
-    func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]) -> Void) {
+    func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]?) -> Void) {
         let dataType = "groups.search"
         let parameters: Parameters = [
             "q": searchString,

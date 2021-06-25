@@ -6,7 +6,14 @@ class RealmUser: Object {
     @objc dynamic var lastName: String = ""
     @objc dynamic var userAvatarURL: String = ""
     
+//    var userPhotos = List<RealmUser>()
+//    let someUserLinked = LinkingObjects(fromType: RealmUser.self, property: "id")
+    
     override class func primaryKey() -> String? {
         "id"
+    }
+    
+    override class func indexedProperties() -> [String] {
+        ["firstName", "lastName"]
     }
 }

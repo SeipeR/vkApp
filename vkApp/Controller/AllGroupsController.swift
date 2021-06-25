@@ -33,7 +33,7 @@ class AllGroupsController: UITableViewController {
         GroupModel(groupName: "Persona 5 Royal", groupAvatar: UIImage(named: "P5R")),
     ]
     
-    var filteredGroups: [GroupModel] = []
+    var filteredGroups: [VKGroup] = []
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -74,15 +74,16 @@ class AllGroupsController: UITableViewController {
             return UITableViewCell()
         }
         
-        let currentGroup: GroupModel
+        let currentGroup: VKGroup
         
         if isFiltering {
             currentGroup = filteredGroups[indexPath.row]
-        } else {
-            currentGroup = allGroups[indexPath.row]
+        }
+        else {
+            currentGroup = filteredGroups[indexPath.row]
         }
         
-        cell.configure(image: currentGroup.groupAvatar, name: currentGroup.groupName)
+        cell.configure(imageURL: "", name: currentGroup.name)
 
         return cell
     }
@@ -111,9 +112,9 @@ class AllGroupsController: UITableViewController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredGroups = allGroups.filter { (group: GroupModel) -> Bool in
-            return group.groupName.lowercased().contains(searchText.lowercased())
-        }
+//        filteredGroups = allGroups.filter { (group: VKGroup) -> Bool in
+//            return group.groupName.lowercased().contains(searchText.lowercased())
+//        }
         
         tableView.reloadData()
     }

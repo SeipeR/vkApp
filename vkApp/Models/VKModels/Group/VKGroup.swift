@@ -1,4 +1,4 @@
-struct VKGroup {
+struct VKGroup: Equatable {
     let id: Int
     let name: String
     let screenName: String

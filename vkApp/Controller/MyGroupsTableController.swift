@@ -8,8 +8,14 @@
 import UIKit
 
 class MyGroupsTableController: UITableViewController {
-    var groups = [GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "RP")),
-                  GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "P2IS")),]
+//    var groups = [GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "RP")),
+//                  GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "P2IS")),]
+   
+    var groups = [VKGroup]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
@@ -20,12 +26,11 @@ class MyGroupsTableController: UITableViewController {
             return
         }
         
-        let group: GroupModel
+        let group: VKGroup
         if allGroupsController.isFiltering {
-            
             group = allGroupsController.filteredGroups[indexPath.row]
         } else {
-            group = allGroupsController.allGroups[indexPath.row]
+            group = groups[indexPath.row]
         }
 
         if !groups.contains(group) {
@@ -36,12 +41,19 @@ class MyGroupsTableController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { [weak self] vkGroups in
+            guard
+                let self = self,
+                let groups = vkGroups
+            else { return }
+            self.groups = groups
+        }
+        
         let nib = UINib(nibName: "GroupCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "GroupCell")
         
-        NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { vkGroups in
-            print(vkGroups)
-        }
+        
 //        navigationController?.delegate = self
     }
 
@@ -61,7 +73,7 @@ class MyGroupsTableController: UITableViewController {
 
         let currentGroup = groups[indexPath.row]
         
-        cell.configure(image: currentGroup.groupAvatar, name: currentGroup.groupName)
+        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name)
 
         return cell
     }

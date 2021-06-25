@@ -32,11 +32,15 @@ class PhotoCell: UICollectionViewCell {
         }
     }
     
-    func configure(image: UIImage?, isLiked: Bool, likeCount: UInt32) {
-        photo.image = image
-        likeCountLabel.text = "\(likeCount)"
-        if isLiked {
-            likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        }
+    func configure(imageURL: String) {
+        photo.image = UIImage(named: "Ann")
     }
+    
+//    func configure(image: UIImage?, isLiked: Bool, likeCount: UInt32) {
+//        photo.image = image
+//        likeCountLabel.text = "\(likeCount)"
+//        if isLiked {
+//            likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//        }
+//    }
 }

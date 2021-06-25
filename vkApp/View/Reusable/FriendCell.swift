@@ -12,8 +12,8 @@ class FriendCell: UITableViewCell {
     @IBOutlet weak var friendAvatarImage: UIImageView!
     @IBOutlet weak var friendNameLabel: UILabel!
     
-    func configure(image: UIImage?, name: String) {
-        friendAvatarImage.image = image
+    func configure(imageURL: String, name: String) {
+        friendAvatarImage.image = UIImage(named: "Ann")
         friendNameLabel.text = name
     }
 }

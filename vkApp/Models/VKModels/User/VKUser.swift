@@ -3,6 +3,7 @@ struct VKUser {
     let firstName: String
     let lastName: String
     let userAvatarURL: String
+    var fullName: String {"\(firstName) \(lastName)"}
 }
 
 
