@@ -12,6 +12,13 @@ class MyFriendsTableController: UITableViewController {
     var realmResultUser: Results<RealmUser>? = try? RealmService.load(typeOf: RealmUser.self)
     var friends: [VKUser] = [] {
         didSet {
+            for friend in friends {
+                let container = try! Container()
+                try! container.write { transaction in
+                    transaction.add(friend)
+                }
+            }
+           
             //        Преобразование данных из словаря в массив
             let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends), friendsArray: friends)
             for (key, value) in groupedFriendsDict {

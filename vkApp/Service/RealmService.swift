@@ -29,3 +29,40 @@ class RealmService {
         }
     }
 }
+
+
+
+public protocol Persistable {
+    associatedtype ManagedObject: RealmSwift.Object
+    init(managedObject: ManagedObject)
+    func managedObject() -> ManagedObject
+}
+
+class WriteTransaction {
+    static let deleteIfMigration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+    private let realm: Realm
+    internal init(realm: Realm) {
+        self.realm = realm
+    }
+    func add<T: Persistable>(_ items: T, configuration: Realm.Configuration = deleteIfMigration, update: Realm.UpdatePolicy = .modified) {
+        realm.add(items.managedObject(), update: update)
+    }
+}
+
+// Implement the Container
+class Container {
+    private let realm: Realm
+    public convenience init() throws {
+        try self.init(realm: Realm())
+    }
+    internal init(realm: Realm) {
+        self.realm = realm
+    }
+    func write(_ block: (WriteTransaction) throws -> Void)
+    throws {
+        let transaction = WriteTransaction(realm: realm)
+        try realm.write {
+            try block(transaction)
+        }
+    }
+}

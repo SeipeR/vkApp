@@ -13,6 +13,12 @@ class MyGroupsTableController: UITableViewController {
    
     var groups = [VKGroup]() {
         didSet {
+            for group in groups {
+                let container = try! Container()
+                try! container.write { transaction in
+                    transaction.add(group)
+                }
+            }
             tableView.reloadData()
         }
     }

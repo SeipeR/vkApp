@@ -15,3 +15,20 @@ extension VKUser: Codable {
         case userAvatarURL = "photo_200"
     }
 }
+
+extension VKUser: Persistable {
+    public init(managedObject: RealmUser) {
+        id = managedObject.id
+        firstName = managedObject.firstName
+        lastName = managedObject.lastName
+        userAvatarURL = managedObject.userAvatarURL
+    }
+    public func managedObject() -> RealmUser {
+        let user = RealmUser()
+        user.id = id
+        user.firstName = firstName
+        user.lastName = lastName
+        user.userAvatarURL = userAvatarURL
+        return user
+    }
+}
