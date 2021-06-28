@@ -161,7 +161,7 @@ class MyFriendsTableController: UITableViewController {
             return
         }
         
-//        destination.photos = objectArray[sectionIndex].sectionObjects[rowIndex].userPhotos
+        destination.userID = objectArray[sectionIndex].sectionObjects[rowIndex].id
     }
     
     

@@ -6,26 +6,56 @@
 //
 import Foundation
 import UIKit
+import Kingfisher
 
 class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    var photos = [(image: UIImage?, isLiked: Bool, likeCount: UInt32)]()
+    var photos = [VKPhoto?]()
     var photosImage = [UIImage?]()
+    var photosURL = [String?]()
     var currentPhoto: UIImage?
     var currentPhotoIndex: Int = 0
     var controllers = [UIViewController]()
     
+    func downloadImage(with urlString: String, imageCompletionHandler: @escaping (UIImage?) -> Void) {
+        guard let url = URL.init(string: urlString) else {
+            return imageCompletionHandler(nil)
+        }
+        let resource = ImageResource(downloadURL: url)
+        
+        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+            switch result {
+            case .success(let value):
+                imageCompletionHandler(value.image)
+            case .failure:
+                imageCompletionHandler(nil)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for photo in photos {
-            photosImage.append(photo.image)
+        photos.forEach { photo in
+            photosURL.append(photo?.sizes.first(where: { (400..<650).contains($0.width) })?.url ?? "")
         }
+        
+        photosURL.forEach { url in
+            downloadImage(with: url ?? "") { image in
+                self.photosImage.append(image)
+            }
+        }
+        
+        //        for photo in photos {
+        //            photosImage.append(photo?.sizes.first(where: { (400..<650).contains($0.width) })?.url)
+        //        }
         
         currentPhotoIndex = photosImage.firstIndex(where: {$0 === currentPhoto})!
         
         for photo in photosImage {
+            
             let viewController = PhotoViewController(with: photo!)
-            controllers.append(viewController)
+            self.controllers.append(viewController)
         }
     }
     

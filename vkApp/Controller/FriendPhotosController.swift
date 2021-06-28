@@ -6,16 +6,59 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendPhotosController: UICollectionViewController {
+//    var realmResultUserPhoto: Results<RealmPhoto>? = try? RealmService.load(typeOf: RealmPhoto.self)
+//    var realmFriends = [RealmUser]()
+//    var friends: [VKUser] = []
+//    {
+//        didSet {
+//            let container = try! Container()
+//            try? container.write { transaction in
+//                transaction.add(friends)
+//            }
+//
+//            realmResultUser = try? RealmService.load(typeOf: RealmUser.self)
+//            realmFriends = addFriendsToRealmArray(results: realmResultUser)
+//
+//            //        Преобразование данных из словаря в массив
+//            let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: realmFriends), friendsArray: realmFriends)
+//            for (key, value) in groupedFriendsDict {
+//                objectArray.append(Objects(sectionName: key, sectionObjects: value))
+//            }
+//            objectArray.sort(by: { $0.sectionName < $1.sectionName})
+//
+//            tableView.reloadData()
+//        }
+//    }
+//    func addFriendsToRealmArray (results: Results<RealmUser>?) -> [RealmUser] {
+//        var array = [RealmUser]()
+//        results?.forEach({ result in
+//            array.append(result)
+//        })
+//        return array
+//    }
+    var photos = [VKPhoto]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
-    var photos = [(image: UIImage?, isLiked: Bool, likeCount: UInt32)]()
+    var userID: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.instance.fetchFriendPhotos(userID: Session.instance.userId) { vkPhotos in
-            print(vkPhotos)
+        if let userID = userID {
+            NetworkService.instance.fetchFriendPhotos(userID: userID) { [weak self] vkPhotos in
+                guard
+                    let self = self,
+                    let photos = vkPhotos
+                else {return}
+                print(photos)
+                self.photos = photos
+            }
         }
     }
 
@@ -32,14 +75,13 @@ class FriendPhotosController: UICollectionViewController {
             return UICollectionViewCell()
         }
         
-        let currentGroupImage = photos[indexPath.row].image
-        let currentGroupIsLiked = photos[indexPath.row].isLiked
-        let currentGroupLikeCount = photos[indexPath.row].likeCount
-        cell.configure(imageURL: "")
-//        cell .configure(imageURL: photos[indexPath.row]
-//                            .sizes
-//                            .first(where: { (400..<650).contains($0.width) })?
-//                            .url ?? "")
+//        let currentGroupImage = photos[indexPath.row].image
+//        let currentGroupIsLiked = photos[indexPath.row].isLiked
+//        let currentGroupLikeCount = photos[indexPath.row].likeCount
+        cell .configure(imageURL: photos[indexPath.row]
+                            .sizes
+                            .first(where: { (400..<650).contains($0.width) })?
+                            .url ?? "")
 
         return cell
     }
