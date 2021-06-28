@@ -100,6 +100,25 @@ class MyFriendsTableController: UITableViewController {
 //        navigationController?.delegate = self
     }
 
+//    Поиск пользователя через id
+    private func modify() {
+        let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941))
+        print(someUser ?? "")
+        if let currentUser = someUser?.first {
+            do {
+                let realm = try Realm()
+//                realm.beginWrite()
+//                currentUser.firstName = "Сослан"
+//                try realm.commitWrite()
+                try realm.write {
+                    currentUser.firstName = "Damir"
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
 //    Количество секций в таблице

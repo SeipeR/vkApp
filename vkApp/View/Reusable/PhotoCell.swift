@@ -33,7 +33,7 @@ class PhotoCell: UICollectionViewCell {
     }
     
     func configure(imageURL: String) {
-        photo.image = UIImage(named: "Ann")
+        photo.kf.setImage(with: URL(string: imageURL))
     }
     
 //    func configure(image: UIImage?, isLiked: Bool, likeCount: UInt32) {

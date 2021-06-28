@@ -13,7 +13,7 @@ class GroupCell: UITableViewCell {
     @IBOutlet weak var groupNameLabel: UILabel!
     
     func configure(imageURL: String, name: String) {
-        groupAvatarImage.image = UIImage(named: "Ann")
+        groupAvatarImage.kf.setImage(with: URL(string: imageURL))
         groupNameLabel.text = name
     }
 }

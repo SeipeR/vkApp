@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendCell: UITableViewCell {
     
@@ -13,7 +14,7 @@ class FriendCell: UITableViewCell {
     @IBOutlet weak var friendNameLabel: UILabel!
     
     func configure(imageURL: String, name: String) {
-        friendAvatarImage.image = UIImage(named: "Ann")
+        friendAvatarImage.kf.setImage(with: URL(string: imageURL))
         friendNameLabel.text = name
     }
 }

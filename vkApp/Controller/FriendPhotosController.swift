@@ -36,7 +36,10 @@ class FriendPhotosController: UICollectionViewController {
         let currentGroupIsLiked = photos[indexPath.row].isLiked
         let currentGroupLikeCount = photos[indexPath.row].likeCount
         cell.configure(imageURL: "")
-
+//        cell .configure(imageURL: photos[indexPath.row]
+//                            .sizes
+//                            .first(where: { (400..<650).contains($0.width) })?
+//                            .url ?? "")
 
         return cell
     }
