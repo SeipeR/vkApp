@@ -10,17 +10,19 @@ import RealmSwift
 
 class MyFriendsTableController: UITableViewController {
     var realmResultUser: Results<RealmUser>? = try? RealmService.load(typeOf: RealmUser.self)
+    var realmFriends = [RealmUser]()
     var friends: [VKUser] = [] {
         didSet {
-            for friend in friends {
-                let container = try! Container()
-                try! container.write { transaction in
-                    transaction.add(friend)
-                }
+            let container = try! Container()
+            try? container.write { transaction in
+                transaction.add(friends)
             }
-           
+            
+            realmResultUser = try? RealmService.load(typeOf: RealmUser.self)
+            realmFriends = addFriendsToRealmArray(results: realmResultUser)
+            
             //        Преобразование данных из словаря в массив
-            let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends), friendsArray: friends)
+            let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: realmFriends), friendsArray: realmFriends)
             for (key, value) in groupedFriendsDict {
                 objectArray.append(Objects(sectionName: key, sectionObjects: value))
             }
@@ -29,9 +31,15 @@ class MyFriendsTableController: UITableViewController {
             tableView.reloadData()
         }
     }
-    
+    func addFriendsToRealmArray (results: Results<RealmUser>?) -> [RealmUser] {
+        var array = [RealmUser]()
+        results?.forEach({ result in
+            array.append(result)
+        })
+        return array
+    }
 //    Получение массива, содержащего первые символы имени
-    func createLitersArray(array: [VKUser]) -> [Character?] {
+    func createLitersArray(array: [RealmUser]) -> [Character?] {
         var liters = [Character?]()
         for element in friends {
             if !(liters.contains(element.fullName.first)) {
@@ -42,10 +50,10 @@ class MyFriendsTableController: UITableViewController {
     }
     
 //    Создание словаря, группирующего друзей по первой букве имени
-    func createGroupedFriendsDict(litersArray: [Character?], friendsArray: [VKUser]) -> [Character: [VKUser]] {
-        var friendsDict = [Character: [VKUser]]()
+    func createGroupedFriendsDict(litersArray: [Character?], friendsArray: [RealmUser]) -> [Character: [RealmUser]] {
+        var friendsDict = [Character: [RealmUser]]()
         for liter in litersArray {
-            var tmp = [VKUser]()
+            var tmp = [RealmUser]()
             for friend in friendsArray {
                 if friend.fullName.first == liter {
                     tmp.append(friend)
@@ -60,7 +68,7 @@ class MyFriendsTableController: UITableViewController {
 //    Структура для хранения данных словаря
     struct Objects {
         var sectionName: Character!
-        var sectionObjects: [VKUser]!
+        var sectionObjects: [RealmUser]!
     }
     
 //    Массив структур

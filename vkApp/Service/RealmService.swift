@@ -40,12 +40,16 @@ public protocol Persistable {
 
 class WriteTransaction {
     static let deleteIfMigration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-    private let realm: Realm
+    private var realm: Realm
     internal init(realm: Realm) {
         self.realm = realm
     }
-    func add<T: Persistable>(_ items: T, configuration: Realm.Configuration = deleteIfMigration, update: Realm.UpdatePolicy = .modified) {
-        realm.add(items.managedObject(), update: update)
+    func add<T: Persistable>(_ items: [T], configuration: Realm.Configuration = deleteIfMigration, update: Realm.UpdatePolicy = .modified) {
+        realm = try! Realm(configuration: configuration)
+        print(configuration.fileURL ?? "")
+        items.forEach { item in
+            realm.add(item.managedObject(), update: update)
+        }
     }
 }
 
