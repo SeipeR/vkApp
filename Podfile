@@ -9,5 +9,6 @@ target 'vkApp' do
   pod 'Alamofire'
   pod 'RealmSwift'
   pod 'Kingfisher'
+  pod 'SwiftyJSON'
 
 end
