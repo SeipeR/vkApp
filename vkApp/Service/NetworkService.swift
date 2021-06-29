@@ -57,6 +57,7 @@ final class NetworkService {
         let parameters: Parameters = [
             "owner_id": id,
             "album_id": "profile",
+            "count": 100,
             "extended": "1",
             "photo_sizes": "1",
             "v": version,

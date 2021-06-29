@@ -9,41 +9,34 @@ import UIKit
 import RealmSwift
 
 class FriendPhotosController: UICollectionViewController {
-//    var realmResultUserPhoto: Results<RealmPhoto>? = try? RealmService.load(typeOf: RealmPhoto.self)
-//    var realmFriends = [RealmUser]()
-//    var friends: [VKUser] = []
-//    {
-//        didSet {
-//            let container = try! Container()
-//            try? container.write { transaction in
-//                transaction.add(friends)
-//            }
-//
-//            realmResultUser = try? RealmService.load(typeOf: RealmUser.self)
-//            realmFriends = addFriendsToRealmArray(results: realmResultUser)
-//
-//            //        Преобразование данных из словаря в массив
-//            let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: realmFriends), friendsArray: realmFriends)
-//            for (key, value) in groupedFriendsDict {
-//                objectArray.append(Objects(sectionName: key, sectionObjects: value))
-//            }
-//            objectArray.sort(by: { $0.sectionName < $1.sectionName})
-//
-//            tableView.reloadData()
-//        }
-//    }
-//    func addFriendsToRealmArray (results: Results<RealmUser>?) -> [RealmUser] {
-//        var array = [RealmUser]()
-//        results?.forEach({ result in
-//            array.append(result)
-//        })
-//        return array
-//    }
-    var photos = [VKPhoto]() {
+    var realmResultUserPhoto: Results<RealmPhoto>? = try? RealmService.load(typeOf: RealmPhoto.self)
+    var realmPhotos = [RealmPhoto]()
+    var photos = [VKPhoto]()
+    {
         didSet {
+            let container = try! Container()
+            try? container.write { transaction in
+                transaction.add(photos)
+            }
+
+            realmResultUserPhoto = try? RealmService.load(typeOf: RealmPhoto.self)
+            realmPhotos = addPhotosToRealmArray(results: realmResultUserPhoto)
+
             collectionView.reloadData()
         }
     }
+    func addPhotosToRealmArray (results: Results<RealmPhoto>?) -> [RealmPhoto] {
+        var array = [RealmPhoto]()
+        results?.forEach({ result in
+            array.append(result)
+        })
+        return array
+    }
+//    var photos = [VKPhoto]() {
+//        didSet {
+//            collectionView.reloadData()
+//        }
+//    }
     
     var userID: Int?
 
