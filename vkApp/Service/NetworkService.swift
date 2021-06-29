@@ -1,5 +1,6 @@
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 final class NetworkService {
     static let instance = NetworkService()
@@ -24,7 +25,7 @@ final class NetworkService {
 //            }
 //    }
     
-    func fetchFriends(userID id: Int, completion: @escaping ([VKUser]?) -> Void){
+    func fetchFriends(userID id: Int, completion: @escaping ([RealmUser]?) -> Void){
         let dataType = "friends.get"
         let parameters: Parameters = [
             "user_id": id,
@@ -38,18 +39,34 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    do {
-                        let vkPhotos = try JSONDecoder().decode(VKResponse<VKItems<VKUser>>.self, from: data)
-                        DispatchQueue.main.async {
-                            completion(vkPhotos.response.items)
-                        }
-                    } catch {
-                        print(error)
+                    let json = JSON(data)
+                    let usersJSONs = json["response"]["items"].arrayValue
+                    let vkUsers = usersJSONs.map { RealmUser($0) }
+                    DispatchQueue.main.async {
+                        completion(vkUsers)
                     }
                 case .failure(let error):
                     print(error)
+                    completion(nil)
                 }
             }
+        
+//        AF.request(host + dataType, method: .get, parameters: parameters)
+//            .responseData { response in
+//                switch response.result {
+//                case .success(let data):
+//                    do {
+//                        let vkPhotos = try JSONDecoder().decode(VKResponse<VKItems<VKUser>>.self, from: data)
+//                        DispatchQueue.main.async {
+//                            completion(vkPhotos.response.items)
+//                        }
+//                    } catch {
+//                        print(error)
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
     }
     
     func fetchFriendPhotos(userID id: Int, completion: @escaping ([VKPhoto]?) -> Void) {

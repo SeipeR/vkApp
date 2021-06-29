@@ -16,20 +16,20 @@ extension VKPhoto: Codable {
     }
 }
 
-extension VKPhoto: Persistable {
-    public init(managedObject: RealmPhoto) {
-        id = managedObject.id
-        albumID = managedObject.albumID
-        ownerID = managedObject.ownerID
-        sizes = managedObject.photos
-    }
-    public func managedObject() -> RealmPhoto {
-        let photo = RealmPhoto()
-        photo.id = id
-        photo.albumID = albumID
-        photo.ownerID = ownerID
-        photo.photos = sizes
-
-        return photo
-    }
-}
+//extension VKPhoto: Persistable {
+//    public init(managedObject: RealmPhoto) {
+//        id = managedObject.id
+//        albumID = managedObject.albumID
+//        ownerID = managedObject.ownerID
+//        sizes = managedObject.photos
+//    }
+//    public func managedObject() -> RealmPhoto {
+//        let photo = RealmPhoto()
+//        photo.id = id
+//        photo.albumID = albumID
+//        photo.ownerID = ownerID
+//        photo.photos = sizes
+//
+//        return photo
+//    }
+//}

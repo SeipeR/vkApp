@@ -12,19 +12,19 @@ class FriendPhotosController: UICollectionViewController {
     var realmResultUserPhoto: Results<RealmPhoto>? = try? RealmService.load(typeOf: RealmPhoto.self)
     var realmPhotos = [RealmPhoto]()
     var photos = [VKPhoto]()
-    {
-        didSet {
-            let container = try! Container()
-            try? container.write { transaction in
-                transaction.add(photos)
-            }
-
-            realmResultUserPhoto = try? RealmService.load(typeOf: RealmPhoto.self)
-            realmPhotos = addPhotosToRealmArray(results: realmResultUserPhoto)
-
-            collectionView.reloadData()
-        }
-    }
+//    {
+//        didSet {
+//            let container = try! Container()
+//            try? container.write { transaction in
+//                transaction.add(photos)
+//            }
+//
+//            realmResultUserPhoto = try? RealmService.load(typeOf: RealmPhoto.self)
+//            realmPhotos = addPhotosToRealmArray(results: realmResultUserPhoto)
+//
+//            collectionView.reloadData()
+//        }
+//    }
     func addPhotosToRealmArray (results: Results<RealmPhoto>?) -> [RealmPhoto] {
         var array = [RealmPhoto]()
         results?.forEach({ result in

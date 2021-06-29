@@ -1,4 +1,5 @@
 import RealmSwift
+import SwiftyJSON
 
 class RealmUser: Object {
     @objc dynamic var id: Int = 0
@@ -16,5 +17,15 @@ class RealmUser: Object {
     
     override class func indexedProperties() -> [String] {
         ["firstName", "lastName"]
+    }
+}
+
+extension RealmUser {
+    convenience init(_ json: JSON) {
+        self.init()
+        self.id = json["id"].intValue
+        self.firstName = json["first_name"].stringValue
+        self.lastName = json["last_name"].stringValue
+        self.userAvatarURL = json["photo_200"].stringValue
     }
 }

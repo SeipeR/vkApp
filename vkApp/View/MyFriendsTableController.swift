@@ -11,18 +11,18 @@ import RealmSwift
 class MyFriendsTableController: UITableViewController {
     var realmResultUser: Results<RealmUser>? = try? RealmService.load(typeOf: RealmUser.self)
     var realmFriends = [RealmUser]()
-    var friends: [VKUser] = [] {
+    var friends: [RealmUser] = [] {
         didSet {
-            let container = try! Container()
-            try? container.write { transaction in
-                transaction.add(friends)
-            }
+//            let container = try! Container()
+//            try? container.write { transaction in
+//                transaction.add(friends)
+//            }
             
             realmResultUser = try? RealmService.load(typeOf: RealmUser.self)
-            realmFriends = addFriendsToRealmArray(results: realmResultUser)
-            
+//            realmFriends = addFriendsToRealmArray(results: realmResultUser)
+//
             //        Преобразование данных из словаря в массив
-            let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: realmFriends), friendsArray: realmFriends)
+            let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends), friendsArray: friends)
             for (key, value) in groupedFriendsDict {
                 objectArray.append(Objects(sectionName: key, sectionObjects: value))
             }

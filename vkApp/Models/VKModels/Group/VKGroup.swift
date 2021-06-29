@@ -16,21 +16,21 @@ extension VKGroup: Codable {
     }
 }
 
-extension VKGroup: Persistable {
-    public init(managedObject: RealmGroup) {
-        id = managedObject.id
-        name = managedObject.name
-        screenName = managedObject.screenName
-        type = managedObject.type
-        groupAvatar = managedObject.groupAvatar
-    }
-    public func managedObject() -> RealmGroup {
-        let group = RealmGroup()
-        group.id = id
-        group.name = name
-        group.screenName = screenName
-        group.type = type
-        group.groupAvatar = groupAvatar
-        return group
-    }
-}
+//extension VKGroup: Persistable {
+//    public init(managedObject: RealmGroup) {
+//        id = managedObject.id
+//        name = managedObject.name
+//        screenName = managedObject.screenName
+//        type = managedObject.type
+//        groupAvatar = managedObject.groupAvatar
+//    }
+//    public func managedObject() -> RealmGroup {
+//        let group = RealmGroup()
+//        group.id = id
+//        group.name = name
+//        group.screenName = screenName
+//        group.type = type
+//        group.groupAvatar = groupAvatar
+//        return group
+//    }
+//}

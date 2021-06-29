@@ -11,15 +11,16 @@ class MyGroupsTableController: UITableViewController {
 //    var groups = [GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "RP")),
 //                  GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "P2IS")),]
    
-    var groups = [VKGroup]() {
-        didSet {
-                let container = try! Container()
-                try! container.write { transaction in
-                    transaction.add(groups)
-                }
-            tableView.reloadData()
-        }
-    }
+    var groups = [VKGroup]()
+//    {
+//        didSet {
+//                let container = try! Container()
+//                try! container.write { transaction in
+//                    transaction.add(groups)
+//                }
+//            tableView.reloadData()
+//        }
+//    }
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
