@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    var photos = [VKPhoto?]()
+    var photos = [RealmPhoto?]()
     var photosImage = [UIImage?]()
     var photosURL = [String?]()
     var currentPhoto: UIImage?
@@ -32,12 +32,11 @@ class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSour
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         photos.forEach { photo in
-            photosURL.append(photo?.sizes.first(where: { (400..<650).contains($0.width) })?.url ?? "")
+            photosURL.append(photo?.bigPhotoURL ?? "")
         }
         
         photosURL.forEach { url in
@@ -45,10 +44,6 @@ class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSour
                 self.photosImage.append(image)
             }
         }
-        
-        //        for photo in photos {
-        //            photosImage.append(photo?.sizes.first(where: { (400..<650).contains($0.width) })?.url)
-        //        }
         
         currentPhotoIndex = photosImage.firstIndex(where: {$0 === currentPhoto})!
         

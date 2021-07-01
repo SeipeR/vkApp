@@ -10,33 +10,13 @@ import RealmSwift
 
 class FriendPhotosController: UICollectionViewController {
     var realmResultUserPhoto: Results<RealmPhoto>? = try? RealmService.load(typeOf: RealmPhoto.self)
-    var realmPhotos = [RealmPhoto]()
-    var photos = [VKPhoto]()
-//    {
-//        didSet {
-//            let container = try! Container()
-//            try? container.write { transaction in
-//                transaction.add(photos)
-//            }
-//
-//            realmResultUserPhoto = try? RealmService.load(typeOf: RealmPhoto.self)
-//            realmPhotos = addPhotosToRealmArray(results: realmResultUserPhoto)
-//
-//            collectionView.reloadData()
-//        }
-//    }
-    func addPhotosToRealmArray (results: Results<RealmPhoto>?) -> [RealmPhoto] {
-        var array = [RealmPhoto]()
-        results?.forEach({ result in
-            array.append(result)
-        })
-        return array
+    var photos = [RealmPhoto]()
+    {
+        didSet {
+            realmResultUserPhoto = try? RealmService.load(typeOf: RealmPhoto.self)
+            collectionView.reloadData()
+        }
     }
-//    var photos = [VKPhoto]() {
-//        didSet {
-//            collectionView.reloadData()
-//        }
-//    }
     
     var userID: Int?
 
@@ -49,7 +29,6 @@ class FriendPhotosController: UICollectionViewController {
                     let self = self,
                     let photos = vkPhotos
                 else {return}
-                print(photos)
                 self.photos = photos
             }
         }
@@ -67,14 +46,12 @@ class FriendPhotosController: UICollectionViewController {
         else {
             return UICollectionViewCell()
         }
-        
-//        let currentGroupImage = photos[indexPath.row].image
-//        let currentGroupIsLiked = photos[indexPath.row].isLiked
-//        let currentGroupLikeCount = photos[indexPath.row].likeCount
-        cell .configure(imageURL: photos[indexPath.row]
-                            .sizes
-                            .first(where: { (400..<650).contains($0.width) })?
-                            .url ?? "")
+        let currentURL = photos[indexPath.row].sizes.first(where: { ("z").contains($0.type) ||
+                                                                    ("y").contains($0.type) ||
+                                                                    ("x").contains($0.type) ||
+                                                                    ("w").contains($0.type)
+                                                                    })?.url
+        cell .configure(imageURL: currentURL ?? "")
 
         return cell
     }

@@ -3,7 +3,7 @@ struct VKPhoto {
     let id: Int
     let albumID: Int
     let ownerID: Int
-    let sizes: [VKPhotoSize]
+    let photoURL: String
 }
 
 
@@ -12,7 +12,7 @@ extension VKPhoto: Codable {
         case id = "id"
         case albumID = "album_id"
         case ownerID = "owner_id"
-        case sizes = "sizes"
+        case photoURL = "photoURL"
     }
 }
 

@@ -43,6 +43,7 @@
 		57815CF526246E19001FBE6C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CF426246E19001FBE6C /* PhotoCell.swift */; };
 		57815CF9262472A7001FBE6C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CF8262472A7001FBE6C /* UserModel.swift */; };
 		57815CFD262472B9001FBE6C /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57815CFC262472B9001FBE6C /* GroupModel.swift */; };
+		57BE36DD268BC3EF000A5E70 /* RealmPhotoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BE36DC268BC3EF000A5E70 /* RealmPhotoSize.swift */; };
 		57D9F4FB2684A80A006D9919 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9F4FA2684A80A006D9919 /* RealmService.swift */; };
 		57E8DCA8262D7E86007FAE0E /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E8DCA7262D7E85007FAE0E /* FriendCell.xib */; };
 		57E8DCAC262D8112007FAE0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */; };
@@ -93,6 +94,7 @@
 		57815CF426246E19001FBE6C /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		57815CF8262472A7001FBE6C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		57815CFC262472B9001FBE6C /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
+		57BE36DC268BC3EF000A5E70 /* RealmPhotoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhotoSize.swift; sourceTree = "<group>"; };
 		57D9F4FA2684A80A006D9919 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		57E8DCA7262D7E85007FAE0E /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		57E8DCAB262D8112007FAE0E /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				5743AD242681F52900139C2C /* RealmUser.swift */,
 				5743AD262681F6AB00139C2C /* RealmPhoto.swift */,
 				5743AD282681F7BE00139C2C /* RealmGroup.swift */,
+				57BE36DC268BC3EF000A5E70 /* RealmPhotoSize.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				57815CF9262472A7001FBE6C /* UserModel.swift in Sources */,
 				574500D6264A72A8000E00FB /* LoginViewControllerPresentAnimator.swift in Sources */,
 				5703785E261AF54A00038EF8 /* SceneDelegate.swift in Sources */,
+				57BE36DD268BC3EF000A5E70 /* RealmPhotoSize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
