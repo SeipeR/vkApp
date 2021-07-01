@@ -6,6 +6,9 @@ class RealmPhoto: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var ownerID: Int = 0
     @objc dynamic var bigPhotoURL: String = ""
+    @objc dynamic var isLiked: Int = 0
+    @objc dynamic var likesCount: Int = 0
+
    
     var sizes = List<RealmPhotoSize>()
     
@@ -21,7 +24,8 @@ extension RealmPhoto {
         self.id = json["id"].intValue
         self.albumID = json["album_id"].intValue
         self.ownerID = json["owner_id"].intValue
-        
+        self.isLiked = json["likes"]["user_likes"].intValue
+        self.likesCount = json["likes"]["count"].intValue
         let sizesArray = json["sizes"].arrayValue
         
         let photoSize = RealmPhotoSize()

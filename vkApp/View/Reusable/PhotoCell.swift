@@ -32,8 +32,13 @@ class PhotoCell: UICollectionViewCell {
         }
     }
     
-    func configure(imageURL: String) {
+    func configure(imageURL: String, likeCount: Int, isLiked: Int) {
         photo.kf.setImage(with: URL(string: imageURL))
+        
+        likeCountLabel.text = "\(likeCount)"
+        if isLiked != 0 {
+            likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
     }
     
 //    func configure(image: UIImage?, isLiked: Bool, likeCount: UInt32) {

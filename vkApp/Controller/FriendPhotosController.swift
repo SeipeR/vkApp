@@ -50,7 +50,9 @@ class FriendPhotosController: UICollectionViewController {
                                                                     ("x").contains($0.type) ||
                                                                     ("w").contains($0.type)
                                                                     })?.url
-        cell .configure(imageURL: currentURL ?? "")
+        let currentIsLiked = photos[indexPath.row].isLiked
+        let currentLikesCount = photos[indexPath.row].likesCount
+        cell.configure(imageURL: currentURL ?? "", likeCount: currentLikesCount, isLiked: currentIsLiked)
 
         return cell
     }
