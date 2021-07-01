@@ -1,4 +1,5 @@
 import RealmSwift
+import SwiftyJSON
 
 class RealmGroup: Object {
     @objc dynamic var id: Int = 0
@@ -12,6 +13,17 @@ class RealmGroup: Object {
     }
 
     override class func indexedProperties() -> [String] {
-        ["name", "screenName"]
+        ["screenName"]
+    }
+}
+
+extension RealmGroup {
+    convenience init(_ json: JSON) {
+        self.init()
+        self.id = json["id"].intValue
+        self.name = json["name"].stringValue
+        self.screenName = json["screen_name"].stringValue
+        self.type = json["type"].stringValue
+        self.groupAvatar = json["photo_200"].stringValue
     }
 }

@@ -6,43 +6,39 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyGroupsTableController: UITableViewController {
-//    var groups = [GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "RP")),
-//                  GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "P2IS")),]
+    var realmResultGroup: Results<RealmGroup>? = try? RealmService.load(typeOf: RealmGroup.self)
    
-    var groups = [VKGroup]()
-//    {
-//        didSet {
-//                let container = try! Container()
-//                try! container.write { transaction in
-//                    transaction.add(groups)
-//                }
-//            tableView.reloadData()
-//        }
-//    }
-    
-    @IBAction func addGroup(segue: UIStoryboardSegue) {
-        guard
-            segue.identifier == "addGroup",
-            let allGroupsController = segue.source as? AllGroupsController,
-            let indexPath = allGroupsController.tableView.indexPathForSelectedRow
-        else {
-            return
-        }
-        
-        let group: VKGroup
-        if allGroupsController.isFiltering {
-            group = allGroupsController.filteredGroups[indexPath.row]
-        } else {
-            group = groups[indexPath.row]
-        }
-
-        if !groups.contains(group) {
-            groups.append(group)
+    var groups = [RealmGroup]() {
+        didSet {
+            realmResultGroup = try? RealmService.load(typeOf: RealmGroup.self)
             tableView.reloadData()
         }
     }
+    
+//    @IBAction func addGroup(segue: UIStoryboardSegue) {
+//        guard
+//            segue.identifier == "addGroup",
+//            let allGroupsController = segue.source as? AllGroupsController,
+//            let indexPath = allGroupsController.tableView.indexPathForSelectedRow
+//        else {
+//            return
+//        }
+//        
+//        let group: RealmGroup
+//        if allGroupsController.isFiltering {
+//            group = allGroupsController.filteredGroups[indexPath.row]
+//        } else {
+//            group = groups[indexPath.row]
+//        }
+//
+//        if !groups.contains(group) {
+//            groups.append(group)
+//            tableView.reloadData()
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

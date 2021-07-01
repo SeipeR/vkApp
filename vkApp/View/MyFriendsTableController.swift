@@ -11,16 +11,10 @@ import RealmSwift
 class MyFriendsTableController: UITableViewController {
     var realmResultUser: Results<RealmUser>? = try? RealmService.load(typeOf: RealmUser.self)
     var realmFriends = [RealmUser]()
-    var friends: [RealmUser] = [] {
+    var friends = [RealmUser]() {
         didSet {
-//            let container = try! Container()
-//            try? container.write { transaction in
-//                transaction.add(friends)
-//            }
-            
             realmResultUser = try? RealmService.load(typeOf: RealmUser.self)
-//            realmFriends = addFriendsToRealmArray(results: realmResultUser)
-//
+
             //        Преобразование данных из словаря в массив
             let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends), friendsArray: friends)
             for (key, value) in groupedFriendsDict {
@@ -31,17 +25,11 @@ class MyFriendsTableController: UITableViewController {
             tableView.reloadData()
         }
     }
-    func addFriendsToRealmArray (results: Results<RealmUser>?) -> [RealmUser] {
-        var array = [RealmUser]()
-        results?.forEach({ result in
-            array.append(result)
-        })
-        return array
-    }
+
 //    Получение массива, содержащего первые символы имени
     func createLitersArray(array: [RealmUser]) -> [Character?] {
         var liters = [Character?]()
-        for element in friends {
+        for element in array {
             if !(liters.contains(element.fullName.first)) {
                 liters.append(element.fullName.first)
             }
@@ -108,7 +96,7 @@ class MyFriendsTableController: UITableViewController {
             do {
                 let realm = try Realm()
 //                realm.beginWrite()
-//                currentUser.firstName = "Сослан"
+//                currentUser.firstName = "Damir"
 //                try realm.commitWrite()
                 try realm.write {
                     currentUser.firstName = "Damir"

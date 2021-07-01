@@ -42,7 +42,7 @@ final class NetworkService {
         let parameters: Parameters = [
             "owner_id": id,
             "album_id": "profile",
-            "count": 30,
+            "count": 10,
             "extended": "1",
             "photo_sizes": "1",
             "v": version,
@@ -66,7 +66,7 @@ final class NetworkService {
             }
     }
     
-    func fetchFriendGroups(userID id: Int, completion: @escaping ([VKGroup]?) -> Void) {
+    func fetchFriendGroups(userID id: Int, completion: @escaping ([RealmGroup]?) -> Void) {
         let dataType = "groups.get"
         let parameters: Parameters = [
             "user_id": id,
@@ -79,16 +79,32 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    do {
-                        let vkGroups = try JSONDecoder().decode(VKResponse<VKItems<VKGroup>>.self, from: data)
-                        completion(vkGroups.response.items)
-                    } catch {
-                        print(error)
+                    let json = JSON(data)
+                    let groupsJSONs = json["response"]["items"].arrayValue
+                    let vkGroups = groupsJSONs.map { RealmGroup($0) }
+                    DispatchQueue.main.async {
+                        completion(vkGroups)
                     }
                 case .failure(let error):
                     print(error)
+                    completion(nil)
                 }
             }
+        
+//        AF.request(host + dataType, method: .get, parameters: parameters)
+//            .responseData { response in
+//                switch response.result {
+//                case .success(let data):
+//                    do {
+//                        let vkGroups = try JSONDecoder().decode(VKResponse<VKItems<VKGroup>>.self, from: data)
+//                        completion(vkGroups.response.items)
+//                    } catch {
+//                        print(error)
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
     }
     
     func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]?) -> Void) {

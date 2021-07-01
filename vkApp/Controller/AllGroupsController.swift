@@ -12,7 +12,7 @@ extension AllGroupsController: UISearchResultsUpdating {
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
         NetworkService.instance.fetchGroupsSearch(searchString: searchBar.text!) { vkGroups in
-            print(vkGroups)
+//            print(vkGroups)
         }
     }
 }

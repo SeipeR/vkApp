@@ -10,8 +10,7 @@ import RealmSwift
 
 class FriendPhotosController: UICollectionViewController {
     var realmResultUserPhoto: Results<RealmPhoto>? = try? RealmService.load(typeOf: RealmPhoto.self)
-    var photos = [RealmPhoto]()
-    {
+    var photos = [RealmPhoto]() {
         didSet {
             realmResultUserPhoto = try? RealmService.load(typeOf: RealmPhoto.self)
             collectionView.reloadData()
