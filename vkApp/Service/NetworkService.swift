@@ -71,6 +71,7 @@ final class NetworkService {
         let parameters: Parameters = [
             "user_id": id,
             "extended": "1",
+            "count": 10,
             "v": version,
             "access_token": Session.instance.token
         ]
@@ -90,21 +91,6 @@ final class NetworkService {
                     completion(nil)
                 }
             }
-        
-//        AF.request(host + dataType, method: .get, parameters: parameters)
-//            .responseData { response in
-//                switch response.result {
-//                case .success(let data):
-//                    do {
-//                        let vkGroups = try JSONDecoder().decode(VKResponse<VKItems<VKGroup>>.self, from: data)
-//                        completion(vkGroups.response.items)
-//                    } catch {
-//                        print(error)
-//                    }
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
     }
     
     func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]?) -> Void) {

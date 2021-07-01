@@ -18,27 +18,27 @@ class MyGroupsTableController: UITableViewController {
         }
     }
     
-//    @IBAction func addGroup(segue: UIStoryboardSegue) {
-//        guard
-//            segue.identifier == "addGroup",
-//            let allGroupsController = segue.source as? AllGroupsController,
-//            let indexPath = allGroupsController.tableView.indexPathForSelectedRow
-//        else {
-//            return
-//        }
-//        
-//        let group: RealmGroup
-//        if allGroupsController.isFiltering {
-//            group = allGroupsController.filteredGroups[indexPath.row]
-//        } else {
-//            group = groups[indexPath.row]
-//        }
-//
-//        if !groups.contains(group) {
-//            groups.append(group)
-//            tableView.reloadData()
-//        }
-//    }
+    @IBAction func addGroup(segue: UIStoryboardSegue) {
+        guard
+            segue.identifier == "addGroup",
+            let allGroupsController = segue.source as? AllGroupsController,
+            let indexPath = allGroupsController.tableView.indexPathForSelectedRow
+        else {
+            return
+        }
+        
+        let group: RealmGroup
+        if allGroupsController.isFiltering {
+            group = allGroupsController.filteredGroups[indexPath.row]
+        } else {
+            group = allGroupsController.allGroups[indexPath.row]
+        }
+
+        if groups.contains(group) {
+            groups.append(group)
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
