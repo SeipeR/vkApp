@@ -35,7 +35,7 @@ extension RealmPhoto {
             photoSize.type = size["type"].stringValue
             photoSize.url = size["url"].stringValue
             self.bigPhotoURL = size["url"].stringValue
-            sizes.append(photoSize)
+            self.sizes.append(photoSize)
         }
     }
 }

@@ -7,14 +7,15 @@ class RealmPhotoSize: Object {
     @objc dynamic var height: Int = 0
     @objc dynamic var type: String = ""
     
+    let owners = LinkingObjects(fromType: RealmPhoto.self, property: "sizes")
     
     override class func primaryKey() -> String? {
-        "type"
+        "url"
     }
-    
-    override class func indexedProperties() -> [String] {
-        ["url"]
-    }
+
+//    override class func indexedProperties() -> [String] {
+//        ["url"]
+//    }
 }
 
 extension RealmPhotoSize {

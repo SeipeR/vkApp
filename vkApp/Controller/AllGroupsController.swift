@@ -17,17 +17,17 @@ extension AllGroupsController: UISearchResultsUpdating {
 
 class AllGroupsController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
-    var realmResultGroup: Results<RealmGroup>? = try? RealmService.load(typeOf: RealmGroup.self)
-    
-    var allGroups = [RealmGroup]() {
-        didSet {
-            realmResultGroup = try? RealmService.load(typeOf: RealmGroup.self)
-            filteredGroups = allGroups
-            tableView.reloadData()
-        }
-    }
+    let allGroups = try? RealmService.load(typeOf: RealmGroup.self)
+    private var token: NotificationToken?
     
     var filteredGroups = [RealmGroup]()
+    
+    func createFilteredGroups (array: Results<RealmGroup>) {
+        filteredGroups.removeAll()
+        for element in array {
+            filteredGroups.append(element)
+        }
+    }
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -39,13 +39,16 @@ class AllGroupsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        observeRealm()
 
-        NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { [weak self] vkGroups in
-            guard
-                let self = self,
-                let groups = vkGroups
-            else { return }
-            self.allGroups = groups
+        NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { vkGroups in
+            guard let groups = vkGroups else {return}
+            do {
+                try RealmService.save(items: groups)
+            } catch {
+                print(error)
+            }
         }
         
         let nib = UINib(nibName: "GroupCell", bundle: nil)
@@ -57,6 +60,28 @@ class AllGroupsController: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        token?.invalidate()
+    }
+    
+    private func observeRealm() {
+        token = allGroups?.observe({ [self] changes in
+            switch changes {
+            case .initial(let result):
+                if result.count > 0 {
+                    createFilteredGroups(array: allGroups!)
+                    self.tableView.reloadData()
+                }
+            case .update(_, _, _, _):
+                createFilteredGroups(array: allGroups!)
+                self.tableView.reloadData()
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
 
     // MARK: - Table view data source
 
@@ -65,7 +90,7 @@ class AllGroupsController: UITableViewController {
             return filteredGroups.count
         }
         
-        return allGroups.count
+        return allGroups?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,7 +107,7 @@ class AllGroupsController: UITableViewController {
             currentGroup = filteredGroups[indexPath.row]
         }
         else {
-            currentGroup = allGroups[indexPath.row]
+            currentGroup = (allGroups?[indexPath.row])!
         }
         
         cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name)
@@ -114,7 +139,7 @@ class AllGroupsController: UITableViewController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredGroups = allGroups.filter { (group: RealmGroup) -> Bool in
+        filteredGroups = allGroups!.filter { (group: RealmGroup) -> Bool in
             return group.name.lowercased().contains(searchText.lowercased())
         }
         

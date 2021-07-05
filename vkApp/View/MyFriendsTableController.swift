@@ -9,25 +9,12 @@ import UIKit
 import RealmSwift
 
 class MyFriendsTableController: UITableViewController {
-    var realmResultUser: Results<RealmUser>? = try? RealmService.load(typeOf: RealmUser.self)
-    var realmFriends = [RealmUser]()
-    var friends = [RealmUser]() {
-        didSet {
-            realmResultUser = try? RealmService.load(typeOf: RealmUser.self)
-
-            //        Преобразование данных из словаря в массив
-            let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends), friendsArray: friends)
-            for (key, value) in groupedFriendsDict {
-                objectArray.append(Objects(sectionName: key, sectionObjects: value))
-            }
-            objectArray.sort(by: { $0.sectionName < $1.sectionName})
-            
-            tableView.reloadData()
-        }
-    }
+    private let friends = try? RealmService.load(typeOf: RealmUser.self)
+    private var token: NotificationToken?
+    private var userToken: NotificationToken?
 
 //    Получение массива, содержащего первые символы имени
-    func createLitersArray(array: [RealmUser]) -> [Character?] {
+    func createLitersArray(array: Results<RealmUser>) -> [Character?] {
         var liters = [Character?]()
         for element in array {
             if !(liters.contains(element.fullName.first)) {
@@ -38,7 +25,7 @@ class MyFriendsTableController: UITableViewController {
     }
     
 //    Создание словаря, группирующего друзей по первой букве имени
-    func createGroupedFriendsDict(litersArray: [Character?], friendsArray: [RealmUser]) -> [Character: [RealmUser]] {
+    func createGroupedFriendsDict(litersArray: [Character?], friendsArray: Results<RealmUser>) -> [Character: [RealmUser]] {
         var friendsDict = [Character: [RealmUser]]()
         for liter in litersArray {
             var tmp = [RealmUser]()
@@ -61,37 +48,93 @@ class MyFriendsTableController: UITableViewController {
     
 //    Массив структур
     var objectArray = [Objects]()
+    
+    func createObjectArray() {
+        objectArray.removeAll()
+        
+        let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends!), friendsArray: friends!)
+        for (key, value) in groupedFriendsDict {
+            objectArray.append(Objects(sectionName: key, sectionObjects: value))
+        }
+        objectArray.sort(by: { $0.sectionName < $1.sectionName})
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let user = RealmUser()
-//        user.id = 0
-//        user.firstName = "Firstname"
-//        user.lastName = "Surname"
-//        try? RealmService.save(items: [user])
-//        let users = try? RealmService.load(typeOf: RealmUser.self)  //  получение данных из БД
+        observeRealm()
+//        observeUser()
         
         let nib = UINib(nibName: "FriendCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FriendCell")
-//        tableView.tableHeaderView = headerView
-//        tableView.tableFooterView = headerView
         
-        NetworkService.instance.fetchFriends(userID: Session.instance.userId) { [weak self] vkFriends in
-            guard
-                let self = self,
-                let friends = vkFriends
-            else {return}
-            self.friends = friends
+        NetworkService.instance.fetchFriends(userID: Session.instance.userId) { vkFriends in
+            guard let friends = vkFriends else {return}
+            do {
+                try RealmService.save(items: friends)
+            } catch {
+                print(error)
+            }
         }
         
-//        navigationController?.delegate = self
+//        createObjectArray()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        modify()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        token?.invalidate()
     }
 
+    private func observeRealm() {
+        token = friends?.observe({ [self] changes in
+            switch changes {
+            case .initial(let result):
+                if result.count > 0 {
+                    createObjectArray()
+                    self.tableView.reloadData()
+                }
+            case .update(_, _, _, _):
+                createObjectArray()
+                self.tableView.reloadData()
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
+    
+//    private func observeUser() {
+//        guard let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941)).first
+//        else { return }
+//        userToken = someUser.observe({ changes in
+//            switch changes {
+//            case let .change(object, property):
+//                guard
+//                    let users = self.friends,
+//                    let index = users.enumerated().first(where: { $0.element.id == 44227941 })?.offset,
+//                    let visibleRows = self.tableView.indexPathsForVisibleRows
+//                else {
+//                    return self.tableView.reloadData()
+//                }
+//                let indexPath = IndexPath(row: index, section: 0)
+//                if visibleRows.contains(indexPath) {
+//                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+//                }
+//            case .deleted:
+//                print("\(someUser.fullName) try to delete")
+//            case .error(let error):
+//                print(error)
+//            }
+//        })
+//    }
+    
 //    Поиск пользователя через id
     private func modify() {
         let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941))
-        print(someUser ?? "")
+//        print(someUser ?? "")
         if let currentUser = someUser?.first {
             do {
                 let realm = try Realm()

@@ -9,32 +9,55 @@ import UIKit
 import RealmSwift
 
 class FriendPhotosController: UICollectionViewController {
-    var realmResultUserPhoto: Results<RealmPhoto>? = try? RealmService.load(typeOf: RealmPhoto.self)
-    var photos = [RealmPhoto]() {
-        didSet {
-            realmResultUserPhoto = try? RealmService.load(typeOf: RealmPhoto.self)
-            collectionView.reloadData()
-        }
-    }
+    let photos = try? RealmService.load(typeOf: RealmPhoto.self)
+    private var token: NotificationToken?
+    var photosArray = [RealmPhoto]()
     
     var userID: Int?
+    
+    func createPhotosArray (array: Results<RealmPhoto>) {
+        photosArray.removeAll()
+        for element in (array.filter { $0.ownerID == self.userID}) {
+            photosArray.append(element)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        observeRealm()
+        
         if let userID = userID {
-            NetworkService.instance.fetchFriendPhotos(userID: userID) { [weak self] vkPhotos in
-                guard
-                    let self = self,
-                    let photos = vkPhotos
-                else {return}
-                self.photos = photos
+            NetworkService.instance.fetchFriendPhotos(userID: userID) { vkPhotos in
+                guard let photosArray = vkPhotos else {return}
+                do {
+                    try RealmService.save(items: photosArray)
+                } catch {
+                    print(error)
+                }
             }
         }
     }
 
+    private func observeRealm() {
+        token = photos?.observe({ [self] changes in
+            switch changes {
+            case .initial(let result):
+                if result.count > 0 {
+                    createPhotosArray(array: photos!)
+                    self.collectionView.reloadData()
+                }
+            case .update(_, _, _, _):
+                createPhotosArray(array: photos!)
+                self.collectionView.reloadData()
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return photosArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -45,13 +68,13 @@ class FriendPhotosController: UICollectionViewController {
         else {
             return UICollectionViewCell()
         }
-        let currentURL = photos[indexPath.row].sizes.first(where: { ("z").contains($0.type) ||
+        let currentURL = photosArray[indexPath.row].sizes.first(where: { ("z").contains($0.type) ||
                                                                     ("y").contains($0.type) ||
                                                                     ("x").contains($0.type) ||
                                                                     ("w").contains($0.type)
                                                                     })?.url
-        let currentIsLiked = photos[indexPath.row].isLiked
-        let currentLikesCount = photos[indexPath.row].likesCount
+        let currentIsLiked = photosArray[indexPath.row].isLiked
+        let currentLikesCount = photosArray[indexPath.row].likesCount
         cell.configure(imageURL: currentURL ?? "", likeCount: currentLikesCount, isLiked: currentIsLiked)
 
         return cell
@@ -67,7 +90,7 @@ class FriendPhotosController: UICollectionViewController {
             return
         }
         destination.currentPhoto = image
-        destination.photos = self.photos
+        destination.photos = self.photosArray
     }
 
 
