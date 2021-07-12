@@ -2,18 +2,8 @@ import UIKit
 import WebKit
 
 class VKLoginController: UIViewController {
-    @IBOutlet var webView: WKWebView! {
-        didSet {
-            webView.navigationDelegate = self
-        }
-    }
     
-    @IBAction func unwindSegue(for unwindSegue: UIStoryboardSegue) {
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    private var urlComponents: URLComponents = {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "oauth.vk.com"
@@ -26,8 +16,37 @@ class VKLoginController: UIViewController {
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.131"),
         ]
+        return components
+    }()
+    
+    lazy var request = URLRequest(url: urlComponents.url!)
+    
+    @IBOutlet var webView: WKWebView! {
+        didSet {
+            webView.navigationDelegate = self
+        }
+    }
+    
+    @IBAction func unwindSegue(for unwindSegue: UIStoryboardSegue) {
+        Session.instance.token = ""
+        Session.instance.userId = 0
         
-        let request = URLRequest(url: components.url!)
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { (records) in
+            for record in records {
+                if record.displayName.contains("vk") {
+                    dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), for: [record], completionHandler: { [weak self] in
+                        self?.webView.load(self!.request)
+                    })
+                }
+            }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        webView.navigationDelegate = self
         webView.load(request)
     }
 }
