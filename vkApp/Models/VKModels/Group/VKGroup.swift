@@ -1,4 +1,4 @@
-struct Group {
+struct VKGroup {
     let id: Int
     let name: String
     let screenName: String
@@ -6,7 +6,7 @@ struct Group {
     let groupAvatar: String
 }
 
-extension Group: Codable {
+extension VKGroup: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"

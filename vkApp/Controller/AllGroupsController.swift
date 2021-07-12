@@ -11,7 +11,9 @@ extension AllGroupsController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
-        NetworkService.instance.fetchGroupsSearch(searchString: searchBar.text!)
+        NetworkService.instance.fetchGroupsSearch(searchString: searchBar.text!) { vkGroups in
+            print(vkGroups)
+        }
     }
 }
 
