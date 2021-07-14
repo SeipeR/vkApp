@@ -116,4 +116,32 @@ final class NetworkService {
                 }
             }
     }
+    
+    func fetchNewsfeed(userID id: Int, completion: @escaping ([VKNewsfeed]?) -> Void) {
+        let dataType = "newsfeed.get"
+        let parameters: Parameters = [
+            "user_id": id,
+            "filters": "post",
+            "max_photos": 1,
+            "count": 10,
+            "v": version,
+            "access_token": Session.instance.token
+        ]
+        
+        AF.request(host + dataType, method: .get, parameters: parameters)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let json = JSON(data)
+                    let groupsJSONs = json["response"]["items"].arrayValue
+                    let vkNews = groupsJSONs.map { VKNewsfeed($0) }
+                    DispatchQueue.main.async {
+                        completion(vkNews)
+                    }
+                case .failure(let error):
+                    print(error)
+                    completion(nil)
+                }
+            }
+    }
 }

@@ -25,6 +25,7 @@
 		5718F700265BAF1B00F281A1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F6FF265BAF1B00F281A1 /* Session.swift */; };
 		57190903261F42A3001035BC /* MyFriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190902261F42A3001035BC /* MyFriendsTableController.swift */; };
 		57190906261F42BD001035BC /* FriendPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190905261F42BD001035BC /* FriendPhotosController.swift */; };
+		572C1135269F179B00E5009B /* VKNewsfeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572C1134269F179B00E5009B /* VKNewsfeed.swift */; };
 		5743AD252681F52900139C2C /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AD242681F52900139C2C /* RealmUser.swift */; };
 		5743AD272681F6AB00139C2C /* RealmPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AD262681F6AB00139C2C /* RealmPhoto.swift */; };
 		5743AD292681F7BE00139C2C /* RealmGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AD282681F7BE00139C2C /* RealmGroup.swift */; };
@@ -76,6 +77,7 @@
 		5718F6FF265BAF1B00F281A1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		57190902261F42A3001035BC /* MyFriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyFriendsTableController.swift; path = vkApp/View/MyFriendsTableController.swift; sourceTree = SOURCE_ROOT; };
 		57190905261F42BD001035BC /* FriendPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosController.swift; sourceTree = "<group>"; };
+		572C1134269F179B00E5009B /* VKNewsfeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKNewsfeed.swift; sourceTree = "<group>"; };
 		5743AD242681F52900139C2C /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		5743AD262681F6AB00139C2C /* RealmPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhoto.swift; sourceTree = "<group>"; };
 		5743AD282681F7BE00139C2C /* RealmGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroup.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				570E72632668C81D0049714A /* User */,
 				5765449C2667BD5C0078F97A /* VKResponse.swift */,
 				5765449E2667BDD30078F97A /* VKItems.swift */,
+				572C1134269F179B00E5009B /* VKNewsfeed.swift */,
 			);
 			path = VKModels;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				574500D3264A6C8C000E00FB /* CustomSegue.swift in Sources */,
 				57D9F4FB2684A80A006D9919 /* RealmService.swift in Sources */,
 				57815CE92624520E001FBE6C /* MyGroupsTableController.swift in Sources */,
+				572C1135269F179B00E5009B /* VKNewsfeed.swift in Sources */,
 				57037866261AF54A00038EF8 /* vkApp.xcdatamodeld in Sources */,
 				57036284263179E000EB1DEC /* NewsTableController.swift in Sources */,
 				574500D9264A8353000E00FB /* NavigationControllerAnimator.swift in Sources */,

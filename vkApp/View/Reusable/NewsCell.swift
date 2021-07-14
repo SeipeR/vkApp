@@ -36,15 +36,27 @@ class NewsCell: UITableViewCell {
     }
     @IBOutlet weak var likeCountLabel: UILabel!
     
-    func configure(userImage: UIImage?, name: String, date: String, news: String, newsImage: UIImage?, isLiked: Bool, likeCount: UInt32) {
-        avatarImage.image = userImage
-        nameLabel.text = name
-        dateLabel.text = date
-        newsLabel.text = news
-        self.newsImage.image = newsImage
+//    func configure(userImage: UIImage?, name: String, date: String, news: String, newsImage: UIImage?, isLiked: Bool, likeCount: UInt32) {
+//        avatarImage.image = userImage
+//        nameLabel.text = name
+//        dateLabel.text = date
+//        newsLabel.text = news
+//        self.newsImage.image = newsImage
+//        likeCountLabel.text = "\(likeCount)"
+//        likeButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
+//        if isLiked {
+//            likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+//        }
+//    }
+    
+    func configure(date: Int, text: String, imageURL: String, likeCount: Int, isLiked: Int) {
+        avatarImage.kf.setImage(with: URL(string: imageURL))
+        self.newsImage.kf.setImage(with: URL(string: imageURL))
+        dateLabel.text = String(date)
+        newsLabel.text = text
+        
         likeCountLabel.text = "\(likeCount)"
-        likeButtonOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
-        if isLiked {
+        if isLiked != 0 {
             likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
     }
