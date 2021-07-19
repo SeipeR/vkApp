@@ -1,4 +1,6 @@
-struct VKGroup: Equatable {
+import SwiftyJSON
+
+struct VKGroup {
     let id: Int
     let name: String
     let screenName: String
@@ -13,6 +15,24 @@ extension VKGroup: Codable {
         case screenName = "screen_name"
         case type = "type"
         case groupAvatar = "photo_200"
+    }
+}
+
+extension VKGroup {
+    init(_ json: JSON) {
+        let id = json["id"].intValue
+        let name = json["first_name"].stringValue
+        let screenName = json["last_name"].stringValue
+        let type = json["type"].stringValue
+        let groupAvatar = json["photo_200"].stringValue
+        
+        self.init(
+            id: id,
+            name: name,
+            screenName: screenName,
+            type: type,
+            groupAvatar: groupAvatar
+        )
     }
 }
 

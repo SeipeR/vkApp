@@ -71,7 +71,7 @@ final class NetworkService {
         let parameters: Parameters = [
             "user_id": id,
             "extended": "1",
-            "count": 10,
+//            "count": 10,
             "v": version,
             "access_token": Session.instance.token
         ]
@@ -93,29 +93,29 @@ final class NetworkService {
             }
     }
     
-    func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]?) -> Void) {
-        let dataType = "groups.search"
-        let parameters: Parameters = [
-            "q": searchString,
-            "v": version,
-            "access_token": Session.instance.token
-        ]
-        
-        AF.request(host + dataType, method: .get, parameters: parameters)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    do {
-                        let vkGroups = try JSONDecoder().decode(VKResponse<VKItems<VKGroup>>.self, from: data)
-                        completion(vkGroups.response.items)
-                    } catch {
-                        print(error)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
-    }
+//    func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]?) -> Void) {
+//        let dataType = "groups.search"
+//        let parameters: Parameters = [
+//            "q": searchString,
+//            "v": version,
+//            "access_token": Session.instance.token
+//        ]
+//        
+//        AF.request(host + dataType, method: .get, parameters: parameters)
+//            .responseData { response in
+//                switch response.result {
+//                case .success(let data):
+//                    do {
+//                        let vkGroups = try JSONDecoder().decode(VKResponse<VKItems<VKGroup>>.self, from: data)
+//                        completion(vkGroups.response.items)
+//                    } catch {
+//                        print(error)
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//    }
     
     func fetchNewsfeed(userID id: Int, completion: @escaping ([VKNewsfeed]?) -> Void) {
         let dataType = "newsfeed.get"
@@ -123,7 +123,7 @@ final class NetworkService {
             "user_id": id,
             "filters": "post",
             "max_photos": 1,
-            "count": 10,
+//            "count": 10,
             "v": version,
             "access_token": Session.instance.token
         ]
@@ -134,7 +134,7 @@ final class NetworkService {
                 case .success(let data):
                     let json = JSON(data)
                     let groupsJSONs = json["response"]["items"].arrayValue
-                    let vkNews = groupsJSONs.map { VKNewsfeed($0) }
+                    let vkNews = (groupsJSONs.map { VKNewsfeed($0) }).filter {$0.type == "photo"}
                     DispatchQueue.main.async {
                         completion(vkNews)
                     }
@@ -144,4 +144,55 @@ final class NetworkService {
                 }
             }
     }
+    
+//    func fetchFriendByID(userID id: Int, completion: @escaping ([VKUser]?) -> Void) {
+//        let dataType = "users.get"
+//        let parameters: Parameters = [
+//            "user_ids": id,
+//            "fields": "photo_200",
+//            "v": version,
+//            "access_token": Session.instance.token
+//        ]
+//        
+//        AF.request(host + dataType, method: .get, parameters: parameters)
+//            .responseData { response in
+//                switch response.result {
+//                case .success(let data):
+//                    let json = JSON(data)
+//                    let groupsJSONs = json["response"].arrayValue
+//                    let vkNews = groupsJSONs.map { VKUser($0) }
+//                    DispatchQueue.main.async {
+//                        completion(vkNews)
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                    completion(nil)
+//                }
+//            }
+//    }
+//    
+//    func fetchGroupByID(userID id: Int, completion: @escaping ([VKGroup]?) -> Void) {
+//        let dataType = "groups.getById"
+//        let parameters: Parameters = [
+//            "group_ids": id,
+//            "v": version,
+//            "access_token": Session.instance.token
+//        ]
+//        
+//        AF.request(host + dataType, method: .get, parameters: parameters)
+//            .responseData { response in
+//                switch response.result {
+//                case .success(let data):
+//                    let json = JSON(data)
+//                    let groupsJSONs = json["response"].arrayValue
+//                    let vkNews = groupsJSONs.map { VKGroup($0) }
+//                    DispatchQueue.main.async {
+//                        completion(vkNews)
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                    completion(nil)
+//                }
+//            }
+//    }
 }

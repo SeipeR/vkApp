@@ -9,18 +9,51 @@ import UIKit
 
 class NewsTableController: UITableViewController {
     
-    var news = [VKNewsfeed]()
+    var news = [VKNewsfeed]() {
+        didSet {
+            createNewsObjectArray()
+            tableView.reloadData()
+        }
+    }
+    var user = [VKUser]()
+    var group = [VKGroup]()
+    
+    struct NewsObject {
+        var news: VKNewsfeed
+        var user: String
+        var userAvatar: String
+    }
+    var newsObjectArray = [NewsObject]()
+    
+    func createNewsObjectArray() {
+        newsObjectArray.removeAll()
+        
+        news.forEach { element in
+            switch element.id {
+            case 1...:
+                guard let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", element.id)).first
+                else { return }
+                newsObjectArray.append(NewsObject(news: element,
+                                                  user: someUser.fullName,
+                                                  userAvatar: someUser.userAvatarURL))
+            case ...0:
+                guard let someGroup = try? RealmService.load(typeOf: RealmGroup.self).filter(NSPredicate(format: "id == %i", abs(element.id))).first
+                else { return }
+                newsObjectArray.append(NewsObject(news: element,
+                                                  user: someGroup.name,
+                                                  userAvatar: someGroup.groupAvatar))
+            default:
+                print("ERROR")
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { vkFriends in
-            guard let friends = vkFriends else {return}
-            do {
-                self.news = friends
-            } catch {
-                print(error)
-            }
+        NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { vkNews in
+            guard let news = vkNews else {return}
+            self.news = news
         }
         
         let nib = UINib(nibName: "NewsCell", bundle: nil)
@@ -30,7 +63,7 @@ class NewsTableController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        news.count
+        newsObjectArray.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,9 +77,15 @@ class NewsTableController: UITableViewController {
         else {
             return UITableViewCell()
         }
-        news.sort(by: {$0.date > $1.date})
-        let currentNews = news[indexPath.section]
-        cell.configure(date: currentNews.date, text: currentNews.text, imageURL: currentNews.photoURL, likeCount: currentNews.likeCount, isLiked: currentNews.userLikes)
+        let currentNews = newsObjectArray[indexPath.section]
+        
+        cell.configure(userImage: currentNews.userAvatar,
+                       name: currentNews.user,
+                       date: Date(timeIntervalSince1970: TimeInterval(currentNews.news.date)),
+                       news: currentNews.news.text,
+                       newsImage: currentNews.news.photoURL,
+                       isLiked: currentNews.news.userLikes,
+                       likeCount: currentNews.news.likeCount)
 
         return cell
     }
