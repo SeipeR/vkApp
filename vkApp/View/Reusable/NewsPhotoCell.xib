@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,29 +16,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="444" height="555"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gue-lV-Ceg">
-                        <rect key="frame" x="15" y="10" width="414" height="414"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zBX-qC-HQh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="zBX-qC-HQh" secondAttribute="trailing" id="QgB-aD-X1A"/>
-                            <constraint firstAttribute="width" secondItem="gue-lV-Ceg" secondAttribute="height" id="XDe-LQ-RXW"/>
-                            <constraint firstAttribute="bottom" secondItem="zBX-qC-HQh" secondAttribute="bottom" id="Z1E-RP-ts3"/>
-                            <constraint firstItem="zBX-qC-HQh" firstAttribute="leading" secondItem="gue-lV-Ceg" secondAttribute="leading" id="hJL-OW-o2x"/>
-                            <constraint firstItem="zBX-qC-HQh" firstAttribute="top" secondItem="gue-lV-Ceg" secondAttribute="top" id="qkH-WL-RvY"/>
-                        </constraints>
-                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zBX-qC-HQh" customClass="ScaledHeightImageView" customModule="vkApp" customModuleProvider="target">
+                        <rect key="frame" x="15" y="10" width="414" height="535"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gue-lV-Ceg" firstAttribute="centerY" secondItem="bKO-qo-ifH" secondAttribute="centerY" id="2ya-lc-Nbf"/>
-                    <constraint firstItem="gue-lV-Ceg" firstAttribute="top" secondItem="bKO-qo-ifH" secondAttribute="top" constant="10" id="Qj5-Wd-fVB"/>
-                    <constraint firstAttribute="bottom" secondItem="gue-lV-Ceg" secondAttribute="bottom" constant="10" id="kBv-8l-7Qb"/>
-                    <constraint firstItem="gue-lV-Ceg" firstAttribute="leading" secondItem="bKO-qo-ifH" secondAttribute="leading" constant="15" id="yf6-vM-3KS"/>
-                    <constraint firstAttribute="trailing" secondItem="gue-lV-Ceg" secondAttribute="trailing" constant="15" id="zs7-Ff-gNZ"/>
+                    <constraint firstItem="zBX-qC-HQh" firstAttribute="top" secondItem="bKO-qo-ifH" secondAttribute="top" constant="10" id="83v-EE-1dV"/>
+                    <constraint firstAttribute="trailing" secondItem="zBX-qC-HQh" secondAttribute="trailing" constant="15" id="OWQ-ST-Teb"/>
+                    <constraint firstItem="zBX-qC-HQh" firstAttribute="leading" secondItem="bKO-qo-ifH" secondAttribute="leading" constant="15" id="PvH-YU-8mZ"/>
+                    <constraint firstAttribute="bottom" secondItem="zBX-qC-HQh" secondAttribute="bottom" constant="10" id="pUf-4c-fBW"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Bcj-kG-Tei"/>
@@ -50,9 +35,4 @@
             <point key="canvasLocation" x="-153.62318840579712" y="169.75446428571428"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
