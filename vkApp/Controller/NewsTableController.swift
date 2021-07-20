@@ -56,8 +56,17 @@ class NewsTableController: UITableViewController {
             self.news = news
         }
         
-        let nib = UINib(nibName: "NewsCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "NewsCell")
+//        self.tableView.separatorColor = UIColor.clear
+        let nibNewsCell = UINib(nibName: "NewsCell", bundle: nil)
+        let nibUserInfoCell = UINib(nibName: "NewsUserInfo", bundle: nil)
+        let nibTextCell = UINib(nibName: "NewsTextCell", bundle: nil)
+        let nibPhotoCell = UINib(nibName: "NewsPhotoCell", bundle: nil)
+        let nibLikesCell = UINib(nibName: "NewsLikes", bundle: nil)
+        tableView.register(nibNewsCell, forCellReuseIdentifier: "NewsCell")
+        tableView.register(nibUserInfoCell, forCellReuseIdentifier: "NewsUserInfo")
+        tableView.register(nibTextCell, forCellReuseIdentifier: "NewsTextCell")
+        tableView.register(nibPhotoCell, forCellReuseIdentifier: "NewsPhotoCell")
+        tableView.register(nibLikesCell, forCellReuseIdentifier: "NewsLikes")
     }
 
     // MARK: - Table view data source
@@ -67,27 +76,109 @@ class NewsTableController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        var rowsCount = 4
+        print(newsObjectArray[section].news.photoURL)
+        if newsObjectArray[section].news.photoURL == "" {
+            rowsCount -= 1
+        }
+        if newsObjectArray[section].news.text == "" {
+            rowsCount -= 1
+        }
+        print(rowsCount)
+        return rowsCount
+        
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsCell
-        else {
-            return UITableViewCell()
+        switch indexPath.row {
+        case 0:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsUserInfo", for: indexPath) as? NewsUserInfo
+            else {
+                return UITableViewCell()
+            }
+            let currentNews = newsObjectArray[indexPath.section]
+            cell.configure(userImage: currentNews.userAvatar, name: currentNews.user, date: Date(timeIntervalSince1970: TimeInterval(currentNews.news.date)))
+            cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+            return cell
+        case 1:
+            if newsObjectArray[indexPath.section].news.text == "" {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoCell", for: indexPath) as? NewsPhotoCell
+                else {
+                    return UITableViewCell()
+                }
+                let currentNews = newsObjectArray[indexPath.section]
+                cell.configure(newsImage: currentNews.news.photoURL)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+                return cell
+            } else {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTextCell", for: indexPath) as? NewsTextCell
+                else {
+                    return UITableViewCell()
+                }
+                let currentNews = newsObjectArray[indexPath.section]
+                cell.configure(news: currentNews.news.text)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+                return cell
+            }
+        case 2:
+            if newsObjectArray[indexPath.section].news.photoURL == "" || newsObjectArray[indexPath.section].news.text == ""{
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikes", for: indexPath) as? NewsLikes
+                else {
+                    return UITableViewCell()
+                }
+                let currentNews = newsObjectArray[indexPath.section]
+                cell.configure(isLiked: currentNews.news.userLikes, likeCount: currentNews.news.likeCount)
+                return cell
+            } else {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPhotoCell", for: indexPath) as? NewsPhotoCell
+                else {
+                    return UITableViewCell()
+                }
+                let currentNews = newsObjectArray[indexPath.section]
+                cell.configure(newsImage: currentNews.news.photoURL)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
+                return cell
+            }
+        case 3:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikes", for: indexPath) as? NewsLikes
+            else {
+                return UITableViewCell()
+            }
+            let currentNews = newsObjectArray[indexPath.section]
+            cell.configure(isLiked: currentNews.news.userLikes, likeCount: currentNews.news.likeCount)
+            return cell
+        default:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikes", for: indexPath) as? NewsLikes
+            else {
+                return UITableViewCell()
+            }
+            return cell
         }
-        let currentNews = newsObjectArray[indexPath.section]
-        
-        cell.configure(userImage: currentNews.userAvatar,
-                       name: currentNews.user,
-                       date: Date(timeIntervalSince1970: TimeInterval(currentNews.news.date)),
-                       news: currentNews.news.text,
-                       newsImage: currentNews.news.photoURL,
-                       isLiked: currentNews.news.userLikes,
-                       likeCount: currentNews.news.likeCount)
-
-        return cell
+//        guard
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsCell
+//        else {
+//            return UITableViewCell()
+//        }
+//        let currentNews = newsObjectArray[indexPath.section]
+//        print(currentNews)
+//
+//        cell.configure(userImage: currentNews.userAvatar,
+//                       name: currentNews.user,
+//                       date: Date(timeIntervalSince1970: TimeInterval(currentNews.news.date)),
+//                       news: currentNews.news.text,
+//                       newsImage: currentNews.news.photoURL,
+//                       isLiked: currentNews.news.userLikes,
+//                       likeCount: currentNews.news.likeCount)
+//
+//
+//        return cell
     }
     
     // MARK: - Table view delegate methods

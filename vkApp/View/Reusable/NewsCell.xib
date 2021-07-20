@@ -90,7 +90,7 @@
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" image="heart" catalog="system"/>
                                 <connections>
-                                    <action selector="likeButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sBC-KU-eZm"/>
+                                    <action selector="likeButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="K7p-t6-bOI"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtB-wG-26X">
@@ -128,13 +128,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="avatarImage" destination="76u-Xn-DzG" id="6DW-PC-Uh2"/>
-                <outlet property="dateLabel" destination="9W3-Wi-ygW" id="lsh-Gd-pf8"/>
-                <outlet property="likeButtonOutlet" destination="SsR-9O-9pl" id="b2W-Wl-CeA"/>
-                <outlet property="likeCountLabel" destination="jtB-wG-26X" id="YKv-86-WHf"/>
-                <outlet property="nameLabel" destination="pOz-cP-aY1" id="9QX-Bt-s20"/>
-                <outlet property="newsImage" destination="dqS-0K-SNH" id="gX2-fJ-SVh"/>
-                <outlet property="newsLabel" destination="zJP-Zf-NWL" id="U32-iI-Z8q"/>
+                <outlet property="avatarImage" destination="76u-Xn-DzG" id="euh-Ch-Pww"/>
+                <outlet property="dateLabel" destination="9W3-Wi-ygW" id="G2h-8G-rSt"/>
+                <outlet property="likeButtonOutlet" destination="SsR-9O-9pl" id="GTn-2m-tLb"/>
+                <outlet property="likeCountLabel" destination="jtB-wG-26X" id="pAn-hK-X6L"/>
+                <outlet property="nameLabel" destination="pOz-cP-aY1" id="BH9-En-Q5Z"/>
+                <outlet property="newsImage" destination="dqS-0K-SNH" id="abG-Xf-J1f"/>
+                <outlet property="newsLabel" destination="zJP-Zf-NWL" id="k9J-bl-SzE"/>
             </connections>
             <point key="canvasLocation" x="-127.53623188405798" y="211.27232142857142"/>
         </tableViewCell>
