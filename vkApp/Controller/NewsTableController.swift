@@ -109,7 +109,7 @@ class NewsTableController: UITableViewController {
                     return UITableViewCell()
                 }
                 let currentNews = newsObjectArray[indexPath.section]
-                cell.configure(newsImage: currentNews.news.photoURL)
+                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
             } else {
@@ -140,7 +140,7 @@ class NewsTableController: UITableViewController {
                     return UITableViewCell()
                 }
                 let currentNews = newsObjectArray[indexPath.section]
-                cell.configure(newsImage: currentNews.news.photoURL)
+                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
             }
