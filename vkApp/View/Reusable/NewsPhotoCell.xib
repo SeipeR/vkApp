@@ -33,8 +33,10 @@
             <viewLayoutGuide key="safeArea" id="Bcj-kG-Tei"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="leftConstraint" destination="PvH-YU-8mZ" id="yDa-eC-hXQ"/>
                 <outlet property="newsImage" destination="zBX-qC-HQh" id="2yF-Fu-6e8"/>
                 <outlet property="newsImageHeight" destination="qUk-nY-Hnr" id="mUX-aq-JEP"/>
+                <outlet property="rightConstraint" destination="OWQ-ST-Teb" id="3nP-LV-BYe"/>
             </connections>
             <point key="canvasLocation" x="-153.62318840579712" y="169.75446428571428"/>
         </tableViewCell>
