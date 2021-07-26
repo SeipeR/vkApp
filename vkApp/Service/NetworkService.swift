@@ -24,11 +24,14 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let usersJSONs = json["response"]["items"].arrayValue
-                    let vkUsers = usersJSONs.map { RealmUser($0) }
-                    DispatchQueue.main.async {
-                        completion(vkUsers)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let usersJSONs = json["response"]["items"].arrayValue
+                        let vkUsers = usersJSONs.map { RealmUser($0) }
+                        
+                        DispatchQueue.main.async {
+                            completion(vkUsers)
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -53,11 +56,14 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let photosJSONs = json["response"]["items"].arrayValue
-                    let vkPhotos = photosJSONs.map { RealmPhoto($0) }
-                    DispatchQueue.main.async {
-                        completion(vkPhotos)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let photosJSONs = json["response"]["items"].arrayValue
+                        let vkPhotos = photosJSONs.map { RealmPhoto($0) }
+                        
+                        DispatchQueue.main.async {
+                            completion(vkPhotos)
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -80,11 +86,14 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let groupsJSONs = json["response"]["items"].arrayValue
-                    let vkGroups = groupsJSONs.map { RealmGroup($0) }
-                    DispatchQueue.main.async {
-                        completion(vkGroups)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let groupsJSONs = json["response"]["items"].arrayValue
+                        let vkGroups = groupsJSONs.map { RealmGroup($0) }
+                        
+                        DispatchQueue.main.async {
+                            completion(vkGroups)
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -132,11 +141,14 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let groupsJSONs = json["response"]["items"].arrayValue
-                    let vkNews = (groupsJSONs.map { VKNewsfeed($0) }).filter {$0.type == "photo"}
-                    DispatchQueue.main.async {
-                        completion(vkNews)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let newsJSONs = json["response"]["items"].arrayValue
+                        let vkNews = (newsJSONs.map { VKNewsfeed($0) }).filter {$0.type == "photo"}
+                        
+                        DispatchQueue.main.async {
+                            completion(vkNews)
+                        }
                     }
                 case .failure(let error):
                     print(error)
