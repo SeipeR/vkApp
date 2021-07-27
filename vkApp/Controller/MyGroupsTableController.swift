@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyGroupsTableController: UITableViewController {
-    var groups = [GroupModel(groupName: "Revelations: Persona", groupAvatar: UIImage(named: "RP")),
-                  GroupModel(groupName: "Persona 2: Innocent Sin", groupAvatar: UIImage(named: "P2IS")),]
+    private let groups = try? RealmService.load(typeOf: RealmGroup.self)
+    private var token: NotificationToken?
+    private var groupsArray = [RealmGroup]()
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
@@ -20,35 +22,68 @@ class MyGroupsTableController: UITableViewController {
             return
         }
         
-        let group: GroupModel
+        let group: RealmGroup
         if allGroupsController.isFiltering {
-            
             group = allGroupsController.filteredGroups[indexPath.row]
         } else {
-            group = allGroupsController.allGroups[indexPath.row]
+            group = allGroupsController.allGroups![indexPath.row]
         }
 
-        if !groups.contains(group) {
-            groups.append(group)
+        if !groupsArray.contains(group) {
+            groupsArray.append(group)
             tableView.reloadData()
+        }
+    }
+    
+    func createGroupArray (array: Results<RealmGroup>) {
+        groupsArray.removeAll()
+        for element in array {
+            groupsArray.append(element)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        observeRealm()
+        
+        NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { vkGroups in
+            guard let groups = vkGroups else {return}
+            do {
+                try RealmService.save(items: groups)
+            } catch {
+                print(error)
+            }
+        }
+        
         let nib = UINib(nibName: "GroupCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "GroupCell")
         
-        NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { vkGroups in
-            print(vkGroups)
-        }
+        
 //        navigationController?.delegate = self
     }
 
+    private func observeRealm() {
+        token = groups?.observe({ [self] changes in
+            switch changes {
+            case .initial(let result):
+                if result.count > 0 {
+                    createGroupArray(array: groups!)
+                    self.tableView.reloadData()
+                }
+            case .update(_, _, _, _):
+                createGroupArray(array: groups!)
+                self.tableView.reloadData()
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        groups.count
+        groupsArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,9 +94,9 @@ class MyGroupsTableController: UITableViewController {
             return UITableViewCell()
         }
 
-        let currentGroup = groups[indexPath.row]
+        let currentGroup = groupsArray[indexPath.row]
         
-        cell.configure(image: currentGroup.groupAvatar, name: currentGroup.groupName)
+        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name)
 
         return cell
     }
@@ -90,7 +125,7 @@ class MyGroupsTableController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            groups.remove(at: indexPath.row)
+            groupsArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

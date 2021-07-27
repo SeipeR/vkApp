@@ -12,8 +12,8 @@ class GroupCell: UITableViewCell {
     @IBOutlet weak var groupAvatarImage: UIImageView!
     @IBOutlet weak var groupNameLabel: UILabel!
     
-    func configure(image: UIImage?, name: String) {
-        groupAvatarImage.image = image
+    func configure(imageURL: String, name: String) {
+        groupAvatarImage.kf.setImage(with: URL(string: imageURL))
         groupNameLabel.text = name
     }
 }

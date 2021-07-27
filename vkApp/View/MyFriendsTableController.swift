@@ -9,46 +9,31 @@ import UIKit
 import RealmSwift
 
 class MyFriendsTableController: UITableViewController {
-    var friends = [
-        UserModel(userName: "Ann Takamaki", userAvatar: UIImage(named: "Ann"), userPhotos: [(image: UIImage(named: "Ann_1"), isLiked: true, likeCount: 32), (image: UIImage(named: "Ann_2"), isLiked: false, likeCount: 0), (image: UIImage(named: "Ann_3"), isLiked: true, likeCount: 14), (image: UIImage(named: "Ann"), isLiked: false, likeCount: 1), (image: UIImage(named: "Ann_4"), isLiked: true, likeCount: 6), (image: UIImage(named: "Ann_5"), isLiked: false, likeCount: 56),]),
-        UserModel(userName: "Morgana", userAvatar: UIImage(named: "Morgana"), userPhotos: [(image: UIImage(named: "Morgana"), isLiked: true, likeCount: 15), (image: UIImage(named: "Morgana_1"), isLiked: false, likeCount: 3), (image: UIImage(named: "Morgana_2"), isLiked: true, likeCount: 8), (image: UIImage(named: "Morgana_3"), isLiked: true, likeCount: 23), (image: UIImage(named: "Morgana_4"), isLiked: false, likeCount: 0), (image: UIImage(named: "Morgana_5"), isLiked: true, likeCount: 16),]),
-        UserModel(userName: "Ryuji Sakamoto", userAvatar: UIImage(named: "Ryuji"), userPhotos: [(image: UIImage(named: "Ryuji"), isLiked: true, likeCount: 35), (image: UIImage(named: "Ryuji_1"), isLiked: false, likeCount: 3), (image: UIImage(named: "Ryuji_2"), isLiked: true, likeCount: 87), (image: UIImage(named: "Ryuji_3"), isLiked: true, likeCount: 4), (image: UIImage(named: "Ryuji_4"), isLiked: false, likeCount: 0), (image: UIImage(named: "Ryuji_5"), isLiked: true, likeCount: 6),]),
-        UserModel(userName: "Yusuke Kitagawa", userAvatar: UIImage(named: "Yusuke"), userPhotos: [(image: UIImage(named: "Yusuke"), isLiked: true, likeCount: 9), (image: UIImage(named: "Yusuke_1"), isLiked: false, likeCount: 48), (image: UIImage(named: "Yusuke_2"), isLiked: true, likeCount: 1), (image: UIImage(named: "Yusuke_3"), isLiked: true, likeCount: 97),]),
-        UserModel(userName: "Makoto Niijima", userAvatar: UIImage(named: "Makoto"), userPhotos: [(image: UIImage(named: "Makoto_1"), isLiked: true, likeCount: 58), (image: UIImage(named: "Makoto_2"), isLiked: false, likeCount: 88), (image: UIImage(named: "Makoto_3"), isLiked: true, likeCount: 49), (image: UIImage(named: "Makoto"), isLiked: false, likeCount: 13), (image: UIImage(named: "Makoto_4"), isLiked: true, likeCount: 7), (image: UIImage(named: "Makoto_5"), isLiked: false, likeCount: 56), (image: UIImage(named: "Makoto_6"), isLiked: true, likeCount: 9),]),
-        UserModel(userName: "Futaba Sakura", userAvatar: UIImage(named: "Futaba"), userPhotos: [(image: UIImage(named: "Futaba"), isLiked: true, likeCount: 65), (image: UIImage(named: "Futaba_1"), isLiked: false, likeCount: 15), (image: UIImage(named: "Futaba_2"), isLiked: true, likeCount: 78), (image: UIImage(named: "Futaba_3"), isLiked: true, likeCount: 5), (image: UIImage(named: "Futaba_4"), isLiked: false, likeCount: 49), (image: UIImage(named: "Futaba_5"), isLiked: true, likeCount: 13),]),
-        UserModel(userName: "Haru Okumura", userAvatar: UIImage(named: "Haru"), userPhotos: [(image: UIImage(named: "Haru"), isLiked: true, likeCount: 2), (image: UIImage(named: "Haru_1"), isLiked: false, likeCount: 65), (image: UIImage(named: "Haru_2"), isLiked: true, likeCount: 19), (image: UIImage(named: "Haru_3"), isLiked: true, likeCount: 37), (image: UIImage(named: "Haru_4"), isLiked: false, likeCount: 81), (image: UIImage(named: "Haru_5"), isLiked: true, likeCount: 3),]),
-        UserModel(userName: "Sumire Yoshizawa", userAvatar: UIImage(named: "Sumire"), userPhotos: [(image: UIImage(named: "Sumire"), isLiked: true, likeCount: 99), (image: UIImage(named: "Sumire_1"), isLiked: false, likeCount: 43), (image: UIImage(named: "Sumire_2"), isLiked: true, likeCount: 17),]),
-        UserModel(userName: "Goro Akechi", userAvatar: UIImage(named: "Goro"), userPhotos: [(image: UIImage(named: "Goro"), isLiked: true, likeCount: 1), (image: UIImage(named: "Goro_1"), isLiked: false, likeCount: 3), (image: UIImage(named: "Goro_2"), isLiked: true, likeCount: 14), (image: UIImage(named: "Goro_3"), isLiked: true, likeCount: 1), (image: UIImage(named: "Goro_4"), isLiked: false, likeCount: 0),]),
-    ]
-    
-    var realmResultUser: Results<RealmUser>? = try? RealmService.load(typeOf: RealmUser.self)
-    var vkFriends: [VKUser] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
+    private let friends = try? RealmService.load(typeOf: RealmUser.self)
+    private var token: NotificationToken?
+    private var userToken: NotificationToken?
+
 //    Получение массива, содержащего первые символы имени
-    func createLitersArray(array: [UserModel]) -> [Character?] {
+    func createLitersArray(array: Results<RealmUser>) -> [Character?] {
         var liters = [Character?]()
-        for element in friends {
-            if !(liters.contains(element.userName.first)) {
-                liters.append(element.userName.first)
+        for element in array {
+            if !(liters.contains(element.fullName.first)) {
+                liters.append(element.fullName.first)
             }
         }
         return liters
     }
     
 //    Создание словаря, группирующего друзей по первой букве имени
-    func createGroupedFriendsDict(litersArray: [Character?], friendsArray: [UserModel]) -> [Character: [UserModel]] {
-        var friendsDict = [Character: [UserModel]]()
+    func createGroupedFriendsDict(litersArray: [Character?], friendsArray: Results<RealmUser>) -> [Character: [RealmUser]] {
+        var friendsDict = [Character: [RealmUser]]()
         for liter in litersArray {
-            var tmp = [UserModel]()
+            var tmp = [RealmUser]()
             for friend in friendsArray {
-                if friend.userName.first == liter {
+                if friend.fullName.first == liter {
                     tmp.append(friend)
                 }
-                tmp.sort(by: {$0.userName < $1.userName})
+                tmp.sort(by: {$0.fullName < $1.fullName})
                 friendsDict[liter!] = tmp
             }
         }
@@ -58,43 +43,113 @@ class MyFriendsTableController: UITableViewController {
 //    Структура для хранения данных словаря
     struct Objects {
         var sectionName: Character!
-        var sectionObjects: [UserModel]!
+        var sectionObjects: [RealmUser]!
     }
     
 //    Массив структур
     var objectArray = [Objects]()
+    
+    func createObjectArray() {
+        objectArray.removeAll()
         
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let user = RealmUser()
-        user.id = 0
-        user.firstName = "Firstname"
-        user.lastName = "Surname"
-        try? RealmService.save(items: [user])
-        let users = try? RealmService.load(typeOf: RealmUser.self)  //  получение данных из БД
-        print(users)
-        
-        let nib = UINib(nibName: "FriendCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "FriendCell")
-//        tableView.tableHeaderView = headerView
-//        tableView.tableFooterView = headerView
-        
-//        Преобразование данных из словаря в массив
-        let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends), friendsArray: friends)
+        let groupedFriendsDict = createGroupedFriendsDict(litersArray: createLitersArray(array: friends!), friendsArray: friends!)
         for (key, value) in groupedFriendsDict {
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
         objectArray.sort(by: { $0.sectionName < $1.sectionName})
+    }
         
-        NetworkService.instance.fetchFriends(userID: Session.instance.userId) { [weak self] vkFriends in
-            self?.vkFriends = vkFriends
-            print(vkFriends)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        observeRealm()
+//        observeUser()
+        
+        let nib = UINib(nibName: "FriendCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "FriendCell")
+        
+        NetworkService.instance.fetchFriends(userID: Session.instance.userId) { vkFriends in
+            guard let friends = vkFriends else {return}
+            do {
+                try RealmService.save(items: friends)
+            } catch {
+                print(error)
+            }
         }
         
-//        navigationController?.delegate = self
+//        createObjectArray()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        modify()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        token?.invalidate()
     }
 
+    private func observeRealm() {
+        token = friends?.observe({ [self] changes in
+            switch changes {
+            case .initial(let result):
+                if result.count > 0 {
+                    createObjectArray()
+                    self.tableView.reloadData()
+                }
+            case .update(_, _, _, _):
+                createObjectArray()
+                self.tableView.reloadData()
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
+    
+//    private func observeUser() {
+//        guard let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941)).first
+//        else { return }
+//        userToken = someUser.observe({ changes in
+//            switch changes {
+//            case let .change(object, property):
+//                guard
+//                    let users = self.friends,
+//                    let index = users.enumerated().first(where: { $0.element.id == 44227941 })?.offset,
+//                    let visibleRows = self.tableView.indexPathsForVisibleRows
+//                else {
+//                    return self.tableView.reloadData()
+//                }
+//                let indexPath = IndexPath(row: index, section: 0)
+//                if visibleRows.contains(indexPath) {
+//                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+//                }
+//            case .deleted:
+//                print("\(someUser.fullName) try to delete")
+//            case .error(let error):
+//                print(error)
+//            }
+//        })
+//    }
+    
+//    Поиск пользователя через id
+    private func modify() {
+        let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941))
+//        print(someUser ?? "")
+        if let currentUser = someUser?.first {
+            do {
+                let realm = try Realm()
+//                realm.beginWrite()
+//                currentUser.firstName = "Damir"
+//                try realm.commitWrite()
+                try realm.write {
+                    currentUser.firstName = "Damir"
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
 //    Количество секций в таблице
@@ -121,7 +176,7 @@ class MyFriendsTableController: UITableViewController {
             return UITableViewCell()
         }
         let currentFriend = objectArray[indexPath.section].sectionObjects[indexPath.row]
-        cell.configure(image: currentFriend.userAvatar, name: currentFriend.userName)
+        cell.configure(imageURL: currentFriend.userAvatarURL, name: currentFriend.fullName)
 
         return cell
     }
@@ -137,7 +192,7 @@ class MyFriendsTableController: UITableViewController {
             return
         }
         
-        destination.photos = objectArray[sectionIndex].sectionObjects[rowIndex].userPhotos
+        destination.userID = objectArray[sectionIndex].sectionObjects[rowIndex].id
     }
     
     

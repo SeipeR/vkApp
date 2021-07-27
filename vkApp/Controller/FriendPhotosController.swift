@@ -6,21 +6,58 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendPhotosController: UICollectionViewController {
+    let photos = try? RealmService.load(typeOf: RealmPhoto.self)
+    private var token: NotificationToken?
+    var photosArray = [RealmPhoto]()
     
-    var photos = [(image: UIImage?, isLiked: Bool, likeCount: UInt32)]()
+    var userID: Int?
+    
+    func createPhotosArray (array: Results<RealmPhoto>) {
+        photosArray.removeAll()
+        for element in (array.filter { $0.ownerID == self.userID}) {
+            photosArray.append(element)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.instance.fetchFriendPhotos(userID: Session.instance.userId) { vkPhotos in
-            print(vkPhotos)
+        observeRealm()
+        
+        if let userID = userID {
+            NetworkService.instance.fetchFriendPhotos(userID: userID) { vkPhotos in
+                guard let photosArray = vkPhotos else {return}
+                do {
+                    try RealmService.save(items: photosArray)
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 
+    private func observeRealm() {
+        token = photos?.observe({ [self] changes in
+            switch changes {
+            case .initial(let result):
+                if result.count > 0 {
+                    createPhotosArray(array: photos!)
+                    self.collectionView.reloadData()
+                }
+            case .update(_, _, _, _):
+                createPhotosArray(array: photos!)
+                self.collectionView.reloadData()
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return photosArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -31,12 +68,14 @@ class FriendPhotosController: UICollectionViewController {
         else {
             return UICollectionViewCell()
         }
-        
-        let currentGroupImage = photos[indexPath.row].image
-        let currentGroupIsLiked = photos[indexPath.row].isLiked
-        let currentGroupLikeCount = photos[indexPath.row].likeCount
-        cell.configure(image: currentGroupImage, isLiked: currentGroupIsLiked, likeCount: currentGroupLikeCount)
-
+        let currentURL = photosArray[indexPath.row].sizes.first(where: { ("z").contains($0.type) ||
+                                                                    ("y").contains($0.type) ||
+                                                                    ("x").contains($0.type) ||
+                                                                    ("w").contains($0.type)
+                                                                    })?.url
+        let currentIsLiked = photosArray[indexPath.row].isLiked
+        let currentLikesCount = photosArray[indexPath.row].likesCount
+        cell.configure(imageURL: currentURL ?? "", likeCount: currentLikesCount, isLiked: currentIsLiked)
 
         return cell
     }
@@ -51,7 +90,7 @@ class FriendPhotosController: UICollectionViewController {
             return
         }
         destination.currentPhoto = image
-        destination.photos = self.photos
+        destination.photos = self.photosArray
     }
 
 
