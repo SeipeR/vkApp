@@ -2,7 +2,10 @@ import UIKit
 import Alamofire
 
 final class PhotoService {
+    private var memoryCache = [String: UIImage]()
     private let cacheLifeTime: TimeInterval = 60 * 60 * 24 * 7
+    
+    private let isolationQ = DispatchQueue(label: "com.gb.isolationQ")
     
     private static let pathName: String = {
         let pathName = "Images"
@@ -85,6 +88,10 @@ final class PhotoService {
             let image = UIImage(contentsOfFile: fileName)
         else { return nil }
         
+        isolationQ.async {
+            self.memoryCache[urlString] = image
+        }
+        
         return image
     }
     
@@ -101,15 +108,22 @@ final class PhotoService {
                     return completion(nil)
                 }
                 
+                self.isolationQ.async {
+                    self.memoryCache[urlString] = image
+                }
+                
                 self.saveImageToDisk(urlString: urlString,
                                      image: image)
+                
                 completion(image)
             }
     }
     
     public func getImage(urlString: String,
                          completion: @escaping (UIImage?) -> Void) {
-        if let image = getImageFromDisk(urlString: urlString) {
+        if let image = memoryCache[urlString] {
+            completion(image)
+        } else if let image = getImageFromDisk(urlString: urlString) {
             completion(image)
         } else {
             loadImage(urlString: urlString, completion: completion)
