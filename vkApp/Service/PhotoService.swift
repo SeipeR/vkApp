@@ -39,7 +39,9 @@ final class PhotoService {
                 .first,
             let fileName = urlString
                 .split(separator: "/")
-                .last
+                .last?
+                .split(separator: "?")
+                .first
         else { return nil }
         
         return cacheDir
@@ -51,7 +53,8 @@ final class PhotoService {
     private func removeImageFromDisk(urlString: String) {
         guard
             let fileName = getFilePath(at: urlString),
-            let url = URL(string: fileName)
+            let url = URL(string: fileName),
+            FileManager.default.fileExists(atPath: fileName)
         else { return }
         do {
             try FileManager
@@ -86,7 +89,10 @@ final class PhotoService {
         guard
             lifeTime <= cacheLifeTime,
             let image = UIImage(contentsOfFile: fileName)
-        else { return nil }
+        else {
+            removeImageFromDisk(urlString: urlString)
+            return nil
+        }
         
         isolationQ.async {
             self.memoryCache[urlString] = image

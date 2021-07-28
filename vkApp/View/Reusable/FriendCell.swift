@@ -6,15 +6,21 @@
 //
 
 import UIKit
-import Kingfisher
 
 class FriendCell: UITableViewCell {
     
     @IBOutlet weak var friendAvatarImage: UIImageView!
     @IBOutlet weak var friendNameLabel: UILabel!
     
-    func configure(imageURL: String, name: String) {
-        friendAvatarImage.kf.setImage(with: URL(string: imageURL))
+    func configure(imageURL: String,
+                   name: String,
+                   photoService: PhotoService) {
+        
+        photoService.getImage(urlString: imageURL) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.friendAvatarImage.image = image
+            }
+        }
         friendNameLabel.text = name
     }
 }

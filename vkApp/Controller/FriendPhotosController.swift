@@ -11,6 +11,11 @@ import RealmSwift
 class FriendPhotosController: UICollectionViewController {
     let photos = try? RealmService.load(typeOf: RealmPhoto.self)
     private var token: NotificationToken?
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
+    
     var photosArray = [RealmPhoto]()
     
     var userID: Int?
@@ -75,7 +80,7 @@ class FriendPhotosController: UICollectionViewController {
                                                                     })?.url
         let currentIsLiked = photosArray[indexPath.row].isLiked
         let currentLikesCount = photosArray[indexPath.row].likesCount
-        cell.configure(imageURL: currentURL ?? "", likeCount: currentLikesCount, isLiked: currentIsLiked)
+        cell.configure(imageURL: currentURL ?? "", likeCount: currentLikesCount, isLiked: currentIsLiked, photoService: photoService)
 
         return cell
     }

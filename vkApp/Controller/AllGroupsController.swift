@@ -19,6 +19,10 @@ class AllGroupsController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let allGroups = try? RealmService.load(typeOf: RealmGroup.self)
     private var token: NotificationToken?
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
     
     var filteredGroups = [RealmGroup]()
     
@@ -110,7 +114,7 @@ class AllGroupsController: UITableViewController {
             currentGroup = (allGroups?[indexPath.row])!
         }
         
-        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name)
+        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name, photoService: photoService)
         
         return cell
     }

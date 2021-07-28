@@ -12,6 +12,10 @@ class MyGroupsTableController: UITableViewController {
     private let groups = try? RealmService.load(typeOf: RealmGroup.self)
     private var token: NotificationToken?
     private var groupsArray = [RealmGroup]()
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
@@ -96,7 +100,7 @@ class MyGroupsTableController: UITableViewController {
 
         let currentGroup = groupsArray[indexPath.row]
         
-        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name)
+        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name, photoService: photoService)
 
         return cell
     }

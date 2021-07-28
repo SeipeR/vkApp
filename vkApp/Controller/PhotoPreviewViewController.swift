@@ -16,21 +16,26 @@ class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSour
     var currentPhotoIndex: Int = 0
     var controllers = [UIViewController]()
     
-    func downloadImage(with urlString: String, imageCompletionHandler: @escaping (UIImage?) -> Void) {
-        guard let url = URL.init(string: urlString) else {
-            return imageCompletionHandler(nil)
-        }
-        let resource = ImageResource(downloadURL: url)
-        
-        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
-            switch result {
-            case .success(let value):
-                imageCompletionHandler(value.image)
-            case .failure:
-                imageCompletionHandler(nil)
-            }
-        }
-    }
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
+    
+//    func downloadImage(with urlString: String, imageCompletionHandler: @escaping (UIImage?) -> Void) {
+//        guard let url = URL.init(string: urlString) else {
+//            return imageCompletionHandler(nil)
+//        }
+//        let resource = ImageResource(downloadURL: url)
+//        
+//        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+//            switch result {
+//            case .success(let value):
+//                imageCompletionHandler(value.image)
+//            case .failure:
+//                imageCompletionHandler(nil)
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +45,8 @@ class PhotoPreviewViewController: UIViewController, UIPageViewControllerDataSour
         }
         
         photosURL.forEach { url in
-            downloadImage(with: url ?? "") { image in
-                self.photosImage.append(image)
-            }
+            photoService.getImage(urlString: url ?? "") { [weak self] image in
+                    self?.photosImage.append(image)                }
         }
         
         currentPhotoIndex = photosImage.firstIndex(where: {$0 === currentPhoto})!

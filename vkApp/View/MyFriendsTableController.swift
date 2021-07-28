@@ -12,6 +12,10 @@ class MyFriendsTableController: UITableViewController {
     private let friends = try? RealmService.load(typeOf: RealmUser.self)
     private var token: NotificationToken?
     private var userToken: NotificationToken?
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
 
 //    Получение массива, содержащего первые символы имени
     func createLitersArray(array: Results<RealmUser>) -> [Character?] {
@@ -176,7 +180,7 @@ class MyFriendsTableController: UITableViewController {
             return UITableViewCell()
         }
         let currentFriend = objectArray[indexPath.section].sectionObjects[indexPath.row]
-        cell.configure(imageURL: currentFriend.userAvatarURL, name: currentFriend.fullName)
+        cell.configure(imageURL: currentFriend.userAvatarURL, name: currentFriend.fullName, photoService: photoService)
 
         return cell
     }

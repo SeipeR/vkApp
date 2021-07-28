@@ -23,8 +23,15 @@ class NewsPhotoCell: UITableViewCell {
     @IBOutlet weak var rightConstraint: NSLayoutConstraint!
     @IBOutlet weak var leftConstraint: NSLayoutConstraint!
     
-    func configure(newsImage: String, imageAspectRatio: CGFloat) {
-        self.newsImage.kf.setImage(with: URL(string: newsImage))
+    func configure(newsImage: String,
+                   imageAspectRatio: CGFloat,
+                   photoService: PhotoService) {
+        
+        photoService.getImage(urlString: newsImage) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.newsImage.image = image
+            }
+        }
         
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width

@@ -9,6 +9,11 @@ import UIKit
 
 class NewsTableController: UITableViewController {
     
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
+    
     var news = [VKNewsfeed]() {
         didSet {
             createNewsObjectArray()
@@ -109,7 +114,7 @@ class NewsTableController: UITableViewController {
                     return UITableViewCell()
                 }
                 let currentNews = newsObjectArray[indexPath.section]
-                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio)
+                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio, photoService: photoService)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
             } else {
@@ -140,7 +145,7 @@ class NewsTableController: UITableViewController {
                     return UITableViewCell()
                 }
                 let currentNews = newsObjectArray[indexPath.section]
-                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio)
+                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio, photoService: photoService)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
             }
