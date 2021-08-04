@@ -7,3 +7,7 @@ class NewsTextCell: UITableViewCell {
         newsLabel.text = news
     }
 }
+//
+//extension UILabel {
+//    
+//}

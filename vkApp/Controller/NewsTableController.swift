@@ -30,7 +30,17 @@ class NewsTableController: UITableViewController {
     }
     var newsObjectArray = [NewsObject]()
     
-    func createNewsObjectArray() {
+    private var isLoading = false
+    
+    private func getNews() {
+        NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { [weak self] vkNews in
+            self?.tableView.refreshControl?.endRefreshing()
+            guard let news = vkNews else {return}
+            self?.news = news
+        }
+    }
+    
+    private func createNewsObjectArray() {
         newsObjectArray.removeAll()
         
         news.forEach { element in
@@ -56,12 +66,8 @@ class NewsTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { vkNews in
-            guard let news = vkNews else {return}
-            self.news = news
-        }
+        getNews()
         
-//        self.tableView.separatorColor = UIColor.clear
         let nibNewsCell = UINib(nibName: "NewsCell", bundle: nil)
         let nibUserInfoCell = UINib(nibName: "NewsUserInfo", bundle: nil)
         let nibTextCell = UINib(nibName: "NewsTextCell", bundle: nil)
@@ -72,8 +78,27 @@ class NewsTableController: UITableViewController {
         tableView.register(nibTextCell, forCellReuseIdentifier: "NewsTextCell")
         tableView.register(nibPhotoCell, forCellReuseIdentifier: "NewsPhotoCell")
         tableView.register(nibLikesCell, forCellReuseIdentifier: "NewsLikes")
+        
+        makeRefreshControl()
+//        configPrefetch()
     }
 
+//    private func configPrefetch() {
+//        tableView.prefetchDataSource = self
+//    }
+    
+    private func makeRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(
+            self,
+            action: #selector(refresh),
+            for: .valueChanged)
+    }
+    
+    @objc private func refresh() {
+        getNews()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -82,14 +107,12 @@ class NewsTableController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowsCount = 4
-        print(newsObjectArray[section].news.photoURL)
         if newsObjectArray[section].news.photoURL == "" {
             rowsCount -= 1
         }
         if newsObjectArray[section].news.text == "" {
             rowsCount -= 1
         }
-        print(rowsCount)
         return rowsCount
         
     }
@@ -114,7 +137,7 @@ class NewsTableController: UITableViewController {
                     return UITableViewCell()
                 }
                 let currentNews = newsObjectArray[indexPath.section]
-                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio, photoService: photoService)
+                cell.configure(newsImage: currentNews.news.photoURL, photoService: photoService)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
             } else {
@@ -145,7 +168,7 @@ class NewsTableController: UITableViewController {
                     return UITableViewCell()
                 }
                 let currentNews = newsObjectArray[indexPath.section]
-                cell.configure(newsImage: currentNews.news.photoURL, imageAspectRatio: currentNews.news.photosAspectRatio, photoService: photoService)
+                cell.configure(newsImage: currentNews.news.photoURL, photoService: photoService)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
             }
@@ -159,31 +182,22 @@ class NewsTableController: UITableViewController {
             cell.configure(isLiked: currentNews.news.userLikes, likeCount: currentNews.news.likeCount)
             return cell
         default:
-            guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsLikes", for: indexPath) as? NewsLikes
-            else {
-                return UITableViewCell()
-            }
-            return cell
+            return UITableViewCell()
         }
-//        guard
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as? NewsCell
-//        else {
-//            return UITableViewCell()
-//        }
-//        let currentNews = newsObjectArray[indexPath.section]
-//        print(currentNews)
-//
-//        cell.configure(userImage: currentNews.userAvatar,
-//                       name: currentNews.user,
-//                       date: Date(timeIntervalSince1970: TimeInterval(currentNews.news.date)),
-//                       news: currentNews.news.text,
-//                       newsImage: currentNews.news.photoURL,
-//                       isLiked: currentNews.news.userLikes,
-//                       likeCount: currentNews.news.likeCount)
-//
-//
-//        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let tableWidth = tableView.bounds.width
+        let currentNews = newsObjectArray[indexPath.section]
+        
+        switch indexPath.row {
+        case 1 where newsObjectArray[indexPath.section].news.text == "":
+            return (tableWidth / currentNews.news.photosAspectRatio)
+        case 2 where ((newsObjectArray[indexPath.section].news.photoURL != "") && (newsObjectArray[indexPath.section].news.text != "")):
+            return (tableWidth / currentNews.news.photosAspectRatio)
+        default:
+            return UITableView.automaticDimension
+        }
     }
     
     // MARK: - Table view delegate methods
@@ -192,3 +206,39 @@ class NewsTableController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+
+//extension NewsTableController: UITableViewDataSourcePrefetching {
+//    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+//
+//        guard
+//            let maxSection = indexPaths
+//                .map({ $0.section })
+//                .max()
+//        else { return }
+//
+//        if maxSection > newsObjectArray.count - 4,
+//           !isLoading {
+//            isLoading = true
+//            NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { [weak self] news in
+//                guard
+//                    let self = self,
+//                    let news = news
+//                else { return }
+//                let indexSet = IndexSet(integersIn: self.news.count ..< self.news.count + news.count)
+////                let count = ((self.news.count + news.count) - self.news.count)
+////                var indexPaths = [IndexPath]()
+////                for index in 0...count {
+////                    indexPaths.append(IndexPath(row: 0, section: maxSection + 4 + index))
+////                }
+//                var newsArray = [VKNewsfeed]()
+//                newsArray.append(contentsOf: news)
+//                self.tableView.insertSections(
+//                    indexSet,
+//                    with: .automatic)
+//                self.tableView.beginUpdates()
+//                self.isLoading = false
+//            }
+//        }
+//    }
+//}

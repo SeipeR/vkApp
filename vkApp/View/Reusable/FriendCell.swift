@@ -16,6 +16,7 @@ class FriendCell: UITableViewCell {
                    name: String,
                    photoService: PhotoService) {
         
+        self.friendAvatarImage.image = nil
         photoService.getImage(urlString: imageURL) { [weak self] image in
             DispatchQueue.main.async {
                 self?.friendAvatarImage.image = image

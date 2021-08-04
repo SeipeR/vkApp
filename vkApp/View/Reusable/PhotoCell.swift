@@ -37,6 +37,7 @@ class PhotoCell: UICollectionViewCell {
                    isLiked: Int,
                    photoService: PhotoService) {
         
+        self.photo.image = nil
         photoService.getImage(urlString: imageURL) { [weak self] image in
             DispatchQueue.main.async {
                 self?.photo.image = image

@@ -19,23 +19,15 @@ import UIKit
 
 class NewsPhotoCell: UITableViewCell {
     @IBOutlet weak var newsImage: UIImageView!
-    @IBOutlet weak var newsImageHeight: NSLayoutConstraint!
-    @IBOutlet weak var rightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var leftConstraint: NSLayoutConstraint!
     
     func configure(newsImage: String,
-                   imageAspectRatio: CGFloat,
                    photoService: PhotoService) {
         
+        self.newsImage.image = nil
         photoService.getImage(urlString: newsImage) { [weak self] image in
             DispatchQueue.main.async {
                 self?.newsImage.image = image
             }
         }
-        
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        let imageHeight = (screenWidth - (leftConstraint.constant + rightConstraint.constant)) / imageAspectRatio
-        newsImageHeight.constant = imageHeight
     }
 }
