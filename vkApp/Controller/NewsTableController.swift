@@ -32,6 +32,12 @@ class NewsTableController: UITableViewController {
     
     private var isLoading = false
     
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "d MMM y HH:mm:ss"
+        return df
+    }()
+    
     private func getNews() {
         NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { [weak self] vkNews in
             self?.tableView.refreshControl?.endRefreshing()
@@ -118,6 +124,8 @@ class NewsTableController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currentNews = newsObjectArray[indexPath.section]
+        
         switch indexPath.row {
         case 0:
             guard
@@ -125,8 +133,8 @@ class NewsTableController: UITableViewController {
             else {
                 return UITableViewCell()
             }
-            let currentNews = newsObjectArray[indexPath.section]
-            cell.configure(userImage: currentNews.userAvatar, name: currentNews.user, date: Date(timeIntervalSince1970: TimeInterval(currentNews.news.date)))
+            let date = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(currentNews.news.date)))
+            cell.configure(userImage: currentNews.userAvatar, name: currentNews.user, date: date)
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
             return cell
         case 1:
@@ -136,7 +144,6 @@ class NewsTableController: UITableViewController {
                 else {
                     return UITableViewCell()
                 }
-                let currentNews = newsObjectArray[indexPath.section]
                 cell.configure(newsImage: currentNews.news.photoURL, photoService: photoService)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
@@ -146,7 +153,6 @@ class NewsTableController: UITableViewController {
                 else {
                     return UITableViewCell()
                 }
-                let currentNews = newsObjectArray[indexPath.section]
                 cell.configure(news: currentNews.news.text)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
@@ -158,7 +164,6 @@ class NewsTableController: UITableViewController {
                 else {
                     return UITableViewCell()
                 }
-                let currentNews = newsObjectArray[indexPath.section]
                 cell.configure(isLiked: currentNews.news.userLikes, likeCount: currentNews.news.likeCount)
                 return cell
             } else {
@@ -167,7 +172,6 @@ class NewsTableController: UITableViewController {
                 else {
                     return UITableViewCell()
                 }
-                let currentNews = newsObjectArray[indexPath.section]
                 cell.configure(newsImage: currentNews.news.photoURL, photoService: photoService)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
                 return cell
@@ -178,7 +182,6 @@ class NewsTableController: UITableViewController {
             else {
                 return UITableViewCell()
             }
-            let currentNews = newsObjectArray[indexPath.section]
             cell.configure(isLiked: currentNews.news.userLikes, likeCount: currentNews.news.likeCount)
             return cell
         default:
