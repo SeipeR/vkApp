@@ -203,7 +203,8 @@ class NewsTableController: UITableViewController {
     // MARK: - Table view delegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadRows(at: [indexPath], with: .none)
+//        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
