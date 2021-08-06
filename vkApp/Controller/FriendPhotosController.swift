@@ -26,7 +26,7 @@ class FriendPhotosController: UICollectionViewController {
             photosArray.append(element)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +43,7 @@ class FriendPhotosController: UICollectionViewController {
             }
         }
     }
-
+    
     private func observeRealm() {
         token = photos?.observe({ [self] changes in
             switch changes {
@@ -64,24 +64,25 @@ class FriendPhotosController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photosArray.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-    
+        
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell
         else {
             return UICollectionViewCell()
         }
-        let currentURL = photosArray[indexPath.row].sizes.first(where: { ("z").contains($0.type) ||
-                                                                    ("y").contains($0.type) ||
-                                                                    ("x").contains($0.type) ||
-                                                                    ("w").contains($0.type)
-                                                                    })?.url
+        let currentURL = photosArray[indexPath.row].sizes.first(where: {
+            ("z").contains($0.type) ||
+            ("y").contains($0.type) ||
+            ("x").contains($0.type) ||
+            ("w").contains($0.type)
+        })?.url
         let currentIsLiked = photosArray[indexPath.row].isLiked
         let currentLikesCount = photosArray[indexPath.row].likesCount
         cell.configure(imageURL: currentURL ?? "", likeCount: currentLikesCount, isLiked: currentIsLiked, photoService: photoService)
-
+        
         return cell
     }
     
@@ -97,37 +98,4 @@ class FriendPhotosController: UICollectionViewController {
         destination.currentPhoto = image
         destination.photos = self.photosArray
     }
-
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }

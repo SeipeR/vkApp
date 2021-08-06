@@ -8,10 +8,8 @@ class RealmPhoto: Object {
     @objc dynamic var bigPhotoURL: String = ""
     @objc dynamic var isLiked: Int = 0
     @objc dynamic var likesCount: Int = 0
-
-   
-    var sizes = List<RealmPhotoSize>()
     
+    var sizes = List<RealmPhotoSize>()
     
     override class func primaryKey() -> String? {
         "id"

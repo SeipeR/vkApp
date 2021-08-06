@@ -11,7 +11,7 @@ class RealmGroup: Object {
     override class func primaryKey() -> String? {
         "id"
     }
-
+    
     override class func indexedProperties() -> [String] {
         ["screenName"]
     }

@@ -56,21 +56,21 @@ class NewsTableController: UITableViewController {
                 guard let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", element.id)).first
                 else { return }
                 tempArray.append(NewsObject(news: element,
-                                                  user: someUser.fullName,
-                                                  userAvatar: someUser.userAvatarURL))
+                                            user: someUser.fullName,
+                                            userAvatar: someUser.userAvatarURL))
             case ...0:
                 guard let someGroup = try? RealmService.load(typeOf: RealmGroup.self).filter(NSPredicate(format: "id == %i", abs(element.id))).first
                 else { return }
                 tempArray.append(NewsObject(news: element,
-                                                  user: someGroup.name,
-                                                  userAvatar: someGroup.groupAvatar))
+                                            user: someGroup.name,
+                                            userAvatar: someGroup.groupAvatar))
             default:
                 print("ERROR")
             }
         }
         return tempArray
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,7 +90,7 @@ class NewsTableController: UITableViewController {
         makeRefreshControl()
         configPrefetch()
     }
-
+    
     private func configPrefetch() {
         tableView.prefetchDataSource = self
     }
@@ -119,11 +119,11 @@ class NewsTableController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         newsObjectArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowsCount = 4
         if newsObjectArray[section].news.photoURL == "" {
@@ -135,7 +135,7 @@ class NewsTableController: UITableViewController {
         return rowsCount
         
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentNews = newsObjectArray[indexPath.section]
         
@@ -232,7 +232,7 @@ extension NewsTableController: UITableViewDataSourcePrefetching {
                 .map({ $0.section })
                 .max()
         else { return }
-
+        
         if maxSection > newsObjectArray.count - 3,
            !isLoading {
             isLoading = true

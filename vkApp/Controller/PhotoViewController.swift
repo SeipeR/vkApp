@@ -8,7 +8,7 @@
 import UIKit
 
 class PhotoViewController: UIViewController {
-
+    
     let image: UIImage
     
     private let myView: UIView = {

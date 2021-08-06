@@ -1,4 +1,3 @@
-
 struct VKPhoto {
     let id: Int
     let albumID: Int

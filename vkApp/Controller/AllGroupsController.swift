@@ -45,7 +45,7 @@ class AllGroupsController: UITableViewController {
         super.viewDidLoad()
         
         observeRealm()
-
+        
         NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { vkGroups in
             guard let groups = vkGroups else {return}
             do {
@@ -86,9 +86,9 @@ class AllGroupsController: UITableViewController {
             }
         })
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredGroups.count
@@ -96,7 +96,7 @@ class AllGroupsController: UITableViewController {
         
         return allGroups?.count ?? 0
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard
