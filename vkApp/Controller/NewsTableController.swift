@@ -16,7 +16,7 @@ class NewsTableController: UITableViewController {
     
     var news = [VKNewsfeed]() {
         didSet {
-            createNewsObjectArray()
+            newsObjectArray = createNewsObjectArray(array: news)
             tableView.reloadData()
         }
     }
@@ -30,6 +30,7 @@ class NewsTableController: UITableViewController {
     }
     var newsObjectArray = [NewsObject]()
     
+    private var nextFrom = ""
     private var isLoading = false
     
     let dateFormatter: DateFormatter = {
@@ -39,34 +40,35 @@ class NewsTableController: UITableViewController {
     }()
     
     private func getNews() {
-        NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { [weak self] vkNews in
-            self?.tableView.refreshControl?.endRefreshing()
+        NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId, startFrom: nextFrom) { [weak self] (vkNews, nextFrom)  in
+            self?.nextFrom = nextFrom
             guard let news = vkNews else {return}
             self?.news = news
         }
     }
     
-    private func createNewsObjectArray() {
-        newsObjectArray.removeAll()
+    private func createNewsObjectArray(array: [VKNewsfeed]) -> [NewsObject] {
+        var tempArray = [NewsObject]()
         
-        news.forEach { element in
+        array.forEach { element in
             switch element.id {
             case 1...:
                 guard let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", element.id)).first
                 else { return }
-                newsObjectArray.append(NewsObject(news: element,
+                tempArray.append(NewsObject(news: element,
                                                   user: someUser.fullName,
                                                   userAvatar: someUser.userAvatarURL))
             case ...0:
                 guard let someGroup = try? RealmService.load(typeOf: RealmGroup.self).filter(NSPredicate(format: "id == %i", abs(element.id))).first
                 else { return }
-                newsObjectArray.append(NewsObject(news: element,
+                tempArray.append(NewsObject(news: element,
                                                   user: someGroup.name,
                                                   userAvatar: someGroup.groupAvatar))
             default:
                 print("ERROR")
             }
         }
+        return tempArray
     }
 
     override func viewDidLoad() {
@@ -86,12 +88,12 @@ class NewsTableController: UITableViewController {
         tableView.register(nibLikesCell, forCellReuseIdentifier: "NewsLikes")
         
         makeRefreshControl()
-//        configPrefetch()
+        configPrefetch()
     }
 
-//    private func configPrefetch() {
-//        tableView.prefetchDataSource = self
-//    }
+    private func configPrefetch() {
+        tableView.prefetchDataSource = self
+    }
     
     private func makeRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
@@ -102,7 +104,18 @@ class NewsTableController: UITableViewController {
     }
     
     @objc private func refresh() {
-        getNews()
+        self.tableView.refreshControl?.beginRefreshing()
+        let mostFreshNewsDate = self.newsObjectArray.first?.news.date ?? Int(Date().timeIntervalSince1970)
+        NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId, startTime: mostFreshNewsDate + 1) { [weak self] (vkNews, nextFrom)  in
+            guard let self = self else { return }
+            var someArray = [NewsObject]()
+            self.tableView.refreshControl?.endRefreshing()
+            guard vkNews!.count > 0 else { return }
+            someArray = self.createNewsObjectArray(array: vkNews!)
+            self.newsObjectArray = someArray + self.newsObjectArray
+            let indexSet = IndexSet(integersIn: 0 ..< vkNews!.count)
+            self.tableView.insertSections(indexSet, with: .automatic)
+        }
     }
     
     // MARK: - Table view data source
@@ -207,42 +220,34 @@ class NewsTableController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.reloadRows(at: [indexPath], with: .none)
-//        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 
-//extension NewsTableController: UITableViewDataSourcePrefetching {
-//    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-//
-//        guard
-//            let maxSection = indexPaths
-//                .map({ $0.section })
-//                .max()
-//        else { return }
-//
-//        if maxSection > newsObjectArray.count - 4,
-//           !isLoading {
-//            isLoading = true
-//            NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId) { [weak self] news in
-//                guard
-//                    let self = self,
-//                    let news = news
-//                else { return }
-//                let indexSet = IndexSet(integersIn: self.news.count ..< self.news.count + news.count)
-////                let count = ((self.news.count + news.count) - self.news.count)
-////                var indexPaths = [IndexPath]()
-////                for index in 0...count {
-////                    indexPaths.append(IndexPath(row: 0, section: maxSection + 4 + index))
-////                }
-//                var newsArray = [VKNewsfeed]()
-//                newsArray.append(contentsOf: news)
-//                self.tableView.insertSections(
-//                    indexSet,
-//                    with: .automatic)
-//                self.tableView.beginUpdates()
-//                self.isLoading = false
-//            }
-//        }
-//    }
-//}
+extension NewsTableController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard
+            let maxSection = indexPaths
+                .map({ $0.section })
+                .max()
+        else { return }
+
+        if maxSection > newsObjectArray.count - 3,
+           !isLoading {
+            isLoading = true
+            NetworkService.instance.fetchNewsfeed(userID: Session.instance.userId, startFrom: nextFrom) { [weak self] (vkNews, nextFrom)  in
+                guard let self = self else { return }
+                self.nextFrom = nextFrom
+                let indexSet = IndexSet(integersIn: self.newsObjectArray.count ..< self.newsObjectArray.count + vkNews!.count)
+                var someArray = [NewsObject]()
+                someArray = self.createNewsObjectArray(array: vkNews!)
+                self.newsObjectArray.append(contentsOf: someArray)
+                self.tableView.insertSections(
+                    indexSet,
+                    with: .automatic)
+                self.isLoading = false
+            }
+        }
+    }
+}

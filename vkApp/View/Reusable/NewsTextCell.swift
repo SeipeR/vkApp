@@ -28,6 +28,7 @@ class NewsTextCell: UITableViewCell {
     func configure(news: String) {
         newsLabel.appendReadmore(after: news, trailingContent: .readmore)
         setupLabelTap(testString: news)
+//        newsLabel.text = news
     }
 }
 

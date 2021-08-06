@@ -126,16 +126,21 @@ final class NetworkService {
 //            }
 //    }
     
-    func fetchNewsfeed(userID id: Int, completion: @escaping ([VKNewsfeed]?) -> Void) {
+    func fetchNewsfeed(userID id: Int, startTime: Int? = nil, startFrom: String = "", completion: @escaping ([VKNewsfeed]?, String) -> Void) {
         let dataType = "newsfeed.get"
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             "user_id": id,
             "filters": "post",
             "max_photos": 1,
-//            "count": 10,
+            "start_from": startFrom,
+            "count": 10,
             "v": version,
             "access_token": Session.instance.token
         ]
+        
+        if let startTime = startTime {
+            parameters["start_time"] = startTime
+        }
         
         AF.request(host + dataType, method: .get, parameters: parameters)
             .responseData { response in
@@ -145,14 +150,15 @@ final class NetworkService {
                         let json = JSON(data)
                         let newsJSONs = json["response"]["items"].arrayValue
                         let vkNews = (newsJSONs.map { VKNewsfeed($0) }).filter {$0.type == "photo"}
+                        let nextFrom = json["response"]["next_from"].stringValue
                         
                         DispatchQueue.main.async {
-                            completion(vkNews)
+                            completion(vkNews, nextFrom)
                         }
                     }
                 case .failure(let error):
                     print(error)
-                    completion(nil)
+                    completion(nil, "")
                 }
             }
     }
