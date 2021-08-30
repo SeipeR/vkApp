@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         createLoadingIndicator()
-
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                           action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(tapGestureRecognizer)
@@ -92,14 +92,6 @@ class LoginViewController: UIViewController {
         return true
     }
     
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-//        guard identifier == "goInside" else {
-//            return false
-//        }
-//
-//        return checkUserInfo()
-//    }
-    
     private func presentError(with message: String = "Неправильный логин или пароль!") {
         let alertController = UIAlertController(title: "Ошибка!",
                                                 message: message,
@@ -113,7 +105,7 @@ class LoginViewController: UIViewController {
         present(alertController,
                 animated: true)
     }
-        
+    
     
     @objc func hideKeyboard() {
         scrollView?.endEditing(true)
@@ -154,3 +146,11 @@ extension LoginViewController: UIViewControllerTransitioningDelegate {
         LoginViewControllerDismissAnimator()
     }
 }
+
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//        guard identifier == "goInside" else {
+//            return false
+//        }
+//
+//        return checkUserInfo()
+//    }

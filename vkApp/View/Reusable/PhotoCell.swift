@@ -32,8 +32,17 @@ class PhotoCell: UICollectionViewCell {
         }
     }
     
-    func configure(imageURL: String, likeCount: Int, isLiked: Int) {
-        photo.kf.setImage(with: URL(string: imageURL))
+    func configure(imageURL: String,
+                   likeCount: Int,
+                   isLiked: Int,
+                   photoService: PhotoService) {
+        
+        self.photo.image = nil
+        photoService.getImage(urlString: imageURL) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.photo.image = image
+            }
+        }
         
         likeCountLabel.text = "\(likeCount)"
         if isLiked != 0 {

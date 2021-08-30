@@ -24,11 +24,14 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let usersJSONs = json["response"]["items"].arrayValue
-                    let vkUsers = usersJSONs.map { RealmUser($0) }
-                    DispatchQueue.main.async {
-                        completion(vkUsers)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let usersJSONs = json["response"]["items"].arrayValue
+                        let vkUsers = usersJSONs.map { RealmUser($0) }
+                        
+                        DispatchQueue.main.async {
+                            completion(vkUsers)
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -53,11 +56,14 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let photosJSONs = json["response"]["items"].arrayValue
-                    let vkPhotos = photosJSONs.map { RealmPhoto($0) }
-                    DispatchQueue.main.async {
-                        completion(vkPhotos)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let photosJSONs = json["response"]["items"].arrayValue
+                        let vkPhotos = photosJSONs.map { RealmPhoto($0) }
+                        
+                        DispatchQueue.main.async {
+                            completion(vkPhotos)
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -71,7 +77,7 @@ final class NetworkService {
         let parameters: Parameters = [
             "user_id": id,
             "extended": "1",
-            "count": 10,
+            //            "count": 10,
             "v": version,
             "access_token": Session.instance.token
         ]
@@ -80,11 +86,14 @@ final class NetworkService {
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    let json = JSON(data)
-                    let groupsJSONs = json["response"]["items"].arrayValue
-                    let vkGroups = groupsJSONs.map { RealmGroup($0) }
-                    DispatchQueue.main.async {
-                        completion(vkGroups)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let groupsJSONs = json["response"]["items"].arrayValue
+                        let vkGroups = groupsJSONs.map { RealmGroup($0) }
+                        
+                        DispatchQueue.main.async {
+                            completion(vkGroups)
+                        }
                     }
                 case .failure(let error):
                     print(error)
@@ -93,27 +102,114 @@ final class NetworkService {
             }
     }
     
-    func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]?) -> Void) {
-        let dataType = "groups.search"
-        let parameters: Parameters = [
-            "q": searchString,
+    func fetchNewsfeed(userID id: Int, startTime: Int? = nil, startFrom: String = "", completion: @escaping ([VKNewsfeed]?, String) -> Void) {
+        let dataType = "newsfeed.get"
+        var parameters: Parameters = [
+            "user_id": id,
+            "filters": "post",
+            "max_photos": 1,
+            "start_from": startFrom,
+            "count": 10,
             "v": version,
             "access_token": Session.instance.token
         ]
+        
+        if let startTime = startTime {
+            parameters["start_time"] = startTime
+        }
         
         AF.request(host + dataType, method: .get, parameters: parameters)
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    do {
-                        let vkGroups = try JSONDecoder().decode(VKResponse<VKItems<VKGroup>>.self, from: data)
-                        completion(vkGroups.response.items)
-                    } catch {
-                        print(error)
+                    DispatchQueue.global().async {
+                        let json = JSON(data)
+                        let newsJSONs = json["response"]["items"].arrayValue
+                        let vkNews = (newsJSONs.map { VKNewsfeed($0) }).filter {$0.type == "photo"}
+                        let nextFrom = json["response"]["next_from"].stringValue
+                        
+                        DispatchQueue.main.async {
+                            completion(vkNews, nextFrom)
+                        }
                     }
                 case .failure(let error):
                     print(error)
+                    completion(nil, "")
                 }
             }
     }
+    
+    //    func fetchGroupsSearch(searchString: String, completion: @escaping ([VKGroup]?) -> Void) {
+    //        let dataType = "groups.search"
+    //        let parameters: Parameters = [
+    //            "q": searchString,
+    //            "v": version,
+    //            "access_token": Session.instance.token
+    //        ]
+    //        
+    //        AF.request(host + dataType, method: .get, parameters: parameters)
+    //            .responseData { response in
+    //                switch response.result {
+    //                case .success(let data):
+    //                    do {
+    //                        let vkGroups = try JSONDecoder().decode(VKResponse<VKItems<VKGroup>>.self, from: data)
+    //                        completion(vkGroups.response.items)
+    //                    } catch {
+    //                        print(error)
+    //                    }
+    //                case .failure(let error):
+    //                    print(error)
+    //                }
+    //            }
+    //    }
+    //    func fetchFriendByID(userID id: Int, completion: @escaping ([VKUser]?) -> Void) {
+    //        let dataType = "users.get"
+    //        let parameters: Parameters = [
+    //            "user_ids": id,
+    //            "fields": "photo_200",
+    //            "v": version,
+    //            "access_token": Session.instance.token
+    //        ]
+    //        
+    //        AF.request(host + dataType, method: .get, parameters: parameters)
+    //            .responseData { response in
+    //                switch response.result {
+    //                case .success(let data):
+    //                    let json = JSON(data)
+    //                    let groupsJSONs = json["response"].arrayValue
+    //                    let vkNews = groupsJSONs.map { VKUser($0) }
+    //                    DispatchQueue.main.async {
+    //                        completion(vkNews)
+    //                    }
+    //                case .failure(let error):
+    //                    print(error)
+    //                    completion(nil)
+    //                }
+    //            }
+    //    }
+    //    
+    //    func fetchGroupByID(userID id: Int, completion: @escaping ([VKGroup]?) -> Void) {
+    //        let dataType = "groups.getById"
+    //        let parameters: Parameters = [
+    //            "group_ids": id,
+    //            "v": version,
+    //            "access_token": Session.instance.token
+    //        ]
+    //        
+    //        AF.request(host + dataType, method: .get, parameters: parameters)
+    //            .responseData { response in
+    //                switch response.result {
+    //                case .success(let data):
+    //                    let json = JSON(data)
+    //                    let groupsJSONs = json["response"].arrayValue
+    //                    let vkNews = groupsJSONs.map { VKGroup($0) }
+    //                    DispatchQueue.main.async {
+    //                        completion(vkNews)
+    //                    }
+    //                case .failure(let error):
+    //                    print(error)
+    //                    completion(nil)
+    //                }
+    //            }
+    //    }
 }

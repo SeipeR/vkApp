@@ -1,19 +1,6 @@
-//
-//  NewsCell.swift
-//  vkApp
-//
-//  Created by Дамир Доронкин on 22.04.2021.
-//
-
 import UIKit
 
-class NewsCell: UITableViewCell {
-    
-    @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var newsLabel: UILabel!
-    @IBOutlet weak var newsImage: UIImageView!
+class NewsLikes: UITableViewCell {
     @IBOutlet weak var likeButtonOutlet: UIButton!
     @IBAction func likeButtonAction(_ sender: UIButton) {
         if sender.image(for: .normal) == UIImage(systemName: "heart.fill") {
@@ -36,14 +23,7 @@ class NewsCell: UITableViewCell {
     }
     @IBOutlet weak var likeCountLabel: UILabel!
     
-    func configure(userImage: String, name: String, date: Date, news: String, newsImage: String, isLiked: Int, likeCount: Int) {
-        avatarImage.kf.setImage(with: URL(string: userImage))
-        nameLabel.text = name
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM y HH:mm:ss"
-        dateLabel.text = dateFormatter.string(from: date)
-        newsLabel.text = news
-        self.newsImage.kf.setImage(with: URL(string: newsImage))
+    func configure(isLiked: Int, likeCount: Int) {
         likeCountLabel.text = "\(likeCount)"
         if isLiked != 0 {
             likeButtonOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)

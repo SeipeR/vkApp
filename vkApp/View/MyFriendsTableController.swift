@@ -12,8 +12,12 @@ class MyFriendsTableController: UITableViewController {
     private let friends = try? RealmService.load(typeOf: RealmUser.self)
     private var token: NotificationToken?
     private var userToken: NotificationToken?
-
-//    Получение массива, содержащего первые символы имени
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
+    
+    //    Получение массива, содержащего первые символы имени
     func createLitersArray(array: Results<RealmUser>) -> [Character?] {
         var liters = [Character?]()
         for element in array {
@@ -24,7 +28,7 @@ class MyFriendsTableController: UITableViewController {
         return liters
     }
     
-//    Создание словаря, группирующего друзей по первой букве имени
+    //    Создание словаря, группирующего друзей по первой букве имени
     func createGroupedFriendsDict(litersArray: [Character?], friendsArray: Results<RealmUser>) -> [Character: [RealmUser]] {
         var friendsDict = [Character: [RealmUser]]()
         for liter in litersArray {
@@ -40,13 +44,13 @@ class MyFriendsTableController: UITableViewController {
         return friendsDict
     }
     
-//    Структура для хранения данных словаря
+    //    Структура для хранения данных словаря
     struct Objects {
         var sectionName: Character!
         var sectionObjects: [RealmUser]!
     }
     
-//    Массив структур
+    //    Массив структур
     var objectArray = [Objects]()
     
     func createObjectArray() {
@@ -58,11 +62,11 @@ class MyFriendsTableController: UITableViewController {
         }
         objectArray.sort(by: { $0.sectionName < $1.sectionName})
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         observeRealm()
-//        observeUser()
+        //        observeUser()
         
         let nib = UINib(nibName: "FriendCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FriendCell")
@@ -75,20 +79,17 @@ class MyFriendsTableController: UITableViewController {
                 print(error)
             }
         }
-        
-//        createObjectArray()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        modify()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         token?.invalidate()
     }
-
+    
     private func observeRealm() {
         token = friends?.observe({ [self] changes in
             switch changes {
@@ -106,41 +107,41 @@ class MyFriendsTableController: UITableViewController {
         })
     }
     
-//    private func observeUser() {
-//        guard let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941)).first
-//        else { return }
-//        userToken = someUser.observe({ changes in
-//            switch changes {
-//            case let .change(object, property):
-//                guard
-//                    let users = self.friends,
-//                    let index = users.enumerated().first(where: { $0.element.id == 44227941 })?.offset,
-//                    let visibleRows = self.tableView.indexPathsForVisibleRows
-//                else {
-//                    return self.tableView.reloadData()
-//                }
-//                let indexPath = IndexPath(row: index, section: 0)
-//                if visibleRows.contains(indexPath) {
-//                    self.tableView.reloadRows(at: [indexPath], with: .fade)
-//                }
-//            case .deleted:
-//                print("\(someUser.fullName) try to delete")
-//            case .error(let error):
-//                print(error)
-//            }
-//        })
-//    }
+    //    private func observeUser() {
+    //        guard let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941)).first
+    //        else { return }
+    //        userToken = someUser.observe({ changes in
+    //            switch changes {
+    //            case let .change(object, property):
+    //                guard
+    //                    let users = self.friends,
+    //                    let index = users.enumerated().first(where: { $0.element.id == 44227941 })?.offset,
+    //                    let visibleRows = self.tableView.indexPathsForVisibleRows
+    //                else {
+    //                    return self.tableView.reloadData()
+    //                }
+    //                let indexPath = IndexPath(row: index, section: 0)
+    //                if visibleRows.contains(indexPath) {
+    //                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+    //                }
+    //            case .deleted:
+    //                print("\(someUser.fullName) try to delete")
+    //            case .error(let error):
+    //                print(error)
+    //            }
+    //        })
+    //    }
     
-//    Поиск пользователя через id
+    //    Поиск пользователя через id
     private func modify() {
         let someUser = try? RealmService.load(typeOf: RealmUser.self).filter(NSPredicate(format: "id == %i", 44227941))
-//        print(someUser ?? "")
+        //        print(someUser ?? "")
         if let currentUser = someUser?.first {
             do {
                 let realm = try Realm()
-//                realm.beginWrite()
-//                currentUser.firstName = "Damir"
-//                try realm.commitWrite()
+                //                realm.beginWrite()
+                //                currentUser.firstName = "Damir"
+                //                try realm.commitWrite()
                 try realm.write {
                     currentUser.firstName = "Damir"
                 }
@@ -151,23 +152,23 @@ class MyFriendsTableController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
-//    Количество секций в таблице
+    
+    //    Количество секций в таблице
     override func numberOfSections(in tableView: UITableView) -> Int {
         return objectArray.count
     }
     
-//    Количество строк для конкретной секции
+    //    Количество строк для конкретной секции
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objectArray[section].sectionObjects.count
     }
     
-//    Заголовок для секции
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return String(objectArray[section].sectionName)
-//    }
+    //    Заголовок для секции
+    //    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //        return String(objectArray[section].sectionName)
+    //    }
     
-//    Данные для использования в ячейке
+    //    Данные для использования в ячейке
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard
@@ -176,12 +177,12 @@ class MyFriendsTableController: UITableViewController {
             return UITableViewCell()
         }
         let currentFriend = objectArray[indexPath.section].sectionObjects[indexPath.row]
-        cell.configure(imageURL: currentFriend.userAvatarURL, name: currentFriend.fullName)
-
+        cell.configure(imageURL: currentFriend.userAvatarURL, name: currentFriend.fullName, photoService: photoService)
+        
         return cell
     }
     
-//    Отображение фотографий выбранного друга
+    //    Отображение фотографий выбранного друга
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             segue.identifier == "showUserPhotos",
@@ -205,7 +206,7 @@ class MyFriendsTableController: UITableViewController {
     
     
     
-//     Добавление хэдера и футера
+    //     Добавление хэдера и футера
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = TableSectionHeaderView(reuseIdentifier: "")
         headerView.configure(with: objectArray[section].sectionName)
@@ -232,15 +233,15 @@ class MyFriendsTableController: UITableViewController {
         }
     }
     
-//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let headerView = TableSectionHeaderView(reuseIdentifier: "")
-//        headerView.configure(with: "Footer")
-//        return headerView
-//    }
-//
-//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        70
-//    }
+    //    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    //        let headerView = TableSectionHeaderView(reuseIdentifier: "")
+    //        headerView.configure(with: "Footer")
+    //        return headerView
+    //    }
+    //
+    //    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    //        70
+    //    }
 }
 
 

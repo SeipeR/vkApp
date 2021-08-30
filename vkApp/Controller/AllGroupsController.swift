@@ -19,6 +19,10 @@ class AllGroupsController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let allGroups = try? RealmService.load(typeOf: RealmGroup.self)
     private var token: NotificationToken?
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
     
     var filteredGroups = [RealmGroup]()
     
@@ -41,7 +45,7 @@ class AllGroupsController: UITableViewController {
         super.viewDidLoad()
         
         observeRealm()
-
+        
         NetworkService.instance.fetchFriendGroups(userID: Session.instance.userId) { vkGroups in
             guard let groups = vkGroups else {return}
             do {
@@ -82,9 +86,9 @@ class AllGroupsController: UITableViewController {
             }
         })
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredGroups.count
@@ -92,7 +96,7 @@ class AllGroupsController: UITableViewController {
         
         return allGroups?.count ?? 0
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard
@@ -110,7 +114,7 @@ class AllGroupsController: UITableViewController {
             currentGroup = (allGroups?[indexPath.row])!
         }
         
-        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name)
+        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name, photoService: photoService)
         
         return cell
     }

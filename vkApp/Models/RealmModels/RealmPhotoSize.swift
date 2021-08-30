@@ -12,10 +12,6 @@ class RealmPhotoSize: Object {
     override class func primaryKey() -> String? {
         "url"
     }
-
-//    override class func indexedProperties() -> [String] {
-//        ["url"]
-//    }
 }
 
 extension RealmPhotoSize {

@@ -12,6 +12,10 @@ class MyGroupsTableController: UITableViewController {
     private let groups = try? RealmService.load(typeOf: RealmGroup.self)
     private var token: NotificationToken?
     private var groupsArray = [RealmGroup]()
+    private let photoService: PhotoService = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        return appDelegate?.photoService ?? PhotoService()
+    }()
     
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         guard
@@ -28,7 +32,7 @@ class MyGroupsTableController: UITableViewController {
         } else {
             group = allGroupsController.allGroups![indexPath.row]
         }
-
+        
         if !groupsArray.contains(group) {
             groupsArray.append(group)
             tableView.reloadData()
@@ -41,7 +45,7 @@ class MyGroupsTableController: UITableViewController {
             groupsArray.append(element)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,9 +64,9 @@ class MyGroupsTableController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: "GroupCell")
         
         
-//        navigationController?.delegate = self
+        //        navigationController?.delegate = self
     }
-
+    
     private func observeRealm() {
         token = groups?.observe({ [self] changes in
             switch changes {
@@ -81,11 +85,11 @@ class MyGroupsTableController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         groupsArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard
@@ -93,11 +97,11 @@ class MyGroupsTableController: UITableViewController {
         else {
             return UITableViewCell()
         }
-
+        
         let currentGroup = groupsArray[indexPath.row]
         
-        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name)
-
+        cell.configure(imageURL: currentGroup.groupAvatar, name: currentGroup.name, photoService: photoService)
+        
         return cell
     }
     
